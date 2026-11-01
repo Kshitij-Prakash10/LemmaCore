@@ -62,9 +62,9 @@ Numbers come from `demo_outputs/coverage.json` (core 0.1, seed 1) and `CONTEXT.m
 
 ## Slide 6. What we left out and our assumptions (3:45 to 4:15). Rubric: Idea and innovation
 
-**On screen:** "Left out: failure prediction, passenger features, cloud, safety-certification claims." "Every loco value tagged ASSUMED until a mentor confirms." "In the harness the advisor gets the true faults; in the app it gets the classifier's guess."
+**On screen:** "Left out: failure prediction, passenger features, cloud, safety-certification claims." "Every loco value is a team assumption, tagged ASSUMED." "In the harness the advisor gets the true faults; in the app it gets the classifier's guess."
 
-**Say:** "We kept the scope narrow on purpose. Every loco number in our config is tagged assumed, and the app shows the badge. Our 0 unsafe is a model result with assumed values, and with the advisor told the true fault. We also measured which assumptions matter: in the hard case, moving the motor trip temperature by 20 percent changes minutes-left from about 5 to about 13. That is the first value we need a railway engineer to confirm."
+**Say:** "We kept the scope narrow on purpose. Every loco number in our config is tagged assumed, and the app shows the badge. Our 0 unsafe is a model result with assumed values, and with the advisor told the true fault. We also measured which assumptions matter: in the hard case, moving the motor trip temperature by 20 percent changes minutes-left from about 5 to about 13. That is the most sensitive assumption in our model."
 
 **Evidence:** `config/loco.json` (every block `"status": "assumed"`); `coverage.json` `advisor_policy_note`; `demo_outputs/sensitivity.json` (hot_climb_standby_stuck: trip temperature 4.91 to 13.31 min, swing 8.4; cool_flat_compressor_fail: brake-air minimum swing 48.0). Leak rate sourced from PLW dispatch test sheets (`docs/public_answers.md`).
 
