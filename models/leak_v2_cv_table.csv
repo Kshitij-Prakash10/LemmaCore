@@ -1,0 +1,9 @@
+model,theta,held_out_event,detected,alert_share_of_event,minutes_to_first_alert,false_alarms_per_day
+RandomForest,0.7,E1,False,0.0,,0.0
+RandomForest,0.7,E2,True,0.928,25.0,0.0
+RandomForest,0.7,E3,False,0.0,,0.0
+RandomForest,0.7,E4,False,0.0,,0.0
+IsolationForest,0.999,E1,True,0.017,364.0,0.257
+IsolationForest,0.999,E2,True,0.061,29.0,0.468
+IsolationForest,0.999,E3,True,0.255,30.0,0.726
+IsolationForest,0.999,E4,True,0.214,10.0,0.0

@@ -103,6 +103,50 @@ def _thin(series: list[float], step: int) -> list[float]:
     return [round(x, 3) for x in series[::step]]
 
 
+def _leak_hook(req: dict, cfg: dict, window: dict, sc: Any) -> tuple[dict, dict]:
+    """The single ML hook on the air clock. Returns (config for the advisor, card info).
+    It can only raise the leak rate the advisor sees, so it never makes the air clock more optimistic.
+    No model, no data or any error: the config is returned untouched and the advice is as before."""
+    empty = {"p": None, "line": None, "source": None, "valid": None, "flag": False, "rate": None, "explain": []}
+    try:
+        from failover.ml.leak_detector import assess
+        res = assess(req)
+        if res is None or (res["valid"] and not res["flag"]):
+            return cfg, {**empty, **(res or {}), "line": None}
+        out = copy.deepcopy(cfg)
+        spec = out["air"]["leak_bar_per_min"]
+        keys = [k for k in ("min", "nominal", "max") if k in spec]
+        out["air"]["use_fitted"] = False
+        if not res["valid"]:
+            worst = max(spec[k] for k in keys)
+            for k in keys:
+                spec[k] = worst
+            return out, {**empty, **res, "line": "compressor data invalid - using cautious air estimate"}
+        if res["rate"] is not None and res["rate"] > 0:
+            for k in keys:
+                spec[k] = max(spec[k], res["rate"])
+            z = _air_minutes(cfg, window, sc, spec["nominal"])
+            zs = "no limit while the compressor keeps up" if z == float("inf") else f"{z:.1f} min"
+            y = res["normal_rate"] if res["normal_rate"] is not None else cfg["air"]["leak_bar_per_min"]["nominal"]
+            line = f"Air leak suspected - reservoir falling {res['rate']:.2f} bar/min (normal {y:.2f}) - air limit now {zs}"
+            return out, {**empty, **res, "line": line}
+        for k in keys:
+            spec[k] = spec[k] * LEAK_MULTIPLIER
+        line = f"Air leak suspected (model p={res['p']:.2f}) - air limit shortened"
+        return out, {**empty, **res, "line": line}
+    except Exception:
+        return cfg, empty
+
+
+def _air_minutes(cfg: dict, window: dict, sc: Any, leak: float) -> float:
+    """Minutes to the brake-air limit at this leak rate, from the core's own air model."""
+    from failover.core.model import air_time_to_limit_min, resolve_params
+    p = resolve_params(cfg, None, "nominal")
+    obs = window.get("air_pressure_bar") or [p["normal_bar"]]
+    return air_time_to_limit_min(float(obs[-1]), cfg["limits"]["brake_air_min_bar"]["value"], leak,
+                                 "COMPRESSOR_FAIL" not in sc.faults, p["fill"])
+
+
 def run_case(req: dict) -> dict:
     """Simulate baseline and advisor, take the advice (optionally after diagnosis), return JSON-ready dict."""
     cfg = load_config()
@@ -121,20 +165,8 @@ def run_case(req: dict) -> dict:
         hypothesis = list(diagnosis["predicted"]) if ok else None
         if diagnosis.get("available"):
             diagnosis["used_by_advisor"] = bool(ok)
-    # optional ML leak hook: a missing model or any error gives None and the advice is unchanged
-    from failover.ml.leak_detector import predict_proba as leak_proba
-    leak_p = leak_proba(req.get("leak_features"))
-    adv_cfg = cfg
-    if leak_p is not None and leak_p > LEAK_P:
-        adv_cfg = copy.deepcopy(cfg)
-        spec = adv_cfg["air"]["leak_bar_per_min"]
-        for k in ("min", "nominal", "max"):
-            if k in spec:
-                spec[k] = spec[k] * LEAK_MULTIPLIER
-        adv_cfg["air"]["use_fitted"] = False
+    adv_cfg, leak = _leak_hook(req, cfg, window, sc)
     advice = _advise({"observed": window, "context": _context(sc)}, adv_cfg, hypothesis)
-    leak_line = (f"Air leak suspected (model p={leak_p:.2f}) - air limit shortened"
-                 if leak_p is not None and leak_p > LEAK_P else None)
 
     step = max(1, len(base.t_s) // 360)
     limits = cfg.get("limits", {})
@@ -143,7 +175,7 @@ def run_case(req: dict) -> dict:
         "scenario": dataclasses.asdict(sc),
         "advice": dataclasses.asdict(advice),
         "diagnosis": diagnosis,
-        "leak": {"p": leak_p, "line": leak_line},
+        "leak": leak,
         "runs": {
             p: {"outcome": r.outcome, "limit_hit": r.limit_hit, "t_limit_s": r.t_limit_s,
                 "reached_station": r.reached_station, "minutes_left_true": r.minutes_left_true,

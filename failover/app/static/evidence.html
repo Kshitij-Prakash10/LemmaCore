@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Model evidence</title>
+<style>
+  :root { --bg:#f6f7f9; --fg:#15191e; --muted:#5b6573; --card:#fff; --line:#d6dbe2; --warn:#fff4d6; --warnl:#e0c060; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#14181d; --fg:#e8eaed; --muted:#9aa4b1; --card:#1d2329; --line:#333b44; --warn:#3a3016; --warnl:#7a6524; } }
+  body { margin:0 auto; max-width:960px; padding:16px; font-family:system-ui,-apple-system,"Segoe UI",sans-serif; background:var(--bg); color:var(--fg); }
+  table { border-collapse:collapse; background:var(--card); font-size:14px; width:100%; }
+  td,th { border:1px solid var(--line); padding:4px 8px; text-align:left; }
+  .warn { background:var(--warn); border:1px solid var(--warnl); padding:8px 12px; border-radius:6px; }
+  .small { color:var(--muted); font-size:13px; }
+  canvas,img { width:100%; max-width:900px; background:#fff; border:1px solid var(--line); border-radius:6px; }
+  button { font-size:15px; padding:8px 12px; border-radius:6px; border:1px solid var(--line); background:var(--card); color:var(--fg); cursor:pointer; }
+  .scroll { overflow-x:auto; }
+</style>
+</head>
+<body>
+<p><a href="/">Back to the app</a></p>
+<h1>Model evidence: optional air-leak flag</h1>
+<p class="warn">Proxy data: MetroPT-3 is a metro train compressor in Porto, not an Indian loco. Four leak events are very few, and the alarm threshold was chosen on the same folds shown here, so these numbers are optimistic.</p>
+<h2>Leave-one-event-out results</h2>
+<div class="scroll"><table id="cv"></table></div>
+<p class="small" id="cv-note"></p>
+<h2>What drives the chosen model</h2>
+<img src="/api/evidence/importance.svg" alt="Permutation importance of the chosen model, top 10 features">
+<h2>External test (MetroPT-2)</h2>
+<p id="external">Loading...</p>
+<h2>Replay: held-out E4</h2>
+<p><button id="replay">Replay held-out E4</button> <span id="status"></span></p>
+<canvas id="chart" width="900" height="240"></canvas>
+<p class="small">Grey: reservoir pressure, scaled. Blue: model score. Red: labelled leak. Black dashed: threshold.</p>
+<p id="card" class="warn" hidden></p>
+<ul id="why" class="small"></ul>
+<script src="/static/evidence.js"></script>
+</body>
+</html>

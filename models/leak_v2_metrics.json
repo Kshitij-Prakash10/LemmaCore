@@ -1,0 +1,112 @@
+{
+ "data": "MetroPT-3 (metro compressor, Porto; UCI, CC BY 4.0). Proxy, not a loco.",
+ "features": "leak_features.py: 1 min means; 60 min cycles/h, run and off durations, decay and recharge rates, load duty; 10 min mean/std of 7 signals. Loaded if motor current > 4.75 A.",
+ "cv": "leave-one-event-out over E1-E4. Test block = event +- 3 days; training excludes a further 1 day guard.",
+ "alarm_rule": "p > theta in >= 7 of the last 10 minutes; invalid minutes never alarm",
+ "theta_note": "theta chosen on the same CV folds that are reported, so these numbers are optimistic",
+ "isolation_forest": "fit only on valid data before E1 minus 1 day; p = percentile of its training scores",
+ "chosen": {
+  "RandomForest": {
+   "theta": 0.7,
+   "events_detected": 1,
+   "mean_false_alarms_per_day": 0.0
+  },
+  "IsolationForest": {
+   "theta": 0.999,
+   "events_detected": 4,
+   "mean_false_alarms_per_day": 0.363
+  }
+ },
+ "winner": "IsolationForest",
+ "theta": 0.999,
+ "cv_table": [
+  {
+   "model": "RandomForest",
+   "theta": 0.7,
+   "held_out_event": "E1",
+   "detected": false,
+   "alert_share_of_event": 0.0,
+   "minutes_to_first_alert": null,
+   "false_alarms_per_day": 0.0
+  },
+  {
+   "model": "RandomForest",
+   "theta": 0.7,
+   "held_out_event": "E2",
+   "detected": true,
+   "alert_share_of_event": 0.928,
+   "minutes_to_first_alert": 25.0,
+   "false_alarms_per_day": 0.0
+  },
+  {
+   "model": "RandomForest",
+   "theta": 0.7,
+   "held_out_event": "E3",
+   "detected": false,
+   "alert_share_of_event": 0.0,
+   "minutes_to_first_alert": null,
+   "false_alarms_per_day": 0.0
+  },
+  {
+   "model": "RandomForest",
+   "theta": 0.7,
+   "held_out_event": "E4",
+   "detected": false,
+   "alert_share_of_event": 0.0,
+   "minutes_to_first_alert": null,
+   "false_alarms_per_day": 0.0
+  },
+  {
+   "model": "IsolationForest",
+   "theta": 0.999,
+   "held_out_event": "E1",
+   "detected": true,
+   "alert_share_of_event": 0.017,
+   "minutes_to_first_alert": 364.0,
+   "false_alarms_per_day": 0.257
+  },
+  {
+   "model": "IsolationForest",
+   "theta": 0.999,
+   "held_out_event": "E2",
+   "detected": true,
+   "alert_share_of_event": 0.061,
+   "minutes_to_first_alert": 29.0,
+   "false_alarms_per_day": 0.468
+  },
+  {
+   "model": "IsolationForest",
+   "theta": 0.999,
+   "held_out_event": "E3",
+   "detected": true,
+   "alert_share_of_event": 0.255,
+   "minutes_to_first_alert": 30.0,
+   "false_alarms_per_day": 0.726
+  },
+  {
+   "model": "IsolationForest",
+   "theta": 0.999,
+   "held_out_event": "E4",
+   "detected": true,
+   "alert_share_of_event": 0.214,
+   "minutes_to_first_alert": 10.0,
+   "false_alarms_per_day": 0.0
+  }
+ ],
+ "importance_top10": {
+  "mean_loaded_run_min": 0.0316,
+  "Reservoirs_mean10": 0.0144,
+  "Oil_temperature_mean10": 0.0095,
+  "TP3_mean10": 0.0091,
+  "Motor_current_mean10": 0.0038,
+  "recharge_bar_per_min": 0.0017,
+  "cycles_per_h": 0.0006,
+  "TP2_mean10": 0.0003,
+  "load_duty": -0.0006,
+  "mean_off_min": -0.0009
+ },
+ "final_model": "IsolationForest fit only on valid data before E1 (no labels, so 'trained on all four events' does not apply); saved unchanged.",
+ "importance_of": "IsolationForest",
+ "false_alarm_note": "False alarms are measured only in the +-3 day blocks around events. For the IsolationForest the block before E1 overlaps its training period.",
+ "valid_fraction": 0.767
+}
