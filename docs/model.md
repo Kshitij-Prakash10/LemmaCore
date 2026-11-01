@@ -29,3 +29,6 @@ Tries every subset of loads (2^7 = 128), keeps those the converters can feed exa
 
 ## Harness result (seed 1, 144 cases per policy, advisor given the true fault set)
 Baseline unsafe in 44, advisor unsafe in 0, 44 cases saved, 8 stops the baseline did not need (6 are a dead temperature sensor with a heating motor, 2 are a cautious 5th percentile), 0 failed properties. These come from our model with assumed parameters. Regenerate with `make harness`.
+
+## Sensitivity (M3)
+`python -m failover.core.sensitivity` (also run by `make harness`) moves each assumed parameter by plus and minus 20 percent, one at a time, and records the minutes to the first limit under the advisor's load plan. In the hard case (hot climb, standby stuck) the most sensitive assumptions are the motor trip temperature (swing 8.4 minutes), the motor heat at full load (5.1) and the motor heat capacity (3.5). For a failed compressor on a cool flat run they are the brake-air minimum (16.0) and the leak rate (8.3). **Ask the mentor for the trip temperature and the brake-air minimum first.** Output: `outputs/sensitivity.json`, committed copy in `demo_outputs/`.

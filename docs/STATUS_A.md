@@ -1,7 +1,7 @@
 # Status: Agent A (core)
 
 ## Current milestone
-M0, M1 and M2 done at 14:38. Starting M3 (sensitivity, notes) next.
+M0, M1, M2 and M3 done at 14:42. Waiting for Agent B's first push; reviewing main and answering requests.
 
 ## What works (14:38)
 - **Harness (M2):** `python -m failover.core.harness --out outputs` (or `make harness`) runs 36 fault combinations x 4 conditions x 2 policies in about 1.3 s and writes `outputs/coverage.json`, `runs.csv` and `report.html`. A committed copy is in `demo_outputs/`. Result: baseline unsafe 44 of 144, advisor unsafe 0, 8 unneeded stops, 0 failed properties.
@@ -11,6 +11,8 @@ M0, M1 and M2 done at 14:38. Starting M3 (sensitivity, notes) next.
 - `advise(observation, config, fault_hypothesis)` with subset search, 5th percentile Monte Carlo, wrong-data flag and the continue or stop decision.
 - `python -m failover.core.cli demo` shows the hard case: hot climb, standby stuck, station 15 km away. Baseline hits the motor temperature limit. Advisor stops at the nearest safe place.
 - `tests/core/test_contract.py`: 16 tests (shapes, determinism, every fault runs, stuck sensor, advice shape, hard case, closed form against stepping).
+
+- **Sensitivity (M3):** `outputs/sensitivity.json` shows which assumptions move minutes-left most. Top two to confirm with a mentor: motor trip temperature and brake-air minimum.
 
 ## What is stubbed or incomplete
 - Sensitivity output, battery refinements: not started.
