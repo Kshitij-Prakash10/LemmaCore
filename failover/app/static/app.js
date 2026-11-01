@@ -61,7 +61,7 @@ async function runAdvisor(diagnose = false) {
   const req = {
     faults: selectedFaults(), ambient_c: +$("ambient").value, gradient_pct: +$("gradient").value,
     train_load: $("train_load").value, units: +$("units").value, dist_next_station_km: +$("dist").value,
-    stick_temp: stickTemp, diagnose: diagnose, seed: 1, noise: 0.02,
+    speed_kmph: 40, stick_temp: stickTemp, diagnose: diagnose, seed: 1, noise: 0.02,
   };
   lastCase = req;
   $("decision-card").innerHTML = "Running...";
@@ -152,6 +152,7 @@ $("btn-stick").addEventListener("click", () => {
 $("btn-hard").addEventListener("click", () => {
   setFaults(["U1_TRIP", "STANDBY_STUCK"]);
   setCondition({ ambient_c: 45, gradient_pct: 2.7, train_load: "loaded" });
+  $("dist").value = 15; $("v-dist").textContent = 15;
   runAdvisor(false);
 });
 
