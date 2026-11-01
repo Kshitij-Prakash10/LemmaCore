@@ -1,5 +1,7 @@
 # Failover Guardian
 
+**Node Quest 2026: won 2nd place** (IEEE IES Student Branch, IIT BHU, 1 Nov 2026; final round of the top 8). Results below are from simulation with assumed loco values, not a real loco; the real-data part uses a metro compressor dataset as a proxy.
+
 Node Quest 2026 entry (team LemmaCore). When a loco's auxiliary converter fails and the backup does not take over, the loco pilot gets one decision: what to switch off and how many minutes are left. A fault-injection test proves the advisor handles every single and double converter fault. Machine learning diagnoses the fault from sensor windows and is calibrated and demonstrated on real compressor data.
 
 Everything runs offline on one laptop.
