@@ -44,10 +44,10 @@
   "air": {
     "normal_bar": 9.5,
     "fill_bar_per_min": 1.5,
-    "leak_bar_per_min": { "min": 0.10, "nominal": 0.15, "max": 0.20 },
+    "leak_bar_per_min": { "min": 0.04, "nominal": 0.05, "max": 0.10 },
     "use_fitted": false,
     "status": "assumed",
-    "source": "starting guess. Agent B's MetroPT-3 fit (data/processed/air_params_fit.json) is a proxy and is used only if use_fitted is true"
+    "source": "Leak range from public dispatch test sheets of 3-phase locos (PLW): main reservoir loss must be under 1 kg/cm2 in 15 minutes (0.067 per minute) and recorded values were 0.6 to 0.7 in 15 minutes (0.04 to 0.047 per minute). Nominal 0.05 is a typical new-loco value. The maximum 0.10 is our guess for an aged loco. Normal and minimum pressure are still guesses. Agent B's MetroPT-3 fit (data/processed/air_params_fit.json) is a proxy and is used only if use_fitted is true"
   },
   "battery": {
     "voltage_v": 110,

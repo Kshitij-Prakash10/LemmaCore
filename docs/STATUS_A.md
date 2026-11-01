@@ -14,6 +14,8 @@ M0, M1, M2 and M3 done at 14:42. Waiting for Agent B's first push; reviewing mai
 
 - **Sensitivity (M3):** `outputs/sensitivity.json` shows which assumptions move minutes-left most. Top two to confirm with a mentor: motor trip temperature and brake-air minimum.
 
+- **Public answers (14:46):** `docs/public_answers.md` records what the web says about the five mentor questions. Only the brake-air leak rate could be sourced, so `air.leak_bar_per_min` now comes from PLW dispatch test sheets. The trip temperature, the minimum air pressure and the load kW values remain assumed. Found a 3-phase behaviour our model lacks (frequency falls to about 37 Hz when one of three converters fails).
+
 ## What is stubbed or incomplete
 - Sensitivity output, battery refinements: not started.
 - Fault inference from signals in `infer_faults` is rough. Use the classifier from Agent B.
