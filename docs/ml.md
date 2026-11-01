@@ -82,3 +82,40 @@ Source and file checks are in `data/README.md`. A metro train compressor in Port
 - RandomForestClassifier(100 trees, max_depth 8, balanced classes, seed 42) on 1 min means with rolling 10 min features. Time-based split: trained on leaks 1 to 3 (before 2020-07-01), tested on leak 4 (from 2020-07-01, 62 days).
 - **Result on held-out leak 4 at p > 0.5: recall 0.0, no alerts and no false alarms.** The highest probability inside leak 4 was 0.17, below the highest just outside it (0.21). The model learned nothing that carries over to this leak. Metrics: `models/leak_metrics.json`. Plot: `models/leak_test_period.svg`.
 - App hook (`failover/app/backend.py`, the only change to the advice path): if p > 0.5, the advisor gets a copy of the config with the air leak rate times `LEAK_MULTIPLIER` = 2.0 (status assumed, shown on the Assumptions tab), and the card shows "Air leak suspected". With no model file or any error, p is None and the advice is identical (tested). The harness does not use the hook. Its 144-run summary is unchanged (44 baseline unsafe, 0 advisor unsafe, 0 property failures).
+
+
+## Air-leak model v2 (`leak_features.py`, `train_leak_v2.py`, `leak_rate.py`, `external_test.py`)
+
+Fallback chain: v2 model, then the v1 flag, then no ML. Each step is tested. Metrics: `models/leak_v2_metrics.json`, `models/leak_v2_cv_table.csv`. Page: `/evidence` in the app.
+
+- **Features.** 1 min means. Over 60 min: cycles per hour, mean loaded-run and off durations, reservoir decay on unloaded minutes, recharge on loaded minutes, load duty. Over 10 min: mean and std of 7 signals. A row is loaded when motor current is above 4.75 A, the valley between the unloaded mode (3.5 to 4 A) and the loaded mode (5 to 6.5 A) in the histogram (`python -m failover.ml.leak_features`). The rate features use the mean minute-to-minute slope on those minutes, not a separate fit per period.
+- **Physical signature.** During all four leaks the compressor stays loaded about 99 % of the time. It never unloads, so there is no off period to measure a decay on.
+- **INVALID data.** A window is invalid if more than 20 % of its 60 minutes are missing or Reservoirs is flat for 10 min. Invalid minutes are never alarmed. No off period is not invalid. An earlier version wrongly treated it that way, and that hid almost every leak minute.
+- **Evaluation.** Leave-one-event-out over E1 to E4. Test block: event +- 3 days. Training excludes a further 1 day guard. Alarm: p > theta in at least 7 of the last 10 minutes. An alert up to 2 h before the start counts as a detection.
+
+| Model | Theta | Held-out event | Detected | Minutes to first alert | Share of event in alert | False alarms per day |
+|---|---|---|---|---|---|---|
+| RandomForest | 0.7 | E1 | no | - | 0 % | 0.0 |
+| RandomForest | 0.7 | E2 | yes | 25.0 | 93 % | 0.0 |
+| RandomForest | 0.7 | E3 | no | - | 0 % | 0.0 |
+| RandomForest | 0.7 | E4 | no | - | 0 % | 0.0 |
+| IsolationForest | 0.999 | E1 | yes | 364.0 | 2 % | 0.257 |
+| IsolationForest | 0.999 | E2 | yes | 29.0 | 6 % | 0.468 |
+| IsolationForest | 0.999 | E3 | yes | 30.0 | 26 % | 0.726 |
+| IsolationForest | 0.999 | E4 | yes | 10.0 | 21 % | 0.0 |
+
+- **Chosen: IsolationForest, theta 0.999.** It uses no labels and was fit only on data before E1. Saved as `models/leak_model_v2.joblib`. There is no "trained on all four events" final model, because this model does not use labels.
+- Top features by permutation importance on the held-out blocks: mean_loaded_run_min (0.0316), Reservoirs_mean10 (0.0144), Oil_temperature_mean10 (0.0095), TP3_mean10 (0.0091), Motor_current_mean10 (0.0038), recharge_bar_per_min (0.0017), cycles_per_h (0.0006), TP2_mean10 (0.0003), load_duty (-0.0006), mean_off_min (-0.0009).
+
+### How far to trust this
+
+- **Optimistic.** Theta was chosen on the same folds shown here and sits at the top of the grid. Four events cannot support an independent threshold. There is no untouched test.
+- **Brief signal.** The alert fires at some point in each event, but it is on for only 2 % to 26 % of event minutes. First alerts come 10 to 364 min after the start. It is not a continuous indicator, and most minutes of a real leak show no flag.
+- **False alarms** are measured only in the +- 3 day blocks, not across the seven months. In the E1 fold, part of that block overlaps the model's training period.
+- **Rates.** During a leak the compressor rarely unloads, so `leak_rate.estimate` rarely has a high-confidence value (4 of the 58 alert minutes in E4). Usually the hook falls back to `LEAK_MULTIPLIER`.
+- **External test not run.** `data/MetroPT2.csv` is not on this machine. `external_test.py` skips cleanly and has not been run on the real file, so its column mapping for that file is untested.
+- **Proxy.** A metro compressor, not a loco. A leak rate measured there is not a loco leak rate. The hook only demonstrates the mechanism.
+
+### Advisor hook (`failover/app/backend.py`, `_leak_hook`)
+
+Flag with a high-confidence rate: the leak range is raised to at least that rate. Flag with no rate: `LEAK_MULTIPLIER`. INVALID data: every value becomes the highest leak rate in the config, with the card line "compressor data invalid - using cautious air estimate". The hook can only raise the leak rate, so it never makes the air clock more optimistic (tested). The harness does not use it, and its 144-run summary is unchanged.

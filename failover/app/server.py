@@ -66,6 +66,23 @@ def create_app() -> Flask:
         r["available"] = True
         return jsonify(r)
 
+    @app.get("/evidence")
+    def evidence_page():
+        return send_from_directory(STATIC, "evidence.html")
+
+    @app.get("/api/evidence")
+    def evidence():
+        return jsonify({"metrics": backend.read_json("models/leak_v2_metrics.json"),
+                        "external": backend.read_json("models/leak_v2_external.json"),
+                        "replay": backend.read_json("data/processed/leak_replay_v2.json")})
+
+    @app.get("/api/evidence/importance.svg")
+    def evidence_importance():
+        p = os.path.join(backend.ROOT, "models", "leak_v2_importance.svg")
+        if not os.path.exists(p):
+            return jsonify({"available": False}), 404
+        return send_file(p, mimetype="image/svg+xml")
+
     @app.get("/api/metrics")
     def metrics():
         return jsonify({"available": True, "metrics": backend.read_json("models/metrics.json")})
