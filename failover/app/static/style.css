@@ -1,0 +1,56 @@
+:root {
+  --bg: #f6f7f9; --fg: #15191e; --muted: #5b6573; --card: #ffffff; --line: #d6dbe2;
+  --safe: #2e9e5b; --stop: #e0a526; --unsafe: #d23c3c; --base: #d23c3c; --adv: #1f6fd1; --obs: #8a8f98;
+  --accent: #1f6fd1;
+}
+* { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; background: var(--bg); color: var(--fg); font-size: 16px; }
+header { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 10px 16px; background: #12233a; color: #fff; }
+header h1 { margin: 0; font-size: 22px; }
+nav { margin-left: auto; display: flex; gap: 4px; flex-wrap: wrap; }
+nav button { background: transparent; color: #cfe0f5; border: 1px solid transparent; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 15px; }
+nav button.active { background: #fff; color: #12233a; }
+.badge { padding: 3px 8px; border-radius: 10px; font-size: 13px; background: #445; color: #fff; }
+.badge.stub { background: var(--stop); color: #000; }
+.badge.real { background: var(--safe); }
+.badge.assumed { background: #fde8c4; color: #6a4500; }
+.badge.confirmed { background: #cdeed9; color: #10502b; }
+main { padding: 16px; }
+.tab { display: none; }
+.tab.active { display: block; }
+.controls { display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-start; margin-bottom: 12px; }
+fieldset { border: 1px solid var(--line); border-radius: 8px; background: var(--card); padding: 8px 12px; }
+fieldset label { display: block; margin: 4px 0; font-size: 14px; }
+#fault-picks { display: grid; grid-template-columns: repeat(2, auto); gap: 2px 14px; font-size: 14px; }
+.buttons { display: flex; flex-direction: column; gap: 6px; }
+button, .button { font-size: 15px; padding: 8px 12px; border-radius: 6px; border: 1px solid var(--line); background: var(--card); cursor: pointer; color: var(--fg); text-decoration: none; display: inline-block; }
+button.primary, .button.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+.advisor-body { display: grid; grid-template-columns: minmax(320px, 440px) 1fr; gap: 16px; }
+@media (max-width: 900px) { .advisor-body { grid-template-columns: 1fr; } }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 16px; }
+.decision { font-size: 30px; font-weight: 700; margin: 4px 0 10px; }
+.decision.CONTINUE { color: var(--safe); } .decision.STOP_AT_NEXT { color: #a66f00; } .decision.STOP_NOW { color: var(--unsafe); }
+.line { font-size: 20px; margin: 8px 0; }
+.line b { display: inline-block; min-width: 120px; }
+.minutes { font-size: 40px; font-weight: 700; }
+.flags span { display: inline-block; background: #fde2e2; color: #7a1010; padding: 2px 8px; border-radius: 8px; margin: 2px; font-size: 13px; }
+.small { color: var(--muted); font-size: 13px; }
+canvas { width: 100%; max-width: 900px; background: var(--card); border: 1px solid var(--line); border-radius: 6px; }
+.charts h3 { margin: 8px 0 4px; font-size: 15px; }
+.legend { font-size: 13px; color: var(--muted); margin: 6px 0; }
+.sw { display: inline-block; width: 14px; height: 10px; margin: 0 4px 0 10px; vertical-align: middle; }
+.sw.base { background: var(--base); } .sw.adv { background: var(--adv); } .sw.obs { background: var(--obs); } .sw.lim { background: #000; }
+.sw.safe { background: var(--safe); } .sw.stop { background: var(--stop); } .sw.unsafe { background: var(--unsafe); }
+.grids { display: flex; flex-wrap: wrap; gap: 24px; }
+table.grid { border-collapse: collapse; font-size: 12px; }
+table.grid td, table.grid th { border: 1px solid #fff; padding: 0; }
+table.grid th { padding: 2px 6px; text-align: left; font-weight: 500; background: transparent; }
+table.grid td.cell { width: 34px; height: 16px; cursor: pointer; }
+td.SAFE { background: var(--safe); } td.CONTROLLED_STOP { background: var(--stop); } td.UNSAFE { background: var(--unsafe); }
+td.cell:hover { outline: 2px solid #000; }
+.headline { font-size: 22px; margin: 6px 0 12px; }
+.warn { background: #fff4d6; border: 1px solid #e0c060; padding: 8px 12px; border-radius: 6px; }
+#assumptions-table { border-collapse: collapse; background: var(--card); width: 100%; font-size: 14px; }
+#assumptions-table td, #assumptions-table th { border: 1px solid var(--line); padding: 4px 8px; text-align: left; vertical-align: top; }
+#assumptions-table td code { font-size: 12px; white-space: pre-wrap; }
+pre { background: var(--card); border: 1px solid var(--line); padding: 8px; overflow: auto; max-height: 420px; font-size: 12px; }
