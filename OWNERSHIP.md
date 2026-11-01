@@ -18,6 +18,9 @@ The two agents work in parallel with no direct line to each other. Disjoint file
 | `data/**`, `models/**` | **Agent B** | `data/raw` is not committed |
 | `tests/ml/**`, `tests/app/**` | **Agent B** | |
 | `docs/ml.md`, `docs/STATUS_B.md` | **Agent B** | |
+| `docs/presentation/**` | **Agent C** | Pitch script, demo runbook, AI-disclosure notes. Agents A and B only read it |
+| `docs/notes/**` | **Agent C** | Plain-words guide, glossary, Q&A bank, member cheat sheets, quiz log |
+| `slides/**` | **Agent C** | `deck.json` and the built `.pptx`. Agent C works on branch `presenter/notes` and never edits code, config or other agents' docs |
 | `README.md`, `CONTEXT.md`, `OWNERSHIP.md`, `CLAUDE.md`, `AGENT_A.md`, `AGENT_B.md`, `Makefile`, `requirements*.txt`, `.gitignore`, `docs/AI_DISCLOSURE.md`, `docs/START_PROMPTS.md`, `docs/DEMO.md`, `docs/PITCH.md` | **Humans** | Agents do not edit these. Ask through `docs/requests/` |
 | `failover/__init__.py`, `failover/*/__init__.py` | **Humans** | Created in the skeleton |
 | `docs/requests/**` | **Anyone** | Create new files only. Never edit an existing file |
