@@ -71,7 +71,8 @@ def simulate(scenario: Scenario, policy: str, config: dict | None = None,
             adv = advise({"observed": window, "context": ctx}, cfg, fault_hypothesis=list(faults))
             shed, last_advice_t = set(adv.shed), t
             events.append({"t_s": t, "type": "advice", "decision": adv.decision, "shed": adv.shed,
-                           "minutes_left_p5": adv.minutes_left_p5})
+                           "keep": adv.keep, "minutes_left_p5": adv.minutes_left_p5,
+                           "limiting_factor": adv.limiting_factor, "flags": adv.flags})
             if adv.decision == "STOP_NOW":
                 stop_at = pos + 0.3
             elif adv.decision == "STOP_AT_NEXT":

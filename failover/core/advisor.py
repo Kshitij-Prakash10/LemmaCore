@@ -73,9 +73,10 @@ def advise(observation: dict, config: dict | None = None, fault_hypothesis: list
         on = "motor_blower" in base["powered"] and not plant["blower_fail"]
         h = p["h_on"] * (1.0 if on else p["h_off_ratio"])
         pred = (p["heat_full"] * heat_scale(cfg, grad, load) - h * (t_obs - amb)) / p["C"]
-        if abs(slope) < 0.01 and abs(pred) > 0.05:
+        frozen = len(series) >= 8 and max(series[-8:]) - min(series[-8:]) < 1e-6  # a flat-lined sensor
+        if frozen and abs(pred) > 0.05:
             flags.append("temp_sensors_disagree")
-            t0 = min(lim_t - 5.0, t_obs + 25.0)
+            t0 = lim_t - 5.0  # cannot trust the reading and the model says it should be heating: assume close to the limit
 
     names = [l["name"] for l in cfg["loads"]]
     prio = {l["name"]: l["priority"] for l in cfg["loads"]}
