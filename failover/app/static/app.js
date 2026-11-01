@@ -93,7 +93,7 @@ function renderAdvice(res) {
       const top = Object.entries(d.faults).sort((x, y) => y[1] - x[1]).slice(0, 4)
         .map(([f, p]) => `${esc(f)} ${(p * 100).toFixed(0)}%`).join(", ");
       diag = `<p><b>Diagnosis:</b> ${esc(d.predicted.join(" + ") || "no fault")} (confidence ${(d.confidence * 100).toFixed(0)}%)` +
-        `${d.confidence < 0.6 ? " LOW: advisor uses the cautious assumption" : ""}<br><span class="small">${top}</span></p>`;
+        `${d.used_by_advisor ? "" : " Not used: advisor inferred the faults from signals (cautious path)"}<br><span class="small">${top}</span></p>`;
     }
   }
   $("decision-card").innerHTML = `

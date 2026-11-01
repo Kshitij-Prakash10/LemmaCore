@@ -109,10 +109,12 @@ def run_case(req: dict) -> dict:
     hypothesis: list[str] | None = list(sc.faults)
     if req.get("diagnose"):
         diagnosis = diagnose(window)
+        # trust the classifier only when it is confident AND names a fault; an empty or unsure
+        # prediction must not reach the advisor as "no faults", so it infers from signals instead
+        ok = diagnosis.get("available") and diagnosis["confidence"] >= 0.6 and diagnosis["predicted"]
+        hypothesis = list(diagnosis["predicted"]) if ok else None
         if diagnosis.get("available"):
-            hypothesis = diagnosis["predicted"] if diagnosis["confidence"] >= 0.6 else None
-        else:
-            hypothesis = None
+            diagnosis["used_by_advisor"] = bool(ok)
     advice = _advise({"observed": window, "context": _context(sc)}, cfg, hypothesis)
 
     step = max(1, len(base.t_s) // 360)

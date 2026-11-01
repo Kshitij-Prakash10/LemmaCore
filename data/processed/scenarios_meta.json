@@ -1,0 +1,10 @@
+{
+  "core_version": "0.1",
+  "seed": 1,
+  "n_per_combo": 40,
+  "n_windows": 5920,
+  "n_scenarios": 1480,
+  "generated_utc": "2026-11-01T09:22:07Z",
+  "synthetic": true,
+  "note": "Simulated by failover.core (baseline policy). Synthetic data."
+}

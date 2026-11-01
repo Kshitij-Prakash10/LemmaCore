@@ -3,7 +3,7 @@
 Update after every milestone. Keep it short and honest.
 
 ## Current milestone
-M0 done (14:31 IST). Starting M1: switch to the real core when it lands, MetroPT-3 loader, leak fit, anomaly baseline.
+M2 done (14:53 IST). The app runs on the real core. The coverage map reads demo_outputs/coverage.json. The fault classifier is trained on core data and wired to Auto-diagnose. Next: the MetroPT-3 leak fit and anomaly detector, then the M3 checks.
 
 ## Environment check
 Python 3.15.0 (not 3.14 as the brief says). In `.venv`: numpy 2.5.4, pandas 3.1.0, scikit-learn 1.9.1, Flask 3.1.3, scipy, joblib, pytest. All import. `ucimlrepo` installed but not used (curl download worked).
@@ -16,18 +16,23 @@ Python 3.15.0 (not 3.14 as the brief says). In `.venv`: numpy 2.5.4, pandas 3.1.
 - `failover/app/backend.py` uses `failover.core` automatically when `failover.core.types`, `.simulate` and `.advisor` import, and falls back to the stub otherwise. The UI shows a "STUB core" badge while on the stub.
 - `tests/app`: 12 tests pass, with the network blocked.
 
+- Fault classifier (`failover/ml/`): per-fault gradient boosting on 60 s observed windows from `failover.core.simulate`. Evaluation per the protocol is in `docs/ml.md` and `models/metrics.json`. `make train` reproduces it in about 40 s.
+- Auto-diagnose feeds the advisor only when confidence is at least 0.6 and a fault is named. Otherwise the advisor infers from signals.
+- `tests/ml`: no seed leakage, core version match, diagnose shape and speed (under 20 ms). 38 tests pass on the whole suite.
+
 ## What is stubbed or incomplete
-- All advice and coverage numbers are fake (STUB) until Agent A's core lands.
-- Classifier, anomaly detector and leak fit are not built yet. Auto-diagnose says "classifier not built yet".
+- The stub core is kept only as a fallback. The app uses `failover.core`.
+- MetroPT-3 leak fit and anomaly detector: not built yet. The Real data tab says so.
+- The minutes-left surrogate (stretch) is not built. `infer.minutes_left_p5` returns None.
 
 ## What I need from Agent A or a human
-- Agent A: `failover/core/types.py` with `Scenario` accepting every CONTRACT field as a keyword (the app passes all of them), plus `simulate.simulate` and `advisor.advise`. Please export `CORE_VERSION` from `failover/core/__init__.py`.
-- Please commit `demo_outputs/coverage.json` as soon as the harness runs once.
+- Agent A: for information, STANDBY_STUCK, MCB_TRIP and U1_TRIP+STANDBY_STUCK give the same observed signals, so the classifier cannot separate them. That is fine if the advisor treats them alike. No action needed.
+- Human: rerun `make train` if CORE_VERSION changes (a test fails when it does).
 
 ## Metrics (copy from models/metrics.json, held-out only)
-(none yet)
+See `docs/ml.md`. Held-out seeds, post-fault windows: exact fault-set accuracy 0.55. TEMP_SENSOR_STUCK precision 1.0, recall 0.99. Unseen pairs: 2 of 4 fully found.
 
 ## AI and open-source use (required for disclosure)
 - Claude Code (Agent B, model Claude Opus 5.5) wrote and reviewed code in failover/ml, failover/app, failover/stubs, tests/app, tests/ml and data/README.md.
 - Dataset: MetroPT-3, UCI Machine Learning Repository, CC BY 4.0. Citation: Davari, N., Veloso, B., Ribeiro, R., and Gama, J. (2021).
-- Packages: pandas, scikit-learn, joblib, flask (and numpy, scipy, pytest from the core requirements).
+- Packages: pandas, scikit-learn (HistGradientBoostingClassifier), joblib, flask (and numpy, scipy, pytest from the core requirements).
