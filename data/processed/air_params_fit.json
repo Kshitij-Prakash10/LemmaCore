@@ -1,0 +1,16 @@
+{
+  "leak_bar_per_min": {
+    "min": 0.056,
+    "nominal": 0.0914,
+    "max": 0.1442
+  },
+  "median_ci95_bar_per_min": [
+    0.0908,
+    0.0921
+  ],
+  "n_segments": 9522,
+  "method": "Linear slope of Reservoirs pressure in compressor-off segments (motor current < 1.0 A, >= 3.0 min), excluding +-1 day around labelled failures. min/max: 10th and 90th percentile across segments. median_ci95: bootstrap (1000 resamples, seed 11).",
+  "source": "MetroPT-3 proxy",
+  "status": "fitted_proxy",
+  "limits": "Metro train in Porto, not a loco. Off-segment decay includes normal air use (brakes, doors), so it is an upper bound on pure leakage. The median is above the loco dispatch limit in config/loco.json (0.067 bar/min), which fits that reading."
+}
