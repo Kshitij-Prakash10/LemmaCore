@@ -1,6 +1,8 @@
 # Contract: interfaces between Agent A (core) and Agent B (ML and app)
 
-Owner: Agent A. Agent B reads it and codes against it. Changes go through `docs/requests/`. Current version: `CONTRACT_VERSION = "0.1"`. The core exposes `failover.core.CORE_VERSION`. Every generated dataset and output file records the core version that produced it.
+Owner: Agent A. Agent B reads it and codes against it. Changes go through `docs/requests/`. Current version: `CONTRACT_VERSION = "0.2"`.
+
+**Changes in 0.2 (Agent A, 14:33):** (1) `UNSAFE` means a limit was hit while the train was still moving. Loss of an essential load is not unsafe by itself, because its consequence (brake air falling, battery draining) shows up as a limit. (2) `STANDBY_STUCK` alone implies unit 1 is lost with no takeover, so it has an effect as a single fault. (3) `advise()` also returns flags such as `dark_loads:<names>` and `faults_inferred_from_signals`. (4) `Scenario` has defaults for every field except `id`. (5) The harness advisor policy passes the true fault set as `fault_hypothesis` (an oracle). The app should pass the classifier output instead. The core exposes `failover.core.CORE_VERSION`. Every generated dataset and output file records the core version that produced it.
 
 Units: seconds, degrees Celsius, bar, kW, kVA, volts, percent. Time series are sampled every `dt_s` (default 1.0) for `horizon_s` (default 1800).
 

@@ -33,8 +33,8 @@
     "motor": {
       "capacity_kj_per_k": { "min": 300, "nominal": 400, "max": 500 },
       "h_on_kw_per_k": { "min": 1.2, "nominal": 1.6, "max": 2.0 },
-      "h_off_ratio": { "min": 0.15, "nominal": 0.25, "max": 0.35 },
-      "heat_full_kw": { "min": 50, "nominal": 70, "max": 90 },
+      "h_off_ratio": { "min": 0.10, "nominal": 0.15, "max": 0.25 },
+      "heat_full_kw": { "min": 70, "nominal": 90, "max": 110 },
       "heat_scale": { "flat_loaded": 0.5, "flat_empty": 0.35, "climb_loaded": 1.0, "climb_empty": 0.7 },
       "initial_rise_above_ambient_c": 40
     },
