@@ -3,7 +3,7 @@
 Update after every milestone. Keep it short and honest.
 
 ## Current milestone
-M2 done (14:53 IST). The app runs on the real core. The coverage map reads demo_outputs/coverage.json. The fault classifier is trained on core data and wired to Auto-diagnose. Next: the MetroPT-3 leak fit and anomaly detector, then the M3 checks.
+M2 done (14:53 IST). The app runs on the real core. The coverage map reads demo_outputs/coverage.json. The fault classifier is trained on core data and wired to Auto-diagnose. MetroPT-3 leak fit and anomaly detector done (14:56). Next: M3 checks (every tab offline, report export).
 
 ## Environment check
 Python 3.15.0 (not 3.14 as the brief says). In `.venv`: numpy 2.5.4, pandas 3.1.0, scikit-learn 1.9.1, Flask 3.1.3, scipy, joblib, pytest. All import. `ucimlrepo` installed but not used (curl download worked).
@@ -22,7 +22,7 @@ Python 3.15.0 (not 3.14 as the brief says). In `.venv`: numpy 2.5.4, pandas 3.1.
 
 ## What is stubbed or incomplete
 - The stub core is kept only as a fallback. The app uses `failover.core`.
-- MetroPT-3 leak fit and anomaly detector: not built yet. The Real data tab says so.
+- MetroPT-3 leak fit (`air_params_fit.json`) and Isolation Forest anomaly detector are built, and shown on the Real data tab. With the threshold fixed in advance it caught 0 of 4 leaks. Lower budgets, all fixed in advance, catch up to 3 of 4. See docs/ml.md.
 - The minutes-left surrogate (stretch) is not built. `infer.minutes_left_p5` returns None.
 
 ## What I need from Agent A or a human

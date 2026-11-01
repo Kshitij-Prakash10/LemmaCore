@@ -209,7 +209,15 @@ async function loadRealData() {
       (range ${l.min.toFixed(4)} to ${l.max.toFixed(4)}), from ${r.air_fit.n_segments} segments. Status: ${esc(r.air_fit.status)}.</p>`;
   }
   if (r.metrics) {
-    h += `<h3>Anomaly detector, held-out months</h3><pre>${esc(JSON.stringify(r.metrics, null, 2))}</pre>`;
+    const m = r.metrics;
+    h += `<h3>Anomaly detector (Isolation Forest), tested on held-out months ${esc(m.test_from)} onwards</h3>
+      <p>Trained on February, alarm threshold fixed on March. With the threshold set in advance
+      (${esc(m.false_alarm_budget)}): <b>${esc(m.events_detected)}</b> labelled air leaks caught,
+      ${esc(m.false_alarm_episodes_per_day)} false alarms per day.
+      Median score inside leaks ${esc(m.score_median_inside_failures)} vs ${esc(m.score_median_outside_warning_windows)} in normal running.</p>
+      <table id="budget-table"><tr><th>Budget (March quantile)</th><th>Leaks caught (of 4)</th><th>False alarms per day</th><th>Alarm precision</th></tr>
+      ${m.budget_table.map((b) => `<tr><td>${b.val_quantile}</td><td>${b.events_detected}</td><td>${b.false_alarm_episodes_per_day}</td><td>${b.alarm_bin_precision ?? "-"}</td></tr>`).join("")}
+      </table><p class="small">All budgets were fixed before testing and are all shown. None was chosen on the test months.</p>`;
   }
   if (!r.available && !r.air_fit) h += "<p>Real-data results are not built yet.</p>";
   $("realdata-body").innerHTML = h;

@@ -54,3 +54,5 @@ td.cell:hover { outline: 2px solid #000; }
 #assumptions-table td, #assumptions-table th { border: 1px solid var(--line); padding: 4px 8px; text-align: left; vertical-align: top; }
 #assumptions-table td code { font-size: 12px; white-space: pre-wrap; }
 pre { background: var(--card); border: 1px solid var(--line); padding: 8px; overflow: auto; max-height: 420px; font-size: 12px; }
+#budget-table { border-collapse: collapse; background: var(--card); font-size: 14px; }
+#budget-table td, #budget-table th { border: 1px solid var(--line); padding: 3px 8px; }
