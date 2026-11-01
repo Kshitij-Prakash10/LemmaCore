@@ -16,6 +16,8 @@ M0, M1, M2 and M3 done at 14:42. Waiting for Agent B's first push; reviewing mai
 
 - **Public answers (14:46):** `docs/public_answers.md` records what the web says about the five mentor questions. Only the brake-air leak rate could be sourced, so `air.leak_bar_per_min` now comes from PLW dispatch test sheets. The trip temperature, the minimum air pressure and the load kW values remain assumed. Found a 3-phase behaviour our model lacks (frequency falls to about 37 Hz when one of three converters fails).
 
+- **Robustness (15:00):** `python -m failover.core.robustness` shows the advisor was never unsafe across 32 assumption corners (4,608 case-runs), while the baseline's failures depend on the assumed values (0 to 44 of 144). Mentor answers did not arrive, so this is how we replace them. Limit: the decision assumes a safe stopping place 3 km ahead.
+
 ## What is stubbed or incomplete
 - Sensitivity output, battery refinements: not started.
 - Fault inference from signals in `infer_faults` is rough. Use the classifier from Agent B.
