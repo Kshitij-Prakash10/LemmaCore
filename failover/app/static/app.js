@@ -7,6 +7,7 @@ const COLORS = { base: "#d23c3c", adv: "#1f6fd1", obs: "#8a8f98", lim: "#000000"
 const $ = (id) => document.getElementById(id);
 let lastCase = null;
 let stickTemp = false;
+let leakRow = null;  // latest replayed MetroPT-3 feature row, sent to the advisor's optional leak hook
 
 async function api(path, body) {
   const opt = body === undefined ? {} : {
@@ -61,7 +62,7 @@ async function runAdvisor(diagnose = false) {
   const req = {
     faults: selectedFaults(), ambient_c: +$("ambient").value, gradient_pct: +$("gradient").value,
     train_load: $("train_load").value, units: +$("units").value, dist_next_station_km: +$("dist").value,
-    speed_kmph: 40, stick_temp: stickTemp, diagnose: diagnose, seed: 1, noise: 0.02,
+    speed_kmph: 40, leak_features: leakRow, stick_temp: stickTemp, diagnose: diagnose, seed: 1, noise: 0.02,
   };
   lastCase = req;
   $("decision-card").innerHTML = "Running...";
@@ -104,6 +105,7 @@ function renderAdvice(res) {
     <div class="line"><b>Minutes left</b> <span class="minutes">at least ${a.minutes_left_p5.toFixed(1)}</span></div>
     <div class="small">5th percentile. Nominal ${a.minutes_left_nominal.toFixed(1)} min. Limiting factor: <b>${esc(a.limiting_factor)}</b>. Confidence: ${esc(a.confidence)}.</div>
     <p>${esc(a.reason)}</p>
+    ${res.leak && res.leak.line ? `<p class="warn">${esc(res.leak.line)}</p>` : ""}
     <div class="flags">${a.flags.map((f) => `<span>${esc(f)}</span>`).join("")}</div>
     ${diag}
     <p class="small">Faults injected: ${esc(res.scenario.faults.join(" + ") || "none")}. Assumed values used: ${esc(a.assumptions_used.join(", "))}</p>`;
@@ -241,6 +243,30 @@ function drawAnomaly(d) {
   ctx.fillStyle = "#555"; ctx.font = "11px sans-serif";
   ctx.fillText(d.label || "anomaly score (shaded: labelled air-leak failures, dashed: alarm threshold)", L, H - 6);
 }
+
+// ---------- leak replay ----------
+$("btn-replay").addEventListener("click", async () => {
+  const r = await api("/api/leak-replay");
+  if (!r.available) { $("replay-status").textContent = "Replay not built (run python -m failover.ml.train_leak)."; return; }
+  const m = r.metrics || {};
+  $("replay-metrics").textContent = `Held-out leak 4: recall ${m.leak4_recall}, false alarms per day ${m.false_alarm_episodes_per_day}, ` +
+    `minutes to first alert ${m.minutes_to_first_alert_in_leak4 ?? "none"}. Threshold ${m.threshold}. Proxy data, not a loco.`;
+  const n = r.t.length, cv = $("chart-replay");
+  let i = 0;
+  const timer = setInterval(() => {
+    i = Math.min(n, i + 5);
+    const p = r.p.slice(0, i).map((x) => (x == null ? 0 : x));
+    drawSeries(cv, [...Array(i).keys()].map((k) => k * 60), [
+      { y: r.reservoirs_bar.slice(0, i).map((v) => v / 10), c: COLORS.obs },
+      { y: p, c: COLORS.adv },
+      { y: r.in_leak.slice(0, i), c: COLORS.base, dash: true },
+    ], 0.5);
+    const pl = p[i - 1];
+    leakRow = r.features[i - 1];
+    $("replay-status").textContent = `${r.t[i - 1]}  leak p=${pl.toFixed(2)} ${pl > 0.5 ? "FLAG: air leak suspected" : "no flag"}`;
+    if (i >= n) clearInterval(timer);
+  }, 40);
+});
 
 // ---------- assumptions ----------
 async function loadAssumptions() {
