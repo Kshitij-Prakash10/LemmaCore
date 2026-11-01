@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Failover Guardian</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header>
+  <h1>Failover Guardian</h1>
+  <span id="core-badge" class="badge">loading core...</span>
+  <nav>
+    <button data-tab="advisor" class="active">Advisor</button>
+    <button data-tab="coverage">Coverage map</button>
+    <button data-tab="realdata">Real data</button>
+    <button data-tab="assumptions">Assumptions</button>
+    <button data-tab="report">Report</button>
+  </nav>
+</header>
+
+<main>
+<section id="tab-advisor" class="tab active">
+  <div class="controls">
+    <fieldset>
+      <legend>Inject fault (pick up to 2)</legend>
+      <div id="fault-picks"></div>
+    </fieldset>
+    <fieldset>
+      <legend>What-if</legend>
+      <label>Ambient <span id="v-ambient">45</span> C
+        <input type="range" id="ambient" min="20" max="48" step="1" value="45"></label>
+      <label>Gradient <span id="v-gradient">2.7</span> %
+        <input type="range" id="gradient" min="0" max="3" step="0.1" value="2.7"></label>
+      <label>Train load
+        <select id="train_load"><option value="loaded">loaded</option><option value="empty">empty</option></select></label>
+      <label>Converter units
+        <select id="units"><option>2</option><option>3</option></select></label>
+      <label>Next station <span id="v-dist">15</span> km
+        <input type="range" id="dist" min="1" max="30" step="1" value="15"></label>
+    </fieldset>
+    <div class="buttons">
+      <button id="btn-run" class="primary">Run advisor</button>
+      <button id="btn-diagnose">Auto-diagnose</button>
+      <button id="btn-stick">Stick the temperature sensor</button>
+      <button id="btn-hard">Hard case: hot climb, U1 trips, standby stuck</button>
+    </div>
+  </div>
+  <div class="advisor-body">
+    <div id="decision-card" class="card">Pick a fault and press Run advisor.</div>
+    <div class="charts">
+      <h3>Motor temperature (C): baseline vs advisor</h3>
+      <canvas id="chart-temp" width="640" height="220"></canvas>
+      <h3>Brake air (bar): baseline vs advisor</h3>
+      <canvas id="chart-air" width="640" height="180"></canvas>
+      <div class="legend"><span class="sw base"></span>baseline (no shedding)
+        <span class="sw adv"></span>with advisor <span class="sw obs"></span>observed sensor
+        <span class="sw lim"></span>limit</div>
+      <div id="run-outcomes"></div>
+    </div>
+  </div>
+</section>
+
+<section id="tab-coverage" class="tab">
+  <div id="coverage-head"></div>
+  <div class="grids">
+    <div><h3>Baseline (no advisor)</h3><div id="grid-baseline"></div></div>
+    <div><h3>With advisor</h3><div id="grid-advisor"></div></div>
+  </div>
+  <div class="legend"><span class="sw safe"></span>SAFE <span class="sw stop"></span>CONTROLLED_STOP
+    <span class="sw unsafe"></span>UNSAFE. Click a cell to open it in the Advisor tab.</div>
+</section>
+
+<section id="tab-realdata" class="tab">
+  <p class="warn">Proxy data: MetroPT-3 is the air compressor of a metro train in Porto, not an Indian loco.
+    It shows that we handle real sensor data. It does not show that the result transfers to a loco.</p>
+  <div id="realdata-body">Loading...</div>
+  <canvas id="chart-anomaly" width="900" height="220"></canvas>
+</section>
+
+<section id="tab-assumptions" class="tab">
+  <p>Every loco number is a team assumption until a mentor confirms it.</p>
+  <table id="assumptions-table"><thead><tr><th>Key</th><th>Value</th><th>Status</th><th>Source</th></tr></thead><tbody></tbody></table>
+</section>
+
+<section id="tab-report" class="tab">
+  <p>The static test report from the fault-injection harness (no external assets).</p>
+  <p><a id="report-dl" href="/api/report?download=1" class="button primary">Export test report</a>
+     <a href="/api/report" target="_blank" class="button">Open report</a></p>
+  <div id="report-status"></div>
+  <h3>Classifier held-out metrics</h3>
+  <pre id="metrics-box">Loading...</pre>
+</section>
+</main>
+<script src="/static/app.js"></script>
+</body>
+</html>

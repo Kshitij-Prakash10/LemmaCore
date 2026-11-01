@@ -1,0 +1,10 @@
+{
+  "source": "MetroPT-3 'Data Description_Metro.pdf' bundled in the UCI download (dataset id 791), Failure Information table. Times are local train time as written in the table.",
+  "notes": "Transcribed as printed. The table numbers two rows '#1' and has no '#2'; we renumber 1-4 in order. Row 2's report says 'Maintenance on 30Apr at 12:00', which predates its 29 May failure window; kept verbatim.",
+  "failures": [
+    {"nr": 1, "start": "2020-04-18 00:00:00", "end": "2020-04-18 23:59:00", "failure": "Air leak", "severity": "High stress", "report": ""},
+    {"nr": 2, "start": "2020-05-29 23:30:00", "end": "2020-05-30 06:00:00", "failure": "Air leak", "severity": "High stress", "report": "Maintenance on 30Apr at 12:00"},
+    {"nr": 3, "start": "2020-06-05 10:00:00", "end": "2020-06-07 14:30:00", "failure": "Air leak", "severity": "High stress", "report": "Maintenance on 8Jun at 16:00"},
+    {"nr": 4, "start": "2020-07-15 14:30:00", "end": "2020-07-15 19:00:00", "failure": "Air leak", "severity": "High stress", "report": "Maintenance on 16Jul at 00:00"}
+  ]
+}

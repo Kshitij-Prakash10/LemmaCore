@@ -1,6 +1,6 @@
 {
  "core_version": "0.1",
- "generated_utc": "2026-11-01T09:06:26Z",
+ "generated_utc": "2026-11-01T09:16:31Z",
  "seed": 1,
  "conditions": [
   {
@@ -707,18 +707,18 @@
     "limit_hit": null,
     "t_limit_s": null,
     "reached_station": true,
-    "minutes_left_true": 19.83
+    "minutes_left_true": 59.83
    },
    "advisor": {
     "outcome": "SAFE",
     "limit_hit": null,
     "t_limit_s": null,
     "reached_station": true,
-    "decision": "STOP_AT_NEXT",
+    "decision": "CONTINUE",
     "shed": [],
     "limiting_factor": "air",
-    "minutes_left_p5": 15.4,
-    "minutes_left_true": 19.83
+    "minutes_left_p5": 31.3,
+    "minutes_left_true": 59.83
    },
    "properties_ok": true,
    "properties_failed": []
@@ -734,18 +734,18 @@
     "limit_hit": null,
     "t_limit_s": null,
     "reached_station": true,
-    "minutes_left_true": 19.83
+    "minutes_left_true": 59.83
    },
    "advisor": {
     "outcome": "SAFE",
     "limit_hit": null,
     "t_limit_s": null,
     "reached_station": true,
-    "decision": "STOP_AT_NEXT",
+    "decision": "CONTINUE",
     "shed": [],
     "limiting_factor": "air",
-    "minutes_left_p5": 15.4,
-    "minutes_left_true": 19.83
+    "minutes_left_p5": 31.3,
+    "minutes_left_true": 59.83
    },
    "properties_ok": true,
    "properties_failed": []
@@ -761,18 +761,18 @@
     "limit_hit": null,
     "t_limit_s": null,
     "reached_station": true,
-    "minutes_left_true": 19.83
+    "minutes_left_true": 59.83
    },
    "advisor": {
     "outcome": "SAFE",
     "limit_hit": null,
     "t_limit_s": null,
     "reached_station": true,
-    "decision": "STOP_AT_NEXT",
+    "decision": "CONTINUE",
     "shed": [],
     "limiting_factor": "air",
-    "minutes_left_p5": 15.4,
-    "minutes_left_true": 19.83
+    "minutes_left_p5": 31.3,
+    "minutes_left_true": 59.83
    },
    "properties_ok": true,
    "properties_failed": []
@@ -788,18 +788,18 @@
     "limit_hit": null,
     "t_limit_s": null,
     "reached_station": true,
-    "minutes_left_true": 19.83
+    "minutes_left_true": 59.83
    },
    "advisor": {
     "outcome": "SAFE",
     "limit_hit": null,
     "t_limit_s": null,
     "reached_station": true,
-    "decision": "STOP_AT_NEXT",
+    "decision": "CONTINUE",
     "shed": [],
     "limiting_factor": "air",
-    "minutes_left_p5": 15.4,
-    "minutes_left_true": 19.83
+    "minutes_left_p5": 31.3,
+    "minutes_left_true": 59.83
    },
    "properties_ok": true,
    "properties_failed": []
@@ -924,18 +924,18 @@
     "limit_hit": null,
     "t_limit_s": null,
     "reached_station": true,
-    "minutes_left_true": 19.83
+    "minutes_left_true": 38.35
    },
    "advisor": {
     "outcome": "SAFE",
     "limit_hit": null,
     "t_limit_s": null,
     "reached_station": true,
-    "decision": "STOP_AT_NEXT",
+    "decision": "CONTINUE",
     "shed": [],
-    "limiting_factor": "air",
-    "minutes_left_p5": 15.4,
-    "minutes_left_true": 19.83
+    "limiting_factor": "heat",
+    "minutes_left_p5": 23.3,
+    "minutes_left_true": 38.35
    },
    "properties_ok": true,
    "properties_failed": []
@@ -952,7 +952,7 @@
     "limit_hit": null,
     "t_limit_s": null,
     "reached_station": true,
-    "minutes_left_true": 19.83
+    "minutes_left_true": 29.0
    },
    "advisor": {
     "outcome": "SAFE",
@@ -961,9 +961,9 @@
     "reached_station": true,
     "decision": "STOP_AT_NEXT",
     "shed": [],
-    "limiting_factor": "air",
-    "minutes_left_p5": 15.4,
-    "minutes_left_true": 19.83
+    "limiting_factor": "heat",
+    "minutes_left_p5": 18.5,
+    "minutes_left_true": 29.0
    },
    "properties_ok": true,
    "properties_failed": []
@@ -1260,7 +1260,7 @@
     "limit_hit": null,
     "t_limit_s": null,
     "reached_station": true,
-    "minutes_left_true": 19.83
+    "minutes_left_true": 59.83
    },
    "advisor": {
     "outcome": "SAFE",
@@ -1290,7 +1290,7 @@
     "limit_hit": null,
     "t_limit_s": null,
     "reached_station": true,
-    "minutes_left_true": 19.83
+    "minutes_left_true": 59.83
    },
    "advisor": {
     "outcome": "SAFE",
@@ -1320,7 +1320,7 @@
     "limit_hit": null,
     "t_limit_s": null,
     "reached_station": true,
-    "minutes_left_true": 19.83
+    "minutes_left_true": 59.83
    },
    "advisor": {
     "outcome": "CONTROLLED_STOP",
@@ -1350,7 +1350,7 @@
     "limit_hit": null,
     "t_limit_s": null,
     "reached_station": true,
-    "minutes_left_true": 19.83
+    "minutes_left_true": 59.83
    },
    "advisor": {
     "outcome": "CONTROLLED_STOP",
@@ -1492,18 +1492,18 @@
     "limit_hit": null,
     "t_limit_s": null,
     "reached_station": true,
-    "minutes_left_true": 19.83
+    "minutes_left_true": 59.83
    },
    "advisor": {
     "outcome": "SAFE",
     "limit_hit": null,
     "t_limit_s": null,
     "reached_station": true,
-    "decision": "STOP_AT_NEXT",
+    "decision": "CONTINUE",
     "shed": [],
     "limiting_factor": "air",
-    "minutes_left_p5": 15.4,
-    "minutes_left_true": 19.83
+    "minutes_left_p5": 31.3,
+    "minutes_left_true": 59.83
    },
    "properties_ok": true,
    "properties_failed": []
@@ -1520,18 +1520,18 @@
     "limit_hit": null,
     "t_limit_s": null,
     "reached_station": true,
-    "minutes_left_true": 19.83
+    "minutes_left_true": 59.83
    },
    "advisor": {
     "outcome": "SAFE",
     "limit_hit": null,
     "t_limit_s": null,
     "reached_station": true,
-    "decision": "STOP_AT_NEXT",
+    "decision": "CONTINUE",
     "shed": [],
     "limiting_factor": "air",
-    "minutes_left_p5": 15.4,
-    "minutes_left_true": 19.83
+    "minutes_left_p5": 31.3,
+    "minutes_left_true": 59.83
    },
    "properties_ok": true,
    "properties_failed": []
@@ -1548,18 +1548,18 @@
     "limit_hit": null,
     "t_limit_s": null,
     "reached_station": true,
-    "minutes_left_true": 19.83
+    "minutes_left_true": 59.83
    },
    "advisor": {
     "outcome": "SAFE",
     "limit_hit": null,
     "t_limit_s": null,
     "reached_station": true,
-    "decision": "STOP_AT_NEXT",
+    "decision": "CONTINUE",
     "shed": [],
     "limiting_factor": "air",
-    "minutes_left_p5": 15.4,
-    "minutes_left_true": 19.83
+    "minutes_left_p5": 31.3,
+    "minutes_left_true": 59.83
    },
    "properties_ok": true,
    "properties_failed": []
@@ -1576,18 +1576,18 @@
     "limit_hit": null,
     "t_limit_s": null,
     "reached_station": true,
-    "minutes_left_true": 19.83
+    "minutes_left_true": 59.83
    },
    "advisor": {
     "outcome": "SAFE",
     "limit_hit": null,
     "t_limit_s": null,
     "reached_station": true,
-    "decision": "STOP_AT_NEXT",
+    "decision": "CONTINUE",
     "shed": [],
     "limiting_factor": "air",
-    "minutes_left_p5": 15.4,
-    "minutes_left_true": 19.83
+    "minutes_left_p5": 31.3,
+    "minutes_left_true": 59.83
    },
    "properties_ok": true,
    "properties_failed": []
@@ -1716,18 +1716,18 @@
     "limit_hit": null,
     "t_limit_s": null,
     "reached_station": true,
-    "minutes_left_true": 19.83
+    "minutes_left_true": 38.35
    },
    "advisor": {
     "outcome": "SAFE",
     "limit_hit": null,
     "t_limit_s": null,
     "reached_station": true,
-    "decision": "STOP_AT_NEXT",
+    "decision": "CONTINUE",
     "shed": [],
-    "limiting_factor": "air",
-    "minutes_left_p5": 15.4,
-    "minutes_left_true": 19.83
+    "limiting_factor": "heat",
+    "minutes_left_p5": 23.3,
+    "minutes_left_true": 38.35
    },
    "properties_ok": true,
    "properties_failed": []
@@ -1744,7 +1744,7 @@
     "limit_hit": null,
     "t_limit_s": null,
     "reached_station": true,
-    "minutes_left_true": 19.83
+    "minutes_left_true": 29.0
    },
    "advisor": {
     "outcome": "SAFE",
@@ -1753,9 +1753,9 @@
     "reached_station": true,
     "decision": "STOP_AT_NEXT",
     "shed": [],
-    "limiting_factor": "air",
-    "minutes_left_p5": 15.4,
-    "minutes_left_true": 19.83
+    "limiting_factor": "heat",
+    "minutes_left_p5": 18.5,
+    "minutes_left_true": 29.0
    },
    "properties_ok": true,
    "properties_failed": []
@@ -1828,18 +1828,18 @@
     "limit_hit": null,
     "t_limit_s": null,
     "reached_station": true,
-    "minutes_left_true": 19.83
+    "minutes_left_true": 38.35
    },
    "advisor": {
     "outcome": "SAFE",
     "limit_hit": null,
     "t_limit_s": null,
     "reached_station": true,
-    "decision": "STOP_AT_NEXT",
+    "decision": "CONTINUE",
     "shed": [],
-    "limiting_factor": "air",
-    "minutes_left_p5": 15.4,
-    "minutes_left_true": 19.83
+    "limiting_factor": "heat",
+    "minutes_left_p5": 23.3,
+    "minutes_left_true": 38.35
    },
    "properties_ok": true,
    "properties_failed": []
@@ -1856,7 +1856,7 @@
     "limit_hit": null,
     "t_limit_s": null,
     "reached_station": true,
-    "minutes_left_true": 19.83
+    "minutes_left_true": 29.0
    },
    "advisor": {
     "outcome": "SAFE",
@@ -1865,9 +1865,9 @@
     "reached_station": true,
     "decision": "STOP_AT_NEXT",
     "shed": [],
-    "limiting_factor": "air",
-    "minutes_left_p5": 15.4,
-    "minutes_left_true": 19.83
+    "limiting_factor": "heat",
+    "minutes_left_p5": 18.5,
+    "minutes_left_true": 29.0
    },
    "properties_ok": true,
    "properties_failed": []
@@ -2164,18 +2164,18 @@
     "limit_hit": null,
     "t_limit_s": null,
     "reached_station": true,
-    "minutes_left_true": 19.83
+    "minutes_left_true": 59.83
    },
    "advisor": {
     "outcome": "SAFE",
     "limit_hit": null,
     "t_limit_s": null,
     "reached_station": true,
-    "decision": "STOP_AT_NEXT",
+    "decision": "CONTINUE",
     "shed": [],
     "limiting_factor": "air",
-    "minutes_left_p5": 15.4,
-    "minutes_left_true": 19.83
+    "minutes_left_p5": 31.3,
+    "minutes_left_true": 59.83
    },
    "properties_ok": true,
    "properties_failed": []
@@ -2192,18 +2192,18 @@
     "limit_hit": null,
     "t_limit_s": null,
     "reached_station": true,
-    "minutes_left_true": 19.83
+    "minutes_left_true": 59.83
    },
    "advisor": {
     "outcome": "SAFE",
     "limit_hit": null,
     "t_limit_s": null,
     "reached_station": true,
-    "decision": "STOP_AT_NEXT",
+    "decision": "CONTINUE",
     "shed": [],
     "limiting_factor": "air",
-    "minutes_left_p5": 15.4,
-    "minutes_left_true": 19.83
+    "minutes_left_p5": 31.3,
+    "minutes_left_true": 59.83
    },
    "properties_ok": true,
    "properties_failed": []
@@ -2220,18 +2220,18 @@
     "limit_hit": null,
     "t_limit_s": null,
     "reached_station": true,
-    "minutes_left_true": 19.83
+    "minutes_left_true": 59.83
    },
    "advisor": {
     "outcome": "SAFE",
     "limit_hit": null,
     "t_limit_s": null,
     "reached_station": true,
-    "decision": "STOP_AT_NEXT",
+    "decision": "CONTINUE",
     "shed": [],
     "limiting_factor": "air",
-    "minutes_left_p5": 15.4,
-    "minutes_left_true": 19.83
+    "minutes_left_p5": 31.3,
+    "minutes_left_true": 59.83
    },
    "properties_ok": true,
    "properties_failed": []
@@ -2248,18 +2248,18 @@
     "limit_hit": null,
     "t_limit_s": null,
     "reached_station": true,
-    "minutes_left_true": 19.83
+    "minutes_left_true": 59.83
    },
    "advisor": {
     "outcome": "SAFE",
     "limit_hit": null,
     "t_limit_s": null,
     "reached_station": true,
-    "decision": "STOP_AT_NEXT",
+    "decision": "CONTINUE",
     "shed": [],
     "limiting_factor": "air",
-    "minutes_left_p5": 15.4,
-    "minutes_left_true": 19.83
+    "minutes_left_p5": 31.3,
+    "minutes_left_true": 59.83
    },
    "properties_ok": true,
    "properties_failed": []
@@ -2724,18 +2724,18 @@
     "limit_hit": null,
     "t_limit_s": null,
     "reached_station": true,
-    "minutes_left_true": 19.83
+    "minutes_left_true": 38.35
    },
    "advisor": {
     "outcome": "SAFE",
     "limit_hit": null,
     "t_limit_s": null,
     "reached_station": true,
-    "decision": "STOP_AT_NEXT",
+    "decision": "CONTINUE",
     "shed": [],
-    "limiting_factor": "air",
-    "minutes_left_p5": 15.4,
-    "minutes_left_true": 19.83
+    "limiting_factor": "heat",
+    "minutes_left_p5": 23.3,
+    "minutes_left_true": 38.35
    },
    "properties_ok": true,
    "properties_failed": []
@@ -2752,7 +2752,7 @@
     "limit_hit": null,
     "t_limit_s": null,
     "reached_station": true,
-    "minutes_left_true": 19.83
+    "minutes_left_true": 29.0
    },
    "advisor": {
     "outcome": "SAFE",
@@ -2761,9 +2761,9 @@
     "reached_station": true,
     "decision": "STOP_AT_NEXT",
     "shed": [],
-    "limiting_factor": "air",
-    "minutes_left_p5": 15.4,
-    "minutes_left_true": 19.83
+    "limiting_factor": "heat",
+    "minutes_left_p5": 18.5,
+    "minutes_left_true": 29.0
    },
    "properties_ok": true,
    "properties_failed": []
@@ -3172,18 +3172,18 @@
     "limit_hit": null,
     "t_limit_s": null,
     "reached_station": true,
-    "minutes_left_true": 19.83
+    "minutes_left_true": 38.35
    },
    "advisor": {
     "outcome": "SAFE",
     "limit_hit": null,
     "t_limit_s": null,
     "reached_station": true,
-    "decision": "STOP_AT_NEXT",
+    "decision": "CONTINUE",
     "shed": [],
-    "limiting_factor": "air",
-    "minutes_left_p5": 15.4,
-    "minutes_left_true": 19.83
+    "limiting_factor": "heat",
+    "minutes_left_p5": 23.3,
+    "minutes_left_true": 38.35
    },
    "properties_ok": true,
    "properties_failed": []
@@ -3200,7 +3200,7 @@
     "limit_hit": null,
     "t_limit_s": null,
     "reached_station": true,
-    "minutes_left_true": 19.83
+    "minutes_left_true": 29.0
    },
    "advisor": {
     "outcome": "SAFE",
@@ -3209,9 +3209,9 @@
     "reached_station": true,
     "decision": "STOP_AT_NEXT",
     "shed": [],
-    "limiting_factor": "air",
-    "minutes_left_p5": 15.4,
-    "minutes_left_true": 19.83
+    "limiting_factor": "heat",
+    "minutes_left_p5": 18.5,
+    "minutes_left_true": 29.0
    },
    "properties_ok": true,
    "properties_failed": []
@@ -3508,18 +3508,18 @@
     "limit_hit": null,
     "t_limit_s": null,
     "reached_station": true,
-    "minutes_left_true": 19.83
+    "minutes_left_true": 59.83
    },
    "advisor": {
     "outcome": "SAFE",
     "limit_hit": null,
     "t_limit_s": null,
     "reached_station": true,
-    "decision": "STOP_AT_NEXT",
+    "decision": "CONTINUE",
     "shed": [],
     "limiting_factor": "air",
-    "minutes_left_p5": 15.4,
-    "minutes_left_true": 19.83
+    "minutes_left_p5": 31.3,
+    "minutes_left_true": 59.83
    },
    "properties_ok": true,
    "properties_failed": []
@@ -3536,18 +3536,18 @@
     "limit_hit": null,
     "t_limit_s": null,
     "reached_station": true,
-    "minutes_left_true": 19.83
+    "minutes_left_true": 59.83
    },
    "advisor": {
     "outcome": "SAFE",
     "limit_hit": null,
     "t_limit_s": null,
     "reached_station": true,
-    "decision": "STOP_AT_NEXT",
+    "decision": "CONTINUE",
     "shed": [],
     "limiting_factor": "air",
-    "minutes_left_p5": 15.4,
-    "minutes_left_true": 19.83
+    "minutes_left_p5": 31.3,
+    "minutes_left_true": 59.83
    },
    "properties_ok": true,
    "properties_failed": []
@@ -3564,18 +3564,18 @@
     "limit_hit": null,
     "t_limit_s": null,
     "reached_station": true,
-    "minutes_left_true": 19.83
+    "minutes_left_true": 59.83
    },
    "advisor": {
     "outcome": "SAFE",
     "limit_hit": null,
     "t_limit_s": null,
     "reached_station": true,
-    "decision": "STOP_AT_NEXT",
+    "decision": "CONTINUE",
     "shed": [],
     "limiting_factor": "air",
-    "minutes_left_p5": 15.4,
-    "minutes_left_true": 19.83
+    "minutes_left_p5": 31.3,
+    "minutes_left_true": 59.83
    },
    "properties_ok": true,
    "properties_failed": []
@@ -3592,18 +3592,18 @@
     "limit_hit": null,
     "t_limit_s": null,
     "reached_station": true,
-    "minutes_left_true": 19.83
+    "minutes_left_true": 59.83
    },
    "advisor": {
     "outcome": "SAFE",
     "limit_hit": null,
     "t_limit_s": null,
     "reached_station": true,
-    "decision": "STOP_AT_NEXT",
+    "decision": "CONTINUE",
     "shed": [],
     "limiting_factor": "air",
-    "minutes_left_p5": 15.4,
-    "minutes_left_true": 19.83
+    "minutes_left_p5": 31.3,
+    "minutes_left_true": 59.83
    },
    "properties_ok": true,
    "properties_failed": []
@@ -3732,18 +3732,18 @@
     "limit_hit": null,
     "t_limit_s": null,
     "reached_station": true,
-    "minutes_left_true": 19.83
+    "minutes_left_true": 38.35
    },
    "advisor": {
     "outcome": "SAFE",
     "limit_hit": null,
     "t_limit_s": null,
     "reached_station": true,
-    "decision": "STOP_AT_NEXT",
+    "decision": "CONTINUE",
     "shed": [],
-    "limiting_factor": "air",
-    "minutes_left_p5": 15.4,
-    "minutes_left_true": 19.83
+    "limiting_factor": "heat",
+    "minutes_left_p5": 23.3,
+    "minutes_left_true": 38.35
    },
    "properties_ok": true,
    "properties_failed": []
@@ -3760,7 +3760,7 @@
     "limit_hit": null,
     "t_limit_s": null,
     "reached_station": true,
-    "minutes_left_true": 19.83
+    "minutes_left_true": 29.0
    },
    "advisor": {
     "outcome": "SAFE",
@@ -3769,9 +3769,9 @@
     "reached_station": true,
     "decision": "STOP_AT_NEXT",
     "shed": [],
-    "limiting_factor": "air",
-    "minutes_left_p5": 15.4,
-    "minutes_left_true": 19.83
+    "limiting_factor": "heat",
+    "minutes_left_p5": 18.5,
+    "minutes_left_true": 29.0
    },
    "properties_ok": true,
    "properties_failed": []
@@ -3956,18 +3956,18 @@
     "limit_hit": null,
     "t_limit_s": null,
     "reached_station": true,
-    "minutes_left_true": 19.83
+    "minutes_left_true": 59.83
    },
    "advisor": {
     "outcome": "SAFE",
     "limit_hit": null,
     "t_limit_s": null,
     "reached_station": true,
-    "decision": "STOP_AT_NEXT",
+    "decision": "CONTINUE",
     "shed": [],
     "limiting_factor": "air",
-    "minutes_left_p5": 15.4,
-    "minutes_left_true": 19.83
+    "minutes_left_p5": 31.3,
+    "minutes_left_true": 59.83
    },
    "properties_ok": true,
    "properties_failed": []
@@ -3984,18 +3984,18 @@
     "limit_hit": null,
     "t_limit_s": null,
     "reached_station": true,
-    "minutes_left_true": 19.83
+    "minutes_left_true": 59.83
    },
    "advisor": {
     "outcome": "SAFE",
     "limit_hit": null,
     "t_limit_s": null,
     "reached_station": true,
-    "decision": "STOP_AT_NEXT",
+    "decision": "CONTINUE",
     "shed": [],
     "limiting_factor": "air",
-    "minutes_left_p5": 15.4,
-    "minutes_left_true": 19.83
+    "minutes_left_p5": 31.3,
+    "minutes_left_true": 59.83
    },
    "properties_ok": true,
    "properties_failed": []
@@ -4012,18 +4012,18 @@
     "limit_hit": null,
     "t_limit_s": null,
     "reached_station": true,
-    "minutes_left_true": 19.83
+    "minutes_left_true": 59.83
    },
    "advisor": {
     "outcome": "SAFE",
     "limit_hit": null,
     "t_limit_s": null,
     "reached_station": true,
-    "decision": "STOP_AT_NEXT",
+    "decision": "CONTINUE",
     "shed": [],
     "limiting_factor": "air",
-    "minutes_left_p5": 15.4,
-    "minutes_left_true": 19.83
+    "minutes_left_p5": 31.3,
+    "minutes_left_true": 59.83
    },
    "properties_ok": true,
    "properties_failed": []
@@ -4040,18 +4040,18 @@
     "limit_hit": null,
     "t_limit_s": null,
     "reached_station": true,
-    "minutes_left_true": 19.83
+    "minutes_left_true": 59.83
    },
    "advisor": {
     "outcome": "SAFE",
     "limit_hit": null,
     "t_limit_s": null,
     "reached_station": true,
-    "decision": "STOP_AT_NEXT",
+    "decision": "CONTINUE",
     "shed": [],
     "limiting_factor": "air",
-    "minutes_left_p5": 15.4,
-    "minutes_left_true": 19.83
+    "minutes_left_p5": 31.3,
+    "minutes_left_true": 59.83
    },
    "properties_ok": true,
    "properties_failed": []
@@ -4068,5 +4068,5 @@
   "false_stops": 8,
   "properties_failed": 0
  },
- "elapsed_s": 1.3
+ "elapsed_s": 1.2
 }

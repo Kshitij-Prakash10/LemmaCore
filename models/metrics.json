@@ -1,0 +1,453 @@
+{
+  "core_version": "0.1",
+  "trained_utc": "2026-11-01T09:22:16Z",
+  "seed": 7,
+  "model": "HistGradientBoostingClassifier, one per fault (binary relevance), 100 iterations",
+  "data": "synthetic: windows of observed signals simulated by failover.core with +-20% parameter randomization",
+  "n_train_windows": 4224,
+  "n_train_scenarios": 1056,
+  "split": "by scenario seed (20% of seeds held out); 4 fault pairs never seen in training",
+  "heldout_pairs": [
+    "U2_TRIP+BLOWER_FAIL",
+    "MCB_TRIP+COMPRESSOR_FAIL",
+    "UNIT_DERATE+TEMP_SENSOR_STUCK",
+    "U1_TRIP+COMPRESSOR_FAIL"
+  ],
+  "test_seed_split": {
+    "n_windows": 1056,
+    "exact_set_accuracy": 0.66,
+    "micro_precision": 0.805,
+    "micro_recall": 0.731,
+    "per_fault": {
+      "U1_TRIP": {
+        "precision": 0.896,
+        "recall": 0.691,
+        "support": 162
+      },
+      "U2_TRIP": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "support": 171
+      },
+      "STANDBY_STUCK": {
+        "precision": 0.546,
+        "recall": 0.589,
+        "support": 192
+      },
+      "MCB_TRIP": {
+        "precision": 0.415,
+        "recall": 0.477,
+        "support": 153
+      },
+      "UNIT_DERATE": {
+        "precision": 0.958,
+        "recall": 0.892,
+        "support": 204
+      },
+      "BLOWER_FAIL": {
+        "precision": 0.941,
+        "recall": 0.607,
+        "support": 183
+      },
+      "COMPRESSOR_FAIL": {
+        "precision": 0.863,
+        "recall": 0.582,
+        "support": 141
+      },
+      "TEMP_SENSOR_STUCK": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "support": 141
+      }
+    }
+  },
+  "test_seed_split_post_fault_only": {
+    "n_windows": 792,
+    "exact_set_accuracy": 0.551,
+    "micro_precision": 0.807,
+    "micro_recall": 0.731,
+    "per_fault": {
+      "U1_TRIP": {
+        "precision": 0.896,
+        "recall": 0.691,
+        "support": 162
+      },
+      "U2_TRIP": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "support": 171
+      },
+      "STANDBY_STUCK": {
+        "precision": 0.546,
+        "recall": 0.589,
+        "support": 192
+      },
+      "MCB_TRIP": {
+        "precision": 0.415,
+        "recall": 0.477,
+        "support": 153
+      },
+      "UNIT_DERATE": {
+        "precision": 0.958,
+        "recall": 0.892,
+        "support": 204
+      },
+      "BLOWER_FAIL": {
+        "precision": 0.941,
+        "recall": 0.607,
+        "support": 183
+      },
+      "COMPRESSOR_FAIL": {
+        "precision": 0.891,
+        "recall": 0.582,
+        "support": 141
+      },
+      "TEMP_SENSOR_STUCK": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "support": 141
+      }
+    }
+  },
+  "heldout_pairs_eval": {
+    "n_windows": 640,
+    "exact_set_accuracy": 0.514,
+    "micro_precision": 0.793,
+    "micro_recall": 0.715,
+    "per_fault": {
+      "U1_TRIP": {
+        "precision": 0.945,
+        "recall": 1.0,
+        "support": 120
+      },
+      "U2_TRIP": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "support": 120
+      },
+      "STANDBY_STUCK": {
+        "precision": 0.0,
+        "recall": null,
+        "support": 0
+      },
+      "MCB_TRIP": {
+        "precision": 1.0,
+        "recall": 0.442,
+        "support": 120
+      },
+      "UNIT_DERATE": {
+        "precision": 0.67,
+        "recall": 1.0,
+        "support": 120
+      },
+      "BLOWER_FAIL": {
+        "precision": 0.984,
+        "recall": 1.0,
+        "support": 120
+      },
+      "COMPRESSOR_FAIL": {
+        "precision": 0.673,
+        "recall": 0.138,
+        "support": 240
+      },
+      "TEMP_SENSOR_STUCK": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "support": 120
+      }
+    }
+  },
+  "heldout_pairs_recall_post_fault": {
+    "U2_TRIP+BLOWER_FAIL": {
+      "both_found": 1.0,
+      "per_fault_recall": {
+        "U2_TRIP": 1.0,
+        "BLOWER_FAIL": 1.0
+      }
+    },
+    "MCB_TRIP+COMPRESSOR_FAIL": {
+      "both_found": 0.05,
+      "per_fault_recall": {
+        "MCB_TRIP": 0.442,
+        "COMPRESSOR_FAIL": 0.275
+      }
+    },
+    "UNIT_DERATE+TEMP_SENSOR_STUCK": {
+      "both_found": 1.0,
+      "per_fault_recall": {
+        "UNIT_DERATE": 1.0,
+        "TEMP_SENSOR_STUCK": 1.0
+      }
+    },
+    "U1_TRIP+COMPRESSOR_FAIL": {
+      "both_found": 0.0,
+      "per_fault_recall": {
+        "U1_TRIP": 1.0,
+        "COMPRESSOR_FAIL": 0.0
+      }
+    }
+  },
+  "by_noise": {
+    "noise_0.0": {
+      "n_windows": 792,
+      "exact_set_accuracy": 0.713,
+      "micro_precision": 0.879,
+      "micro_recall": 0.71,
+      "per_fault": {
+        "U1_TRIP": {
+          "precision": 0.939,
+          "recall": 0.611,
+          "support": 126
+        },
+        "U2_TRIP": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "support": 126
+        },
+        "STANDBY_STUCK": {
+          "precision": 0.533,
+          "recall": 0.5,
+          "support": 144
+        },
+        "MCB_TRIP": {
+          "precision": 0.462,
+          "recall": 0.19,
+          "support": 126
+        },
+        "UNIT_DERATE": {
+          "precision": 0.991,
+          "recall": 0.857,
+          "support": 126
+        },
+        "BLOWER_FAIL": {
+          "precision": 0.978,
+          "recall": 0.722,
+          "support": 126
+        },
+        "COMPRESSOR_FAIL": {
+          "precision": 1.0,
+          "recall": 0.852,
+          "support": 108
+        },
+        "TEMP_SENSOR_STUCK": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "support": 126
+        }
+      }
+    },
+    "noise_0.05": {
+      "n_windows": 792,
+      "exact_set_accuracy": 0.66,
+      "micro_precision": 0.816,
+      "micro_recall": 0.78,
+      "per_fault": {
+        "U1_TRIP": {
+          "precision": 1.0,
+          "recall": 0.619,
+          "support": 126
+        },
+        "U2_TRIP": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "support": 126
+        },
+        "STANDBY_STUCK": {
+          "precision": 0.584,
+          "recall": 0.819,
+          "support": 144
+        },
+        "MCB_TRIP": {
+          "precision": 0.479,
+          "recall": 0.532,
+          "support": 126
+        },
+        "UNIT_DERATE": {
+          "precision": 0.911,
+          "recall": 0.889,
+          "support": 126
+        },
+        "BLOWER_FAIL": {
+          "precision": 0.969,
+          "recall": 0.754,
+          "support": 126
+        },
+        "COMPRESSOR_FAIL": {
+          "precision": 0.914,
+          "recall": 0.593,
+          "support": 108
+        },
+        "TEMP_SENSOR_STUCK": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "support": 126
+        }
+      }
+    },
+    "noise_0.1": {
+      "n_windows": 792,
+      "exact_set_accuracy": 0.63,
+      "micro_precision": 0.793,
+      "micro_recall": 0.74,
+      "per_fault": {
+        "U1_TRIP": {
+          "precision": 0.832,
+          "recall": 0.667,
+          "support": 126
+        },
+        "U2_TRIP": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "support": 126
+        },
+        "STANDBY_STUCK": {
+          "precision": 0.55,
+          "recall": 0.576,
+          "support": 144
+        },
+        "MCB_TRIP": {
+          "precision": 0.5,
+          "recall": 0.667,
+          "support": 126
+        },
+        "UNIT_DERATE": {
+          "precision": 0.957,
+          "recall": 0.881,
+          "support": 126
+        },
+        "BLOWER_FAIL": {
+          "precision": 1.0,
+          "recall": 0.714,
+          "support": 126
+        },
+        "COMPRESSOR_FAIL": {
+          "precision": 0.667,
+          "recall": 0.389,
+          "support": 108
+        },
+        "TEMP_SENSOR_STUCK": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "support": 126
+        }
+      }
+    }
+  },
+  "params_outside_training_range": {
+    "n_windows": 792,
+    "exact_set_accuracy": 0.691,
+    "micro_precision": 0.828,
+    "micro_recall": 0.76,
+    "per_fault": {
+      "U1_TRIP": {
+        "precision": 0.925,
+        "recall": 0.683,
+        "support": 126
+      },
+      "U2_TRIP": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "support": 126
+      },
+      "STANDBY_STUCK": {
+        "precision": 0.576,
+        "recall": 0.604,
+        "support": 144
+      },
+      "MCB_TRIP": {
+        "precision": 0.507,
+        "recall": 0.563,
+        "support": 126
+      },
+      "UNIT_DERATE": {
+        "precision": 0.927,
+        "recall": 0.905,
+        "support": 126
+      },
+      "BLOWER_FAIL": {
+        "precision": 0.978,
+        "recall": 0.714,
+        "support": 126
+      },
+      "COMPRESSOR_FAIL": {
+        "precision": 0.892,
+        "recall": 0.611,
+        "support": 108
+      },
+      "TEMP_SENSOR_STUCK": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "support": 126
+      }
+    }
+  },
+  "temp_sensor_stuck_confusion_test": {
+    "tp": 141,
+    "fp": 0,
+    "fn": 0,
+    "tn": 915
+  },
+  "reliability_test": [
+    {
+      "bin": "0.0-0.1",
+      "n": 6724,
+      "mean_prob": 0.003,
+      "frac_positive": 0.023
+    },
+    {
+      "bin": "0.1-0.2",
+      "n": 173,
+      "mean_prob": 0.144,
+      "frac_positive": 0.347
+    },
+    {
+      "bin": "0.2-0.3",
+      "n": 124,
+      "mean_prob": 0.247,
+      "frac_positive": 0.419
+    },
+    {
+      "bin": "0.3-0.4",
+      "n": 93,
+      "mean_prob": 0.353,
+      "frac_positive": 0.398
+    },
+    {
+      "bin": "0.4-0.5",
+      "n": 111,
+      "mean_prob": 0.452,
+      "frac_positive": 0.55
+    },
+    {
+      "bin": "0.5-0.6",
+      "n": 82,
+      "mean_prob": 0.548,
+      "frac_positive": 0.427
+    },
+    {
+      "bin": "0.6-0.7",
+      "n": 108,
+      "mean_prob": 0.649,
+      "frac_positive": 0.528
+    },
+    {
+      "bin": "0.7-0.8",
+      "n": 91,
+      "mean_prob": 0.749,
+      "frac_positive": 0.527
+    },
+    {
+      "bin": "0.8-0.9",
+      "n": 105,
+      "mean_prob": 0.85,
+      "frac_positive": 0.448
+    },
+    {
+      "bin": "0.9-1.0",
+      "n": 837,
+      "mean_prob": 0.992,
+      "frac_positive": 0.953
+    }
+  ],
+  "limits": "Trained and tested on the simulator only. These numbers say how well the model inverts our simulator, not how it would do on a real loco."
+}

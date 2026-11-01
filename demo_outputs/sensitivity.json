@@ -1,0 +1,285 @@
+{
+ "delta": 0.2,
+ "note": "one parameter at a time, minutes to the first limit with the advisor's load plan",
+ "cases": [
+  {
+   "case": "hot_climb_standby_stuck",
+   "faults": [
+    "STANDBY_STUCK"
+   ],
+   "ambient_c": 45.0,
+   "gradient_pct": 2.7,
+   "decision": "STOP_AT_NEXT",
+   "nominal_minutes": 8.79,
+   "limiting_factor": "heat",
+   "parameters": [
+    {
+     "parameter": "motor trip temperature (C)",
+     "config_path": "limits.motor_temp_trip_c",
+     "status": "assumed",
+     "minutes_at_minus_20pct": 4.91,
+     "minutes_at_plus_20pct": 13.31,
+     "swing_minutes": 8.4
+    },
+    {
+     "parameter": "motor heat at full load (kW)",
+     "config_path": "thermal.motor.heat_full_kw",
+     "status": "assumed",
+     "minutes_at_minus_20pct": 12.02,
+     "minutes_at_plus_20pct": 6.94,
+     "swing_minutes": 5.08
+    },
+    {
+     "parameter": "motor heat capacity (kJ/K)",
+     "config_path": "thermal.motor.capacity_kj_per_k",
+     "status": "assumed",
+     "minutes_at_minus_20pct": 7.03,
+     "minutes_at_plus_20pct": 10.55,
+     "swing_minutes": 3.52
+    },
+    {
+     "parameter": "cooling with blower on (kW/K)",
+     "config_path": "thermal.motor.h_on_kw_per_k",
+     "status": "assumed",
+     "minutes_at_minus_20pct": 8.24,
+     "minutes_at_plus_20pct": 9.44,
+     "swing_minutes": 1.2
+    },
+    {
+     "parameter": "cooling with blower off, ratio",
+     "config_path": "thermal.motor.h_off_ratio",
+     "status": "assumed",
+     "minutes_at_minus_20pct": 8.24,
+     "minutes_at_plus_20pct": 9.44,
+     "swing_minutes": 1.2
+    },
+    {
+     "parameter": "brake-air leak (bar/min)",
+     "config_path": "air.leak_bar_per_min",
+     "status": "assumed",
+     "minutes_at_minus_20pct": 8.79,
+     "minutes_at_plus_20pct": 8.79,
+     "swing_minutes": 0.0
+    },
+    {
+     "parameter": "compressor fill rate (bar/min)",
+     "config_path": "air.fill_bar_per_min",
+     "status": "assumed",
+     "minutes_at_minus_20pct": 8.79,
+     "minutes_at_plus_20pct": 8.79,
+     "swing_minutes": 0.0
+    },
+    {
+     "parameter": "battery usable fraction",
+     "config_path": "battery.usable_fraction",
+     "status": "assumed",
+     "minutes_at_minus_20pct": 8.79,
+     "minutes_at_plus_20pct": 8.79,
+     "swing_minutes": 0.0
+    },
+    {
+     "parameter": "control current (A)",
+     "config_path": "battery.control_current_a",
+     "status": "assumed",
+     "minutes_at_minus_20pct": 8.79,
+     "minutes_at_plus_20pct": 8.79,
+     "swing_minutes": 0.0
+    },
+    {
+     "parameter": "brake-air minimum (bar)",
+     "config_path": "limits.brake_air_min_bar",
+     "status": "assumed",
+     "minutes_at_minus_20pct": 8.79,
+     "minutes_at_plus_20pct": 8.79,
+     "swing_minutes": 0.0
+    }
+   ]
+  },
+  {
+   "case": "cool_flat_compressor_fail",
+   "faults": [
+    "COMPRESSOR_FAIL"
+   ],
+   "ambient_c": 30.0,
+   "gradient_pct": 0.0,
+   "decision": "CONTINUE",
+   "nominal_minutes": 59.82,
+   "limiting_factor": "air",
+   "parameters": [
+    {
+     "parameter": "brake-air minimum (bar)",
+     "config_path": "limits.brake_air_min_bar",
+     "status": "assumed",
+     "minutes_at_minus_20pct": 83.82,
+     "minutes_at_plus_20pct": 35.82,
+     "swing_minutes": 48.0
+    },
+    {
+     "parameter": "brake-air leak (bar/min)",
+     "config_path": "air.leak_bar_per_min",
+     "status": "assumed",
+     "minutes_at_minus_20pct": 74.77,
+     "minutes_at_plus_20pct": 49.85,
+     "swing_minutes": 24.92
+    },
+    {
+     "parameter": "motor heat capacity (kJ/K)",
+     "config_path": "thermal.motor.capacity_kj_per_k",
+     "status": "assumed",
+     "minutes_at_minus_20pct": 59.82,
+     "minutes_at_plus_20pct": 59.82,
+     "swing_minutes": 0.0
+    },
+    {
+     "parameter": "cooling with blower on (kW/K)",
+     "config_path": "thermal.motor.h_on_kw_per_k",
+     "status": "assumed",
+     "minutes_at_minus_20pct": 59.82,
+     "minutes_at_plus_20pct": 59.82,
+     "swing_minutes": 0.0
+    },
+    {
+     "parameter": "cooling with blower off, ratio",
+     "config_path": "thermal.motor.h_off_ratio",
+     "status": "assumed",
+     "minutes_at_minus_20pct": 59.82,
+     "minutes_at_plus_20pct": 59.82,
+     "swing_minutes": 0.0
+    },
+    {
+     "parameter": "motor heat at full load (kW)",
+     "config_path": "thermal.motor.heat_full_kw",
+     "status": "assumed",
+     "minutes_at_minus_20pct": 59.82,
+     "minutes_at_plus_20pct": 59.82,
+     "swing_minutes": 0.0
+    },
+    {
+     "parameter": "compressor fill rate (bar/min)",
+     "config_path": "air.fill_bar_per_min",
+     "status": "assumed",
+     "minutes_at_minus_20pct": 59.82,
+     "minutes_at_plus_20pct": 59.82,
+     "swing_minutes": 0.0
+    },
+    {
+     "parameter": "battery usable fraction",
+     "config_path": "battery.usable_fraction",
+     "status": "assumed",
+     "minutes_at_minus_20pct": 59.82,
+     "minutes_at_plus_20pct": 59.82,
+     "swing_minutes": 0.0
+    },
+    {
+     "parameter": "control current (A)",
+     "config_path": "battery.control_current_a",
+     "status": "assumed",
+     "minutes_at_minus_20pct": 59.82,
+     "minutes_at_plus_20pct": 59.82,
+     "swing_minutes": 0.0
+    },
+    {
+     "parameter": "motor trip temperature (C)",
+     "config_path": "limits.motor_temp_trip_c",
+     "status": "assumed",
+     "minutes_at_minus_20pct": 59.82,
+     "minutes_at_plus_20pct": 59.82,
+     "swing_minutes": 0.0
+    }
+   ]
+  },
+  {
+   "case": "hot_climb_blower_fail",
+   "faults": [
+    "BLOWER_FAIL"
+   ],
+   "ambient_c": 45.0,
+   "gradient_pct": 2.7,
+   "decision": "STOP_AT_NEXT",
+   "nominal_minutes": 8.79,
+   "limiting_factor": "heat",
+   "parameters": [
+    {
+     "parameter": "motor trip temperature (C)",
+     "config_path": "limits.motor_temp_trip_c",
+     "status": "assumed",
+     "minutes_at_minus_20pct": 4.91,
+     "minutes_at_plus_20pct": 13.31,
+     "swing_minutes": 8.4
+    },
+    {
+     "parameter": "motor heat at full load (kW)",
+     "config_path": "thermal.motor.heat_full_kw",
+     "status": "assumed",
+     "minutes_at_minus_20pct": 12.02,
+     "minutes_at_plus_20pct": 6.94,
+     "swing_minutes": 5.08
+    },
+    {
+     "parameter": "motor heat capacity (kJ/K)",
+     "config_path": "thermal.motor.capacity_kj_per_k",
+     "status": "assumed",
+     "minutes_at_minus_20pct": 7.03,
+     "minutes_at_plus_20pct": 10.55,
+     "swing_minutes": 3.52
+    },
+    {
+     "parameter": "cooling with blower on (kW/K)",
+     "config_path": "thermal.motor.h_on_kw_per_k",
+     "status": "assumed",
+     "minutes_at_minus_20pct": 8.24,
+     "minutes_at_plus_20pct": 9.44,
+     "swing_minutes": 1.2
+    },
+    {
+     "parameter": "cooling with blower off, ratio",
+     "config_path": "thermal.motor.h_off_ratio",
+     "status": "assumed",
+     "minutes_at_minus_20pct": 8.24,
+     "minutes_at_plus_20pct": 9.44,
+     "swing_minutes": 1.2
+    },
+    {
+     "parameter": "brake-air leak (bar/min)",
+     "config_path": "air.leak_bar_per_min",
+     "status": "assumed",
+     "minutes_at_minus_20pct": 8.79,
+     "minutes_at_plus_20pct": 8.79,
+     "swing_minutes": 0.0
+    },
+    {
+     "parameter": "compressor fill rate (bar/min)",
+     "config_path": "air.fill_bar_per_min",
+     "status": "assumed",
+     "minutes_at_minus_20pct": 8.79,
+     "minutes_at_plus_20pct": 8.79,
+     "swing_minutes": 0.0
+    },
+    {
+     "parameter": "battery usable fraction",
+     "config_path": "battery.usable_fraction",
+     "status": "assumed",
+     "minutes_at_minus_20pct": 8.79,
+     "minutes_at_plus_20pct": 8.79,
+     "swing_minutes": 0.0
+    },
+    {
+     "parameter": "control current (A)",
+     "config_path": "battery.control_current_a",
+     "status": "assumed",
+     "minutes_at_minus_20pct": 8.79,
+     "minutes_at_plus_20pct": 8.79,
+     "swing_minutes": 0.0
+    },
+    {
+     "parameter": "brake-air minimum (bar)",
+     "config_path": "limits.brake_air_min_bar",
+     "status": "assumed",
+     "minutes_at_minus_20pct": 8.79,
+     "minutes_at_plus_20pct": 8.79,
+     "swing_minutes": 0.0
+    }
+   ]
+  }
+ ]
+}
