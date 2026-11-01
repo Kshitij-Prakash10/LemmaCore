@@ -1,6 +1,6 @@
 {
  "core_version": "0.1",
- "generated_utc": "2026-11-01T09:16:31Z",
+ "generated_utc": "2026-11-01T09:29:12Z",
  "seed": 1,
  "conditions": [
   {
@@ -4068,5 +4068,5 @@
   "false_stops": 8,
   "properties_failed": 0
  },
- "elapsed_s": 1.2
+ "elapsed_s": 1.1
 }

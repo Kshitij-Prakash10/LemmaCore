@@ -1,0 +1,545 @@
+{
+ "note": "the real plant takes each corner value; the advisor keeps the configured beliefs",
+ "ranges_tested": {
+  "motor_temp_trip_c": [
+   160.0,
+   200.0
+  ],
+  "heat_full": [
+   70.0,
+   110.0
+  ],
+  "h_off_ratio": [
+   0.12,
+   0.2
+  ],
+  "brake_air_min_bar": [
+   5.0,
+   7.0
+  ],
+  "leak": [
+   0.04,
+   0.1
+  ]
+ },
+ "n_corners": 32,
+ "summary": {
+  "baseline_unsafe": {
+   "min": 0,
+   "max": 44
+  },
+  "advisor_unsafe": {
+   "min": 0,
+   "max": 0
+  },
+  "saved_by_advisor": {
+   "min": 0,
+   "max": 44
+  },
+  "false_stops": {
+   "min": 8,
+   "max": 52
+  },
+  "advisor_optimistic_cases": {
+   "min": 0,
+   "max": 100
+  }
+ },
+ "worst_corner_for_advisor": {
+  "params": {
+   "motor_temp_trip_c": 160.0,
+   "heat_full": 110.0,
+   "h_off_ratio": 0.12,
+   "brake_air_min_bar": 7.0,
+   "leak": 0.1
+  },
+  "runs_per_policy": 144,
+  "baseline_unsafe": 44,
+  "advisor_unsafe": 0,
+  "saved_by_advisor": 44,
+  "false_stops": 8,
+  "advisor_optimistic_cases": 100
+ },
+ "corners": [
+  {
+   "params": {
+    "motor_temp_trip_c": 160.0,
+    "heat_full": 70.0,
+    "h_off_ratio": 0.12,
+    "brake_air_min_bar": 5.0,
+    "leak": 0.04
+   },
+   "runs_per_policy": 144,
+   "baseline_unsafe": 44,
+   "advisor_unsafe": 0,
+   "saved_by_advisor": 44,
+   "false_stops": 8,
+   "advisor_optimistic_cases": 0
+  },
+  {
+   "params": {
+    "motor_temp_trip_c": 160.0,
+    "heat_full": 70.0,
+    "h_off_ratio": 0.12,
+    "brake_air_min_bar": 5.0,
+    "leak": 0.1
+   },
+   "runs_per_policy": 144,
+   "baseline_unsafe": 44,
+   "advisor_unsafe": 0,
+   "saved_by_advisor": 44,
+   "false_stops": 8,
+   "advisor_optimistic_cases": 0
+  },
+  {
+   "params": {
+    "motor_temp_trip_c": 160.0,
+    "heat_full": 70.0,
+    "h_off_ratio": 0.12,
+    "brake_air_min_bar": 7.0,
+    "leak": 0.04
+   },
+   "runs_per_policy": 144,
+   "baseline_unsafe": 44,
+   "advisor_unsafe": 0,
+   "saved_by_advisor": 44,
+   "false_stops": 8,
+   "advisor_optimistic_cases": 0
+  },
+  {
+   "params": {
+    "motor_temp_trip_c": 160.0,
+    "heat_full": 70.0,
+    "h_off_ratio": 0.12,
+    "brake_air_min_bar": 7.0,
+    "leak": 0.1
+   },
+   "runs_per_policy": 144,
+   "baseline_unsafe": 44,
+   "advisor_unsafe": 0,
+   "saved_by_advisor": 44,
+   "false_stops": 8,
+   "advisor_optimistic_cases": 26
+  },
+  {
+   "params": {
+    "motor_temp_trip_c": 160.0,
+    "heat_full": 70.0,
+    "h_off_ratio": 0.2,
+    "brake_air_min_bar": 5.0,
+    "leak": 0.04
+   },
+   "runs_per_policy": 144,
+   "baseline_unsafe": 0,
+   "advisor_unsafe": 0,
+   "saved_by_advisor": 0,
+   "false_stops": 52,
+   "advisor_optimistic_cases": 0
+  },
+  {
+   "params": {
+    "motor_temp_trip_c": 160.0,
+    "heat_full": 70.0,
+    "h_off_ratio": 0.2,
+    "brake_air_min_bar": 5.0,
+    "leak": 0.1
+   },
+   "runs_per_policy": 144,
+   "baseline_unsafe": 0,
+   "advisor_unsafe": 0,
+   "saved_by_advisor": 0,
+   "false_stops": 52,
+   "advisor_optimistic_cases": 0
+  },
+  {
+   "params": {
+    "motor_temp_trip_c": 160.0,
+    "heat_full": 70.0,
+    "h_off_ratio": 0.2,
+    "brake_air_min_bar": 7.0,
+    "leak": 0.04
+   },
+   "runs_per_policy": 144,
+   "baseline_unsafe": 0,
+   "advisor_unsafe": 0,
+   "saved_by_advisor": 0,
+   "false_stops": 52,
+   "advisor_optimistic_cases": 0
+  },
+  {
+   "params": {
+    "motor_temp_trip_c": 160.0,
+    "heat_full": 70.0,
+    "h_off_ratio": 0.2,
+    "brake_air_min_bar": 7.0,
+    "leak": 0.1
+   },
+   "runs_per_policy": 144,
+   "baseline_unsafe": 0,
+   "advisor_unsafe": 0,
+   "saved_by_advisor": 0,
+   "false_stops": 52,
+   "advisor_optimistic_cases": 26
+  },
+  {
+   "params": {
+    "motor_temp_trip_c": 160.0,
+    "heat_full": 110.0,
+    "h_off_ratio": 0.12,
+    "brake_air_min_bar": 5.0,
+    "leak": 0.04
+   },
+   "runs_per_policy": 144,
+   "baseline_unsafe": 44,
+   "advisor_unsafe": 0,
+   "saved_by_advisor": 44,
+   "false_stops": 8,
+   "advisor_optimistic_cases": 80
+  },
+  {
+   "params": {
+    "motor_temp_trip_c": 160.0,
+    "heat_full": 110.0,
+    "h_off_ratio": 0.12,
+    "brake_air_min_bar": 5.0,
+    "leak": 0.1
+   },
+   "runs_per_policy": 144,
+   "baseline_unsafe": 44,
+   "advisor_unsafe": 0,
+   "saved_by_advisor": 44,
+   "false_stops": 8,
+   "advisor_optimistic_cases": 80
+  },
+  {
+   "params": {
+    "motor_temp_trip_c": 160.0,
+    "heat_full": 110.0,
+    "h_off_ratio": 0.12,
+    "brake_air_min_bar": 7.0,
+    "leak": 0.04
+   },
+   "runs_per_policy": 144,
+   "baseline_unsafe": 44,
+   "advisor_unsafe": 0,
+   "saved_by_advisor": 44,
+   "false_stops": 8,
+   "advisor_optimistic_cases": 80
+  },
+  {
+   "params": {
+    "motor_temp_trip_c": 160.0,
+    "heat_full": 110.0,
+    "h_off_ratio": 0.12,
+    "brake_air_min_bar": 7.0,
+    "leak": 0.1
+   },
+   "runs_per_policy": 144,
+   "baseline_unsafe": 44,
+   "advisor_unsafe": 0,
+   "saved_by_advisor": 44,
+   "false_stops": 8,
+   "advisor_optimistic_cases": 100
+  },
+  {
+   "params": {
+    "motor_temp_trip_c": 160.0,
+    "heat_full": 110.0,
+    "h_off_ratio": 0.2,
+    "brake_air_min_bar": 5.0,
+    "leak": 0.04
+   },
+   "runs_per_policy": 144,
+   "baseline_unsafe": 44,
+   "advisor_unsafe": 0,
+   "saved_by_advisor": 44,
+   "false_stops": 8,
+   "advisor_optimistic_cases": 60
+  },
+  {
+   "params": {
+    "motor_temp_trip_c": 160.0,
+    "heat_full": 110.0,
+    "h_off_ratio": 0.2,
+    "brake_air_min_bar": 5.0,
+    "leak": 0.1
+   },
+   "runs_per_policy": 144,
+   "baseline_unsafe": 44,
+   "advisor_unsafe": 0,
+   "saved_by_advisor": 44,
+   "false_stops": 8,
+   "advisor_optimistic_cases": 60
+  },
+  {
+   "params": {
+    "motor_temp_trip_c": 160.0,
+    "heat_full": 110.0,
+    "h_off_ratio": 0.2,
+    "brake_air_min_bar": 7.0,
+    "leak": 0.04
+   },
+   "runs_per_policy": 144,
+   "baseline_unsafe": 44,
+   "advisor_unsafe": 0,
+   "saved_by_advisor": 44,
+   "false_stops": 8,
+   "advisor_optimistic_cases": 60
+  },
+  {
+   "params": {
+    "motor_temp_trip_c": 160.0,
+    "heat_full": 110.0,
+    "h_off_ratio": 0.2,
+    "brake_air_min_bar": 7.0,
+    "leak": 0.1
+   },
+   "runs_per_policy": 144,
+   "baseline_unsafe": 44,
+   "advisor_unsafe": 0,
+   "saved_by_advisor": 44,
+   "false_stops": 8,
+   "advisor_optimistic_cases": 86
+  },
+  {
+   "params": {
+    "motor_temp_trip_c": 200.0,
+    "heat_full": 70.0,
+    "h_off_ratio": 0.12,
+    "brake_air_min_bar": 5.0,
+    "leak": 0.04
+   },
+   "runs_per_policy": 144,
+   "baseline_unsafe": 0,
+   "advisor_unsafe": 0,
+   "saved_by_advisor": 0,
+   "false_stops": 52,
+   "advisor_optimistic_cases": 0
+  },
+  {
+   "params": {
+    "motor_temp_trip_c": 200.0,
+    "heat_full": 70.0,
+    "h_off_ratio": 0.12,
+    "brake_air_min_bar": 5.0,
+    "leak": 0.1
+   },
+   "runs_per_policy": 144,
+   "baseline_unsafe": 0,
+   "advisor_unsafe": 0,
+   "saved_by_advisor": 0,
+   "false_stops": 52,
+   "advisor_optimistic_cases": 0
+  },
+  {
+   "params": {
+    "motor_temp_trip_c": 200.0,
+    "heat_full": 70.0,
+    "h_off_ratio": 0.12,
+    "brake_air_min_bar": 7.0,
+    "leak": 0.04
+   },
+   "runs_per_policy": 144,
+   "baseline_unsafe": 0,
+   "advisor_unsafe": 0,
+   "saved_by_advisor": 0,
+   "false_stops": 52,
+   "advisor_optimistic_cases": 0
+  },
+  {
+   "params": {
+    "motor_temp_trip_c": 200.0,
+    "heat_full": 70.0,
+    "h_off_ratio": 0.12,
+    "brake_air_min_bar": 7.0,
+    "leak": 0.1
+   },
+   "runs_per_policy": 144,
+   "baseline_unsafe": 0,
+   "advisor_unsafe": 0,
+   "saved_by_advisor": 0,
+   "false_stops": 52,
+   "advisor_optimistic_cases": 26
+  },
+  {
+   "params": {
+    "motor_temp_trip_c": 200.0,
+    "heat_full": 70.0,
+    "h_off_ratio": 0.2,
+    "brake_air_min_bar": 5.0,
+    "leak": 0.04
+   },
+   "runs_per_policy": 144,
+   "baseline_unsafe": 0,
+   "advisor_unsafe": 0,
+   "saved_by_advisor": 0,
+   "false_stops": 52,
+   "advisor_optimistic_cases": 0
+  },
+  {
+   "params": {
+    "motor_temp_trip_c": 200.0,
+    "heat_full": 70.0,
+    "h_off_ratio": 0.2,
+    "brake_air_min_bar": 5.0,
+    "leak": 0.1
+   },
+   "runs_per_policy": 144,
+   "baseline_unsafe": 0,
+   "advisor_unsafe": 0,
+   "saved_by_advisor": 0,
+   "false_stops": 52,
+   "advisor_optimistic_cases": 0
+  },
+  {
+   "params": {
+    "motor_temp_trip_c": 200.0,
+    "heat_full": 70.0,
+    "h_off_ratio": 0.2,
+    "brake_air_min_bar": 7.0,
+    "leak": 0.04
+   },
+   "runs_per_policy": 144,
+   "baseline_unsafe": 0,
+   "advisor_unsafe": 0,
+   "saved_by_advisor": 0,
+   "false_stops": 52,
+   "advisor_optimistic_cases": 0
+  },
+  {
+   "params": {
+    "motor_temp_trip_c": 200.0,
+    "heat_full": 70.0,
+    "h_off_ratio": 0.2,
+    "brake_air_min_bar": 7.0,
+    "leak": 0.1
+   },
+   "runs_per_policy": 144,
+   "baseline_unsafe": 0,
+   "advisor_unsafe": 0,
+   "saved_by_advisor": 0,
+   "false_stops": 52,
+   "advisor_optimistic_cases": 26
+  },
+  {
+   "params": {
+    "motor_temp_trip_c": 200.0,
+    "heat_full": 110.0,
+    "h_off_ratio": 0.12,
+    "brake_air_min_bar": 5.0,
+    "leak": 0.04
+   },
+   "runs_per_policy": 144,
+   "baseline_unsafe": 44,
+   "advisor_unsafe": 0,
+   "saved_by_advisor": 44,
+   "false_stops": 8,
+   "advisor_optimistic_cases": 0
+  },
+  {
+   "params": {
+    "motor_temp_trip_c": 200.0,
+    "heat_full": 110.0,
+    "h_off_ratio": 0.12,
+    "brake_air_min_bar": 5.0,
+    "leak": 0.1
+   },
+   "runs_per_policy": 144,
+   "baseline_unsafe": 44,
+   "advisor_unsafe": 0,
+   "saved_by_advisor": 44,
+   "false_stops": 8,
+   "advisor_optimistic_cases": 0
+  },
+  {
+   "params": {
+    "motor_temp_trip_c": 200.0,
+    "heat_full": 110.0,
+    "h_off_ratio": 0.12,
+    "brake_air_min_bar": 7.0,
+    "leak": 0.04
+   },
+   "runs_per_policy": 144,
+   "baseline_unsafe": 44,
+   "advisor_unsafe": 0,
+   "saved_by_advisor": 44,
+   "false_stops": 8,
+   "advisor_optimistic_cases": 0
+  },
+  {
+   "params": {
+    "motor_temp_trip_c": 200.0,
+    "heat_full": 110.0,
+    "h_off_ratio": 0.12,
+    "brake_air_min_bar": 7.0,
+    "leak": 0.1
+   },
+   "runs_per_policy": 144,
+   "baseline_unsafe": 44,
+   "advisor_unsafe": 0,
+   "saved_by_advisor": 44,
+   "false_stops": 8,
+   "advisor_optimistic_cases": 26
+  },
+  {
+   "params": {
+    "motor_temp_trip_c": 200.0,
+    "heat_full": 110.0,
+    "h_off_ratio": 0.2,
+    "brake_air_min_bar": 5.0,
+    "leak": 0.04
+   },
+   "runs_per_policy": 144,
+   "baseline_unsafe": 0,
+   "advisor_unsafe": 0,
+   "saved_by_advisor": 0,
+   "false_stops": 52,
+   "advisor_optimistic_cases": 0
+  },
+  {
+   "params": {
+    "motor_temp_trip_c": 200.0,
+    "heat_full": 110.0,
+    "h_off_ratio": 0.2,
+    "brake_air_min_bar": 5.0,
+    "leak": 0.1
+   },
+   "runs_per_policy": 144,
+   "baseline_unsafe": 0,
+   "advisor_unsafe": 0,
+   "saved_by_advisor": 0,
+   "false_stops": 52,
+   "advisor_optimistic_cases": 0
+  },
+  {
+   "params": {
+    "motor_temp_trip_c": 200.0,
+    "heat_full": 110.0,
+    "h_off_ratio": 0.2,
+    "brake_air_min_bar": 7.0,
+    "leak": 0.04
+   },
+   "runs_per_policy": 144,
+   "baseline_unsafe": 0,
+   "advisor_unsafe": 0,
+   "saved_by_advisor": 0,
+   "false_stops": 52,
+   "advisor_optimistic_cases": 0
+  },
+  {
+   "params": {
+    "motor_temp_trip_c": 200.0,
+    "heat_full": 110.0,
+    "h_off_ratio": 0.2,
+    "brake_air_min_bar": 7.0,
+    "leak": 0.1
+   },
+   "runs_per_policy": 144,
+   "baseline_unsafe": 0,
+   "advisor_unsafe": 0,
+   "saved_by_advisor": 0,
+   "false_stops": 52,
+   "advisor_optimistic_cases": 26
+  }
+ ]
+}

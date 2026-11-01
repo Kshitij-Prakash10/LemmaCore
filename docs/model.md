@@ -35,3 +35,14 @@ Baseline unsafe in 44, advisor unsafe in 0, 44 cases saved, 8 stops the baseline
 
 ## Known gap: 3-phase locos
 Public handbooks say a 3-phase loco has three auxiliary converters that share the load, and that after one fails the others carry it with the frequency dropping from 50 to about 37 Hz. That slows the blowers and compressor instead of switching loads off. The core models the conventional 2 x 130 kVA case, where a lost unit leaves its loads dark, which matches the RDSO evidence. A frequency-derate mode is not built. See `docs/public_answers.md`.
+
+## Robustness to our assumptions (no mentor numbers)
+`python -m failover.core.robustness` (about 35 s) reruns all 144 cases for each of the 32 corners of low and high values of the five most uncertain parameters: motor trip temperature (160 or 200 C, advisor believes 180), motor heat at full load (70 or 110 kW), cooling ratio with the blower off (0.12 or 0.20), brake-air minimum (5 or 7 bar, advisor believes 6) and leak rate (0.04 or 0.10 bar/min). The real plant takes the corner value and the advisor keeps its configured beliefs. Output: `outputs/robustness.json`, committed copy in `demo_outputs/`.
+
+Result (4,608 case-runs per policy):
+- **Advisor unsafe: 0 in every corner.**
+- Baseline unsafe: from 0 to 44 of 144, depending on the corner. If the real loco is more forgiving than we assumed, the baseline is also safe and the advisor's stops are unnecessary.
+- Stops the baseline did not need: from 8 to 52 of 144.
+- In up to 100 of 144 cases the advisor's minutes-left number is more optimistic than the truth when the real loco is worse than assumed (trip 160 C, heat 110 kW, brake minimum 7 bar). The decision stays safe only because the advisor stops at a safe place assumed to be 3 km ahead.
+
+Caveat that matters: **the safety of the decision depends on the assumed 3 km to the nearest safe stopping place** (`SAFE_PLACE_KM` in `advisor.py`, and the stop distance in `simulate.py`). If the real distance is longer than the minutes left allow, the advisor can be unsafe. Ask the mentor how far the nearest loop, siding or halt usually is.
