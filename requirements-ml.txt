@@ -1,0 +1,5 @@
+# Owner: Agent B. Add packages for data, ML and the app. Keep it small and offline-friendly.
+pandas
+scikit-learn
+joblib
+flask

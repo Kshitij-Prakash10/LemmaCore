@@ -1,0 +1,4 @@
+# Owner: Agent A. Add packages the core needs. Keep it small and offline-friendly.
+numpy
+scipy
+pytest

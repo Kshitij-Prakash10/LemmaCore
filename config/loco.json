@@ -1,0 +1,75 @@
+{
+  "meta": {
+    "schema": 1,
+    "owner": "Agent A",
+    "note": "Every value is a team assumption until a mentor confirms it. status is 'assumed' or 'confirmed'. Only a human flips a status, and only after the source field names a document or a person. Values marked 'starting guess, tune' may be tuned within the given min and max (record the tuning in docs/model.md)."
+  },
+  "converters": {
+    "count": 2,
+    "unit_kva": 130,
+    "power_factor": 0.8,
+    "derate": { "start_ambient_c": 40, "factor_at_48c": 0.8 },
+    "unit_derate_fault_factor": 0.5,
+    "status": "assumed",
+    "source": "RDSO minutes of 29 May 2025 name 2x130 kVA SIV units. A vendor lists 3 x 130 kVA for 3-phase locos, so count stays a setting (2 or 3). Power factor and derating curve are guesses."
+  },
+  "loads": [
+    { "name": "motor_blower", "kw": 30, "priority": "important", "group": "motor_cooling", "status": "assumed", "source": "starting guess, ask mentor" },
+    { "name": "oil_cooling_blower", "kw": 15, "priority": "important", "group": "oil_cooling", "status": "assumed", "source": "starting guess, ask mentor" },
+    { "name": "oil_pump", "kw": 5, "priority": "important", "group": "oil_cooling", "status": "assumed", "source": "starting guess, ask mentor" },
+    { "name": "brake_compressor", "kw": 15, "priority": "essential", "group": "air", "status": "assumed", "source": "starting guess, ask mentor" },
+    { "name": "control_and_charger", "kw": 8, "priority": "essential", "group": "control", "status": "assumed", "source": "starting guess, ask mentor" },
+    { "name": "cab_ac", "kw": 8, "priority": "shed_first", "group": "comfort", "status": "assumed", "source": "starting guess, ask mentor" },
+    { "name": "lighting_and_fans", "kw": 4, "priority": "shed_first", "group": "comfort", "status": "assumed", "source": "starting guess, ask mentor" }
+  ],
+  "limits": {
+    "motor_temp_trip_c": { "value": 180, "status": "assumed", "source": "starting guess, ask mentor" },
+    "protection_derate_margin_c": { "value": 10, "status": "assumed", "source": "baseline policy: derate this far below the trip" },
+    "brake_air_min_bar": { "value": 6.0, "status": "assumed", "source": "starting guess, ask mentor" },
+    "emergency_reserve_bar": { "value": 0.5, "status": "assumed", "source": "starting guess, ask mentor" },
+    "battery_min_soc_pct": { "value": 30, "status": "assumed", "source": "starting guess, ask mentor" }
+  },
+  "thermal": {
+    "motor": {
+      "capacity_kj_per_k": { "min": 300, "nominal": 400, "max": 500 },
+      "h_on_kw_per_k": { "min": 1.2, "nominal": 1.6, "max": 2.0 },
+      "h_off_ratio": { "min": 0.15, "nominal": 0.25, "max": 0.35 },
+      "heat_full_kw": { "min": 50, "nominal": 70, "max": 90 },
+      "heat_scale": { "flat_loaded": 0.5, "flat_empty": 0.35, "climb_loaded": 1.0, "climb_empty": 0.7 },
+      "initial_rise_above_ambient_c": 40
+    },
+    "status": "assumed",
+    "source": "starting guess, tune so the hot_climb + STANDBY_STUCK case gives roughly 10 to 20 minutes"
+  },
+  "air": {
+    "normal_bar": 9.5,
+    "fill_bar_per_min": 1.5,
+    "leak_bar_per_min": { "min": 0.05, "nominal": 0.15, "max": 0.30 },
+    "use_fitted": false,
+    "status": "assumed",
+    "source": "starting guess. Agent B's MetroPT-3 fit (data/processed/air_params_fit.json) is a proxy and is used only if use_fitted is true"
+  },
+  "battery": {
+    "voltage_v": 110,
+    "capacity_ah": 450,
+    "usable_fraction": { "min": 0.5, "nominal": 0.6, "max": 0.7 },
+    "control_current_a": { "min": 8, "nominal": 10, "max": 14 },
+    "status": "assumed",
+    "source": "starting guess, ask mentor"
+  },
+  "advisor": {
+    "safety_factor": 0.8,
+    "mc_runs": 200,
+    "percentile": 5,
+    "temp_disagree_threshold_c": 15,
+    "status": "assumed",
+    "source": "our design choice, not a railway rule"
+  },
+  "conditions": [
+    { "id": "cool_flat", "ambient_c": 30, "gradient_pct": 0.0, "train_load": "loaded" },
+    { "id": "hot_flat", "ambient_c": 45, "gradient_pct": 0.0, "train_load": "loaded" },
+    { "id": "cool_climb", "ambient_c": 30, "gradient_pct": 2.7, "train_load": "loaded" },
+    { "id": "hot_climb", "ambient_c": 45, "gradient_pct": 2.7, "train_load": "loaded" }
+  ],
+  "defaults": { "dist_next_station_km": 9, "speed_kmph": 40, "horizon_s": 1800, "dt_s": 1.0, "fault_time_s": 60 }
+}
