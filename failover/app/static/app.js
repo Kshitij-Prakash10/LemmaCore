@@ -186,6 +186,7 @@ function renderAdvice(res, req) {
       <div><dt>How sure</dt><dd>${sure}${a.confidence === "high" ? "" : ". " + esc(other.map((f) => FLAG_TEXT[f] || f).join(" "))}</dd></div>
     </dl>
     ${a.confidence === "high" && other.length ? `<div class="alert">${esc(other.map((f) => FLAG_TEXT[f] || f).join(" "))}</div>` : ""}
+    ${res.leak && res.leak.line ? `<div class="alert">${esc(res.leak.line)}</div>` : ""}
     ${diag}
     <p class="note">Faults applied: ${esc(res.scenario.faults.map((f) => (FAULT_TEXT[f] || [f])[0]).join(" and ") || "none")}.
       Assumed values used: ${esc(a.assumptions_used.join(", "))}. Core ${esc(res.core_version)}.</p>`;
