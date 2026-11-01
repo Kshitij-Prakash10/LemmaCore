@@ -61,8 +61,9 @@ def create_app() -> Flask:
 
     @app.get("/api/report")
     def report():
-        p = os.path.join(backend.ROOT, "outputs", "report.html")
-        if not os.path.exists(p):
+        p = next((c for c in (os.path.join(backend.ROOT, d, "report.html") for d in ("outputs", "demo_outputs"))
+                  if os.path.exists(c)), "")
+        if not p:
             return jsonify({"available": False, "reason": "run make harness to produce outputs/report.html"}), 404
         return send_file(p, as_attachment=request.args.get("download") == "1",
                          download_name="failover_guardian_report.html")
