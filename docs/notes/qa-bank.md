@@ -1,6 +1,6 @@
 # Q&A bank: 25 likely judge questions, short honest answers
 
-Sources: `CONTEXT.md`, `CONTRACT.md`, `docs/model.md`, `config/loco.json`, `demo_outputs/coverage.json` (core 0.1, seed 1). Answer in your own words; these are the facts to hit. **[PENDING]** means it depends on Agent B's work, which was not merged at 14:38.
+Sources: `CONTEXT.md`, `CONTRACT.md`, `docs/model.md`, `config/loco.json`, `demo_outputs/coverage.json` (core 0.1, seed 1). Answer in your own words; these are the facts to hit. Updated 14:58 with the classifier results (`models/metrics.json`), the sourced leak rate and the 3-phase gap (`docs/public_answers.md`).
 
 ## Problem selection (20)
 
@@ -36,7 +36,7 @@ Sources: `CONTEXT.md`, `CONTRACT.md`, `docs/model.md`, `config/loco.json`, `demo
 
 19. **Does it run offline?** Yes, by rule: no CDN, no cloud, no runtime downloads. One laptop, Wi-Fi off. **[PENDING: confirm on the presenting laptop at 15:30.]**
 20. **How long does the proof take?** About 1.3 s for 288 runs. Every number regenerates with one command: `make harness`.
-21. **How accurate is the classifier?** **[PENDING: read `models/metrics.json`. Quote held-out numbers only, and say it is trained on simulated data.]**
+21. **How accurate is the classifier?** Held-out simulated scenarios, after the fault: the exact fault set is right 55 percent of the time (micro precision 0.81, recall 0.73). A stuck temperature sensor is caught every time (precision and recall 1.0). STANDBY_STUCK and MCB_TRIP look identical in the signals (both mean "unit 1 lost, no takeover"), so no model can separate them; the advisor treats them the same. It found both faults in 2 of 4 fault pairs it never saw. The advisor only uses it at 60 percent confidence or more. It is trained on our simulator only.
 
 ## Ownership and reasoning (10)
 
@@ -46,11 +46,11 @@ Sources: `CONTEXT.md`, `CONTRACT.md`, `docs/model.md`, `config/loco.json`, `demo
 ## Future scope and impact (10)
 
 24. **Who adopts it, and what does it need?** RDSO for the harness as an acceptance test, and zonal sheds and crews for the advisor. It needs the makers' real fault codes, confirmed loco parameters, shed data and an approval route.
-25. **Does it work for BLW's 3-phase locos?** The converter count is a setting (2 or 3; a vendor lists 3 x 130 kVA). The RDSO failure figures are not for 3-phase locos, and we say so.
+25. **Does it work for BLW's 3-phase locos?** Not yet, and we say so. Public handbooks say a 3-phase loco has three converters that share the load; when one fails, the others carry it and the frequency drops from 50 to about 37 Hz, so blowers and the compressor slow down instead of switching off. Our model is the conventional 2 x 130 kVA case, where a lost unit leaves its loads dark, which matches the RDSO evidence. A frequency-derate mode is the next step for BLW.
 
 ## What we do not know (say it before they do)
 
-- No loco parameter has been confirmed by a mentor; all are **assumed**. We know which ones matter most (`demo_outputs/sensitivity.json`): in the hard case the motor trip temperature (plus or minus 20 percent moves minutes-left from 4.9 to 13.3) and heat at full load (swing 5.1). For a failed compressor, the brake-air minimum (swing 16.0) and the leak rate (8.3).
+- No loco parameter has been confirmed by a mentor; all are **assumed**. We know which ones matter most (`demo_outputs/sensitivity.json`): in the hard case the motor trip temperature (plus or minus 20 percent moves minutes-left from 4.9 to 13.3) and heat at full load (swing 5.1). For a failed compressor, the brake-air minimum (swing 48.0) and the leak rate (24.9). The leak rate is now the one sourced value: public dispatch test sheets from Patiala Locomotive Works (0.04 to 0.10 bar/min; `docs/public_answers.md`).
 - Real crew procedure today, and whether pilots would trust a minutes-left figure.
 - The cost per failure.
 - Whether REMMLOT or CLW's analytics are deployed, and what they show the crew.

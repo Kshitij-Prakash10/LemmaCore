@@ -16,7 +16,7 @@ When that happens, the loco pilot is mid-section with no guide. Which loads shou
 
 1. **The advisor.** One screen for the pilot. From the fault and the conditions it says: what to switch off, what to keep, **"at least N minutes"** left (a cautious 5th-percentile figure), what will run out first (heat, air, battery, power), and one decision: **continue**, **stop at the next safe place**, or **stop now**.
 2. **The proof.** A fault-injection harness tries every single and double fault (8 faults give 36 combinations) in 4 conditions (cool or hot, flat or climbing), first with no advisor (baseline) and then with the advisor. That is 288 runs, and it takes about 1.3 s.
-3. **ML support.** A classifier names the faults from noisy sensor readings, so the pilot does not need to know which unit failed. Real compressor data from a metro train (MetroPT-3, Porto) calibrates the brake-air leak model. It is a proxy, not an Indian loco.
+3. **ML support.** A classifier names the faults from noisy sensor readings, so the pilot does not need to know which unit failed. On held-out simulated scenarios it names the exact fault set 55 percent of the time after a fault and catches a stuck sensor every time; the advisor uses it only above 60 percent confidence. Real compressor data from a metro train (MetroPT-3, Porto) is downloaded as a proxy for brake air, but the analysis was not built at 14:53.
 
 ## What the proof shows today (our model, assumed parameters)
 
@@ -28,6 +28,11 @@ When that happens, the loco pilot is mid-section with no guide. Which loads shou
 ## Why it matters
 
 A converter fault mid-section becomes a stalled train, a motor trip or a brake-air problem. A clear "switch these off, you have at least N minutes, stop at the next safe place" turns guesswork into one decision. And the harness gives RDSO and the sheds a repeatable **acceptance test** for converter changeover logic, which they lack today.
+
+## Limits to say first
+
+- All loco values are assumed except the brake-air leak rate, which comes from public PLW dispatch test sheets.
+- The model is the conventional 2 x 130 kVA loco. On BLW's 3-phase locos the remaining converters share the load at about 37 Hz instead of loads going dark; we have not modelled that.
 
 ## What we left out, on purpose
 

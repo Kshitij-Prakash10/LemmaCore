@@ -1,6 +1,6 @@
 # Slides: Failover Guardian (5 minutes, then 3 minutes of questions)
 
-Numbers come from `demo_outputs/coverage.json` (core 0.1, seed 1) and `CONTEXT.md` section 4. Items marked **PENDING** depend on Agent B's app and models, which had not landed at 14:38. Do not say them until the file named in the evidence line exists.
+Numbers come from `demo_outputs/coverage.json` (core 0.1, seed 1) and `CONTEXT.md` section 4. Items marked **PENDING** depend on Agent B's app and models, which had not landed at 14:38. Updated 14:58: the app, the classifier and the sourced leak rate are now on main; see `demo-script.md`. Do not say them until the file named in the evidence line exists.
 
 ---
 
@@ -54,7 +54,7 @@ Numbers come from `demo_outputs/coverage.json` (core 0.1, seed 1) and `CONTEXT.m
 
 **Say (wrong data):** "Now we stick the temperature sensor. The reading goes flat while the model says the motor should be heating. The advisor flags the disagreement, lowers its confidence and assumes the motor is near the trip."
 
-**PENDING:** "Auto-diagnose" (needs `models/metrics.json`) and the coverage map in the app (Agent B).
+**Say (Auto-diagnose):** "The classifier names the fault from noisy sensors. On held-out simulated scenarios it gets the exact fault set right 55 percent of the time after a fault, and catches a stuck sensor every time. Below 60 percent confidence the advisor ignores it." Source: `models/metrics.json`.
 
 **Evidence:** `demo_outputs/coverage.json` summary and case `STANDBY_STUCK__hot_climb`.
 
@@ -66,7 +66,7 @@ Numbers come from `demo_outputs/coverage.json` (core 0.1, seed 1) and `CONTEXT.m
 
 **Say:** "We kept the scope narrow on purpose. Every loco number in our config is tagged assumed, and the app shows the badge. Our 0 unsafe is a model result with assumed values, and with the advisor told the true fault. We also measured which assumptions matter: in the hard case, moving the motor trip temperature by 20 percent changes minutes-left from about 5 to about 13. That is the first value we need a railway engineer to confirm."
 
-**Evidence:** `config/loco.json` (every block `"status": "assumed"`); `coverage.json` `advisor_policy_note`; `demo_outputs/sensitivity.json` (hot_climb_standby_stuck: trip temperature 4.91 to 13.31 min, swing 8.4).
+**Evidence:** `config/loco.json` (every block `"status": "assumed"`); `coverage.json` `advisor_policy_note`; `demo_outputs/sensitivity.json` (hot_climb_standby_stuck: trip temperature 4.91 to 13.31 min, swing 8.4; cool_flat_compressor_fail: brake-air minimum swing 48.0). Leak rate sourced from PLW dispatch test sheets (`docs/public_answers.md`).
 
 ---
 
@@ -74,7 +74,7 @@ Numbers come from `demo_outputs/coverage.json` (core 0.1, seed 1) and `CONTEXT.m
 
 **On screen:** four bullets plus the disclosure line.
 
-**Say:** "Four steps to real use. One: replace our simulated faults with the converter makers' real fault codes. Two: offer the harness to RDSO as an acceptance test for converter changeover software. Three: set the converter count to three for BLW's 3-phase locos. Four: keep 60 days of fault log, not 20, so the shed sees the evidence. Who adopts it: RDSO for the test, the zonal sheds for the advisor. What it needs: maker fault codes, shed data and an approval route."
+**Say:** "Four steps to real use. One: replace our simulated faults with the converter makers' real fault codes. Two: offer the harness to RDSO as an acceptance test for converter changeover software. Three: model BLW's 3-phase locos, where three converters share the load and the frequency drops to about 37 Hz instead of loads going dark. Four: keep 60 days of fault log, not 20, so the shed sees the evidence. Who adopts it: RDSO for the test, the zonal sheds for the advisor. What it needs: maker fault codes, shed data and an approval route."
 
 **Disclosure (say verbatim):** "We used Claude, an AI assistant, to research sources and help write code. The running tool contains no language model. We wrote our own tests and marked every assumed value."
 
