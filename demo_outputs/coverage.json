@@ -1,0 +1,4072 @@
+{
+ "core_version": "0.1",
+ "generated_utc": "2026-11-01T09:06:26Z",
+ "seed": 1,
+ "conditions": [
+  {
+   "id": "cool_flat",
+   "ambient_c": 30,
+   "gradient_pct": 0.0,
+   "train_load": "loaded"
+  },
+  {
+   "id": "hot_flat",
+   "ambient_c": 45,
+   "gradient_pct": 0.0,
+   "train_load": "loaded"
+  },
+  {
+   "id": "cool_climb",
+   "ambient_c": 30,
+   "gradient_pct": 2.7,
+   "train_load": "loaded"
+  },
+  {
+   "id": "hot_climb",
+   "ambient_c": 45,
+   "gradient_pct": 2.7,
+   "train_load": "loaded"
+  }
+ ],
+ "faults": [
+  "U1_TRIP",
+  "U2_TRIP",
+  "STANDBY_STUCK",
+  "MCB_TRIP",
+  "UNIT_DERATE",
+  "BLOWER_FAIL",
+  "COMPRESSOR_FAIL",
+  "TEMP_SENSOR_STUCK"
+ ],
+ "advisor_policy_note": "advisor receives the true fault set (oracle)",
+ "assumptions": [
+  "converters",
+  "loads",
+  "thermal",
+  "air",
+  "battery",
+  "advisor"
+ ],
+ "cases": [
+  {
+   "case_id": "U1_TRIP__cool_flat",
+   "faults": [
+    "U1_TRIP"
+   ],
+   "condition": "cool_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": null
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "CONTINUE",
+    "shed": [],
+    "limiting_factor": "none",
+    "minutes_left_p5": 120.0,
+    "minutes_left_true": null
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "U1_TRIP__hot_flat",
+   "faults": [
+    "U1_TRIP"
+   ],
+   "condition": "hot_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": null
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "CONTINUE",
+    "shed": [],
+    "limiting_factor": "none",
+    "minutes_left_p5": 120.0,
+    "minutes_left_true": null
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "U1_TRIP__cool_climb",
+   "faults": [
+    "U1_TRIP"
+   ],
+   "condition": "cool_climb",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": null
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "CONTINUE",
+    "shed": [],
+    "limiting_factor": "none",
+    "minutes_left_p5": 120.0,
+    "minutes_left_true": null
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "U1_TRIP__hot_climb",
+   "faults": [
+    "U1_TRIP"
+   ],
+   "condition": "hot_climb",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": null
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "CONTINUE",
+    "shed": [],
+    "limiting_factor": "none",
+    "minutes_left_p5": 120.0,
+    "minutes_left_true": null
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "U2_TRIP__cool_flat",
+   "faults": [
+    "U2_TRIP"
+   ],
+   "condition": "cool_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": null
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "CONTINUE",
+    "shed": [],
+    "limiting_factor": "none",
+    "minutes_left_p5": 120.0,
+    "minutes_left_true": null
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "U2_TRIP__hot_flat",
+   "faults": [
+    "U2_TRIP"
+   ],
+   "condition": "hot_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": null
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "CONTINUE",
+    "shed": [],
+    "limiting_factor": "none",
+    "minutes_left_p5": 120.0,
+    "minutes_left_true": null
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "U2_TRIP__cool_climb",
+   "faults": [
+    "U2_TRIP"
+   ],
+   "condition": "cool_climb",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": null
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "CONTINUE",
+    "shed": [],
+    "limiting_factor": "none",
+    "minutes_left_p5": 120.0,
+    "minutes_left_true": null
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "U2_TRIP__hot_climb",
+   "faults": [
+    "U2_TRIP"
+   ],
+   "condition": "hot_climb",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": null
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "CONTINUE",
+    "shed": [],
+    "limiting_factor": "none",
+    "minutes_left_p5": 120.0,
+    "minutes_left_true": null
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "STANDBY_STUCK__cool_flat",
+   "faults": [
+    "STANDBY_STUCK"
+   ],
+   "condition": "cool_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 38.35
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "CONTINUE",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 23.3,
+    "minutes_left_true": 38.35
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "STANDBY_STUCK__hot_flat",
+   "faults": [
+    "STANDBY_STUCK"
+   ],
+   "condition": "hot_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 29.0
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 18.5,
+    "minutes_left_true": 29.0
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "STANDBY_STUCK__cool_climb",
+   "faults": [
+    "STANDBY_STUCK"
+   ],
+   "condition": "cool_climb",
+   "baseline": {
+    "outcome": "UNSAFE",
+    "limit_hit": "motor_temp",
+    "t_limit_s": 1024.0,
+    "reached_station": true,
+    "minutes_left_true": 10.6
+   },
+   "advisor": {
+    "outcome": "CONTROLLED_STOP",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": false,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 7.5,
+    "minutes_left_true": 10.6
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "STANDBY_STUCK__hot_climb",
+   "faults": [
+    "STANDBY_STUCK"
+   ],
+   "condition": "hot_climb",
+   "baseline": {
+    "outcome": "UNSAFE",
+    "limit_hit": "motor_temp",
+    "t_limit_s": 818.0,
+    "reached_station": true,
+    "minutes_left_true": 8.81
+   },
+   "advisor": {
+    "outcome": "CONTROLLED_STOP",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": false,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 6.3,
+    "minutes_left_true": 8.81
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "MCB_TRIP__cool_flat",
+   "faults": [
+    "MCB_TRIP"
+   ],
+   "condition": "cool_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 38.35
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "CONTINUE",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 23.3,
+    "minutes_left_true": 38.35
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "MCB_TRIP__hot_flat",
+   "faults": [
+    "MCB_TRIP"
+   ],
+   "condition": "hot_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 29.0
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 18.5,
+    "minutes_left_true": 29.0
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "MCB_TRIP__cool_climb",
+   "faults": [
+    "MCB_TRIP"
+   ],
+   "condition": "cool_climb",
+   "baseline": {
+    "outcome": "UNSAFE",
+    "limit_hit": "motor_temp",
+    "t_limit_s": 1024.0,
+    "reached_station": true,
+    "minutes_left_true": 10.6
+   },
+   "advisor": {
+    "outcome": "CONTROLLED_STOP",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": false,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 7.5,
+    "minutes_left_true": 10.6
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "MCB_TRIP__hot_climb",
+   "faults": [
+    "MCB_TRIP"
+   ],
+   "condition": "hot_climb",
+   "baseline": {
+    "outcome": "UNSAFE",
+    "limit_hit": "motor_temp",
+    "t_limit_s": 818.0,
+    "reached_station": true,
+    "minutes_left_true": 8.81
+   },
+   "advisor": {
+    "outcome": "CONTROLLED_STOP",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": false,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 6.3,
+    "minutes_left_true": 8.81
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "UNIT_DERATE__cool_flat",
+   "faults": [
+    "UNIT_DERATE"
+   ],
+   "condition": "cool_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": null
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "CONTINUE",
+    "shed": [],
+    "limiting_factor": "none",
+    "minutes_left_p5": 120.0,
+    "minutes_left_true": null
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "UNIT_DERATE__hot_flat",
+   "faults": [
+    "UNIT_DERATE"
+   ],
+   "condition": "hot_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": null
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "CONTINUE",
+    "shed": [],
+    "limiting_factor": "none",
+    "minutes_left_p5": 120.0,
+    "minutes_left_true": null
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "UNIT_DERATE__cool_climb",
+   "faults": [
+    "UNIT_DERATE"
+   ],
+   "condition": "cool_climb",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": null
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "CONTINUE",
+    "shed": [],
+    "limiting_factor": "none",
+    "minutes_left_p5": 120.0,
+    "minutes_left_true": null
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "UNIT_DERATE__hot_climb",
+   "faults": [
+    "UNIT_DERATE"
+   ],
+   "condition": "hot_climb",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": null
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "CONTINUE",
+    "shed": [],
+    "limiting_factor": "none",
+    "minutes_left_p5": 120.0,
+    "minutes_left_true": null
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "BLOWER_FAIL__cool_flat",
+   "faults": [
+    "BLOWER_FAIL"
+   ],
+   "condition": "cool_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 38.35
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "CONTINUE",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 23.3,
+    "minutes_left_true": 38.35
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "BLOWER_FAIL__hot_flat",
+   "faults": [
+    "BLOWER_FAIL"
+   ],
+   "condition": "hot_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 29.0
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 18.5,
+    "minutes_left_true": 29.0
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "BLOWER_FAIL__cool_climb",
+   "faults": [
+    "BLOWER_FAIL"
+   ],
+   "condition": "cool_climb",
+   "baseline": {
+    "outcome": "UNSAFE",
+    "limit_hit": "motor_temp",
+    "t_limit_s": 1024.0,
+    "reached_station": true,
+    "minutes_left_true": 10.6
+   },
+   "advisor": {
+    "outcome": "CONTROLLED_STOP",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": false,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 7.5,
+    "minutes_left_true": 10.6
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "BLOWER_FAIL__hot_climb",
+   "faults": [
+    "BLOWER_FAIL"
+   ],
+   "condition": "hot_climb",
+   "baseline": {
+    "outcome": "UNSAFE",
+    "limit_hit": "motor_temp",
+    "t_limit_s": 818.0,
+    "reached_station": true,
+    "minutes_left_true": 8.81
+   },
+   "advisor": {
+    "outcome": "CONTROLLED_STOP",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": false,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 6.3,
+    "minutes_left_true": 8.81
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "COMPRESSOR_FAIL__cool_flat",
+   "faults": [
+    "COMPRESSOR_FAIL"
+   ],
+   "condition": "cool_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 19.83
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "air",
+    "minutes_left_p5": 15.4,
+    "minutes_left_true": 19.83
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "COMPRESSOR_FAIL__hot_flat",
+   "faults": [
+    "COMPRESSOR_FAIL"
+   ],
+   "condition": "hot_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 19.83
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "air",
+    "minutes_left_p5": 15.4,
+    "minutes_left_true": 19.83
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "COMPRESSOR_FAIL__cool_climb",
+   "faults": [
+    "COMPRESSOR_FAIL"
+   ],
+   "condition": "cool_climb",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 19.83
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "air",
+    "minutes_left_p5": 15.4,
+    "minutes_left_true": 19.83
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "COMPRESSOR_FAIL__hot_climb",
+   "faults": [
+    "COMPRESSOR_FAIL"
+   ],
+   "condition": "hot_climb",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 19.83
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "air",
+    "minutes_left_p5": 15.4,
+    "minutes_left_true": 19.83
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "TEMP_SENSOR_STUCK__cool_flat",
+   "faults": [
+    "TEMP_SENSOR_STUCK"
+   ],
+   "condition": "cool_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": null
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "CONTINUE",
+    "shed": [],
+    "limiting_factor": "none",
+    "minutes_left_p5": 120.0,
+    "minutes_left_true": null
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "TEMP_SENSOR_STUCK__hot_flat",
+   "faults": [
+    "TEMP_SENSOR_STUCK"
+   ],
+   "condition": "hot_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": null
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "CONTINUE",
+    "shed": [],
+    "limiting_factor": "none",
+    "minutes_left_p5": 120.0,
+    "minutes_left_true": null
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "TEMP_SENSOR_STUCK__cool_climb",
+   "faults": [
+    "TEMP_SENSOR_STUCK"
+   ],
+   "condition": "cool_climb",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": null
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "CONTINUE",
+    "shed": [],
+    "limiting_factor": "none",
+    "minutes_left_p5": 120.0,
+    "minutes_left_true": null
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "TEMP_SENSOR_STUCK__hot_climb",
+   "faults": [
+    "TEMP_SENSOR_STUCK"
+   ],
+   "condition": "hot_climb",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": null
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "CONTINUE",
+    "shed": [],
+    "limiting_factor": "none",
+    "minutes_left_p5": 120.0,
+    "minutes_left_true": null
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "U1_TRIP+U2_TRIP__cool_flat",
+   "faults": [
+    "U1_TRIP",
+    "U2_TRIP"
+   ],
+   "condition": "cool_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 19.83
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "air",
+    "minutes_left_p5": 15.4,
+    "minutes_left_true": 19.83
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "U1_TRIP+U2_TRIP__hot_flat",
+   "faults": [
+    "U1_TRIP",
+    "U2_TRIP"
+   ],
+   "condition": "hot_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 19.83
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "air",
+    "minutes_left_p5": 15.4,
+    "minutes_left_true": 19.83
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "U1_TRIP+U2_TRIP__cool_climb",
+   "faults": [
+    "U1_TRIP",
+    "U2_TRIP"
+   ],
+   "condition": "cool_climb",
+   "baseline": {
+    "outcome": "UNSAFE",
+    "limit_hit": "motor_temp",
+    "t_limit_s": 1024.0,
+    "reached_station": true,
+    "minutes_left_true": 10.6
+   },
+   "advisor": {
+    "outcome": "CONTROLLED_STOP",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": false,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 7.5,
+    "minutes_left_true": 10.6
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "U1_TRIP+U2_TRIP__hot_climb",
+   "faults": [
+    "U1_TRIP",
+    "U2_TRIP"
+   ],
+   "condition": "hot_climb",
+   "baseline": {
+    "outcome": "UNSAFE",
+    "limit_hit": "motor_temp",
+    "t_limit_s": 818.0,
+    "reached_station": true,
+    "minutes_left_true": 8.81
+   },
+   "advisor": {
+    "outcome": "CONTROLLED_STOP",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": false,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 6.3,
+    "minutes_left_true": 8.81
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "U1_TRIP+STANDBY_STUCK__cool_flat",
+   "faults": [
+    "U1_TRIP",
+    "STANDBY_STUCK"
+   ],
+   "condition": "cool_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 38.35
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "CONTINUE",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 23.3,
+    "minutes_left_true": 38.35
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "U1_TRIP+STANDBY_STUCK__hot_flat",
+   "faults": [
+    "U1_TRIP",
+    "STANDBY_STUCK"
+   ],
+   "condition": "hot_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 29.0
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 18.5,
+    "minutes_left_true": 29.0
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "U1_TRIP+STANDBY_STUCK__cool_climb",
+   "faults": [
+    "U1_TRIP",
+    "STANDBY_STUCK"
+   ],
+   "condition": "cool_climb",
+   "baseline": {
+    "outcome": "UNSAFE",
+    "limit_hit": "motor_temp",
+    "t_limit_s": 1024.0,
+    "reached_station": true,
+    "minutes_left_true": 10.6
+   },
+   "advisor": {
+    "outcome": "CONTROLLED_STOP",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": false,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 7.5,
+    "minutes_left_true": 10.6
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "U1_TRIP+STANDBY_STUCK__hot_climb",
+   "faults": [
+    "U1_TRIP",
+    "STANDBY_STUCK"
+   ],
+   "condition": "hot_climb",
+   "baseline": {
+    "outcome": "UNSAFE",
+    "limit_hit": "motor_temp",
+    "t_limit_s": 818.0,
+    "reached_station": true,
+    "minutes_left_true": 8.81
+   },
+   "advisor": {
+    "outcome": "CONTROLLED_STOP",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": false,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 6.3,
+    "minutes_left_true": 8.81
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "U1_TRIP+MCB_TRIP__cool_flat",
+   "faults": [
+    "U1_TRIP",
+    "MCB_TRIP"
+   ],
+   "condition": "cool_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 38.35
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "CONTINUE",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 23.3,
+    "minutes_left_true": 38.35
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "U1_TRIP+MCB_TRIP__hot_flat",
+   "faults": [
+    "U1_TRIP",
+    "MCB_TRIP"
+   ],
+   "condition": "hot_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 29.0
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 18.5,
+    "minutes_left_true": 29.0
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "U1_TRIP+MCB_TRIP__cool_climb",
+   "faults": [
+    "U1_TRIP",
+    "MCB_TRIP"
+   ],
+   "condition": "cool_climb",
+   "baseline": {
+    "outcome": "UNSAFE",
+    "limit_hit": "motor_temp",
+    "t_limit_s": 1024.0,
+    "reached_station": true,
+    "minutes_left_true": 10.6
+   },
+   "advisor": {
+    "outcome": "CONTROLLED_STOP",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": false,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 7.5,
+    "minutes_left_true": 10.6
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "U1_TRIP+MCB_TRIP__hot_climb",
+   "faults": [
+    "U1_TRIP",
+    "MCB_TRIP"
+   ],
+   "condition": "hot_climb",
+   "baseline": {
+    "outcome": "UNSAFE",
+    "limit_hit": "motor_temp",
+    "t_limit_s": 818.0,
+    "reached_station": true,
+    "minutes_left_true": 8.81
+   },
+   "advisor": {
+    "outcome": "CONTROLLED_STOP",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": false,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 6.3,
+    "minutes_left_true": 8.81
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "U1_TRIP+UNIT_DERATE__cool_flat",
+   "faults": [
+    "U1_TRIP",
+    "UNIT_DERATE"
+   ],
+   "condition": "cool_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 19.83
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "CONTINUE",
+    "shed": [
+     "motor_blower"
+    ],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 23.5,
+    "minutes_left_true": 38.58
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "U1_TRIP+UNIT_DERATE__hot_flat",
+   "faults": [
+    "U1_TRIP",
+    "UNIT_DERATE"
+   ],
+   "condition": "hot_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 19.83
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "STOP_AT_NEXT",
+    "shed": [
+     "motor_blower"
+    ],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 18.7,
+    "minutes_left_true": 29.24
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "U1_TRIP+UNIT_DERATE__cool_climb",
+   "faults": [
+    "U1_TRIP",
+    "UNIT_DERATE"
+   ],
+   "condition": "cool_climb",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 19.83
+   },
+   "advisor": {
+    "outcome": "CONTROLLED_STOP",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": false,
+    "decision": "STOP_AT_NEXT",
+    "shed": [
+     "motor_blower"
+    ],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 7.6,
+    "minutes_left_true": 10.72
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "U1_TRIP+UNIT_DERATE__hot_climb",
+   "faults": [
+    "U1_TRIP",
+    "UNIT_DERATE"
+   ],
+   "condition": "hot_climb",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 19.83
+   },
+   "advisor": {
+    "outcome": "CONTROLLED_STOP",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": false,
+    "decision": "STOP_AT_NEXT",
+    "shed": [
+     "motor_blower"
+    ],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 6.4,
+    "minutes_left_true": 8.93
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "U1_TRIP+BLOWER_FAIL__cool_flat",
+   "faults": [
+    "U1_TRIP",
+    "BLOWER_FAIL"
+   ],
+   "condition": "cool_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 38.35
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "CONTINUE",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 23.3,
+    "minutes_left_true": 38.35
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "U1_TRIP+BLOWER_FAIL__hot_flat",
+   "faults": [
+    "U1_TRIP",
+    "BLOWER_FAIL"
+   ],
+   "condition": "hot_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 29.0
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 18.5,
+    "minutes_left_true": 29.0
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "U1_TRIP+BLOWER_FAIL__cool_climb",
+   "faults": [
+    "U1_TRIP",
+    "BLOWER_FAIL"
+   ],
+   "condition": "cool_climb",
+   "baseline": {
+    "outcome": "UNSAFE",
+    "limit_hit": "motor_temp",
+    "t_limit_s": 1024.0,
+    "reached_station": true,
+    "minutes_left_true": 10.6
+   },
+   "advisor": {
+    "outcome": "CONTROLLED_STOP",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": false,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 7.5,
+    "minutes_left_true": 10.6
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "U1_TRIP+BLOWER_FAIL__hot_climb",
+   "faults": [
+    "U1_TRIP",
+    "BLOWER_FAIL"
+   ],
+   "condition": "hot_climb",
+   "baseline": {
+    "outcome": "UNSAFE",
+    "limit_hit": "motor_temp",
+    "t_limit_s": 818.0,
+    "reached_station": true,
+    "minutes_left_true": 8.81
+   },
+   "advisor": {
+    "outcome": "CONTROLLED_STOP",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": false,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 6.3,
+    "minutes_left_true": 8.81
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "U1_TRIP+COMPRESSOR_FAIL__cool_flat",
+   "faults": [
+    "U1_TRIP",
+    "COMPRESSOR_FAIL"
+   ],
+   "condition": "cool_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 19.83
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "air",
+    "minutes_left_p5": 15.4,
+    "minutes_left_true": 19.83
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "U1_TRIP+COMPRESSOR_FAIL__hot_flat",
+   "faults": [
+    "U1_TRIP",
+    "COMPRESSOR_FAIL"
+   ],
+   "condition": "hot_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 19.83
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "air",
+    "minutes_left_p5": 15.4,
+    "minutes_left_true": 19.83
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "U1_TRIP+COMPRESSOR_FAIL__cool_climb",
+   "faults": [
+    "U1_TRIP",
+    "COMPRESSOR_FAIL"
+   ],
+   "condition": "cool_climb",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 19.83
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "air",
+    "minutes_left_p5": 15.4,
+    "minutes_left_true": 19.83
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "U1_TRIP+COMPRESSOR_FAIL__hot_climb",
+   "faults": [
+    "U1_TRIP",
+    "COMPRESSOR_FAIL"
+   ],
+   "condition": "hot_climb",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 19.83
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "air",
+    "minutes_left_p5": 15.4,
+    "minutes_left_true": 19.83
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "U1_TRIP+TEMP_SENSOR_STUCK__cool_flat",
+   "faults": [
+    "U1_TRIP",
+    "TEMP_SENSOR_STUCK"
+   ],
+   "condition": "cool_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": null
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "CONTINUE",
+    "shed": [],
+    "limiting_factor": "none",
+    "minutes_left_p5": 120.0,
+    "minutes_left_true": null
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "U1_TRIP+TEMP_SENSOR_STUCK__hot_flat",
+   "faults": [
+    "U1_TRIP",
+    "TEMP_SENSOR_STUCK"
+   ],
+   "condition": "hot_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": null
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "CONTINUE",
+    "shed": [],
+    "limiting_factor": "none",
+    "minutes_left_p5": 120.0,
+    "minutes_left_true": null
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "U1_TRIP+TEMP_SENSOR_STUCK__cool_climb",
+   "faults": [
+    "U1_TRIP",
+    "TEMP_SENSOR_STUCK"
+   ],
+   "condition": "cool_climb",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": null
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "CONTINUE",
+    "shed": [],
+    "limiting_factor": "none",
+    "minutes_left_p5": 120.0,
+    "minutes_left_true": null
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "U1_TRIP+TEMP_SENSOR_STUCK__hot_climb",
+   "faults": [
+    "U1_TRIP",
+    "TEMP_SENSOR_STUCK"
+   ],
+   "condition": "hot_climb",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": null
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "CONTINUE",
+    "shed": [],
+    "limiting_factor": "none",
+    "minutes_left_p5": 120.0,
+    "minutes_left_true": null
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "U2_TRIP+STANDBY_STUCK__cool_flat",
+   "faults": [
+    "U2_TRIP",
+    "STANDBY_STUCK"
+   ],
+   "condition": "cool_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 19.83
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "air",
+    "minutes_left_p5": 15.4,
+    "minutes_left_true": 19.83
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "U2_TRIP+STANDBY_STUCK__hot_flat",
+   "faults": [
+    "U2_TRIP",
+    "STANDBY_STUCK"
+   ],
+   "condition": "hot_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 19.83
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "air",
+    "minutes_left_p5": 15.4,
+    "minutes_left_true": 19.83
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "U2_TRIP+STANDBY_STUCK__cool_climb",
+   "faults": [
+    "U2_TRIP",
+    "STANDBY_STUCK"
+   ],
+   "condition": "cool_climb",
+   "baseline": {
+    "outcome": "UNSAFE",
+    "limit_hit": "motor_temp",
+    "t_limit_s": 1024.0,
+    "reached_station": true,
+    "minutes_left_true": 10.6
+   },
+   "advisor": {
+    "outcome": "CONTROLLED_STOP",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": false,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 7.5,
+    "minutes_left_true": 10.6
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "U2_TRIP+STANDBY_STUCK__hot_climb",
+   "faults": [
+    "U2_TRIP",
+    "STANDBY_STUCK"
+   ],
+   "condition": "hot_climb",
+   "baseline": {
+    "outcome": "UNSAFE",
+    "limit_hit": "motor_temp",
+    "t_limit_s": 818.0,
+    "reached_station": true,
+    "minutes_left_true": 8.81
+   },
+   "advisor": {
+    "outcome": "CONTROLLED_STOP",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": false,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 6.3,
+    "minutes_left_true": 8.81
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "U2_TRIP+MCB_TRIP__cool_flat",
+   "faults": [
+    "U2_TRIP",
+    "MCB_TRIP"
+   ],
+   "condition": "cool_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 19.83
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "air",
+    "minutes_left_p5": 15.4,
+    "minutes_left_true": 19.83
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "U2_TRIP+MCB_TRIP__hot_flat",
+   "faults": [
+    "U2_TRIP",
+    "MCB_TRIP"
+   ],
+   "condition": "hot_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 19.83
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "air",
+    "minutes_left_p5": 15.4,
+    "minutes_left_true": 19.83
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "U2_TRIP+MCB_TRIP__cool_climb",
+   "faults": [
+    "U2_TRIP",
+    "MCB_TRIP"
+   ],
+   "condition": "cool_climb",
+   "baseline": {
+    "outcome": "UNSAFE",
+    "limit_hit": "motor_temp",
+    "t_limit_s": 1024.0,
+    "reached_station": true,
+    "minutes_left_true": 10.6
+   },
+   "advisor": {
+    "outcome": "CONTROLLED_STOP",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": false,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 7.5,
+    "minutes_left_true": 10.6
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "U2_TRIP+MCB_TRIP__hot_climb",
+   "faults": [
+    "U2_TRIP",
+    "MCB_TRIP"
+   ],
+   "condition": "hot_climb",
+   "baseline": {
+    "outcome": "UNSAFE",
+    "limit_hit": "motor_temp",
+    "t_limit_s": 818.0,
+    "reached_station": true,
+    "minutes_left_true": 8.81
+   },
+   "advisor": {
+    "outcome": "CONTROLLED_STOP",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": false,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 6.3,
+    "minutes_left_true": 8.81
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "U2_TRIP+UNIT_DERATE__cool_flat",
+   "faults": [
+    "U2_TRIP",
+    "UNIT_DERATE"
+   ],
+   "condition": "cool_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": null
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "CONTINUE",
+    "shed": [],
+    "limiting_factor": "none",
+    "minutes_left_p5": 120.0,
+    "minutes_left_true": null
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "U2_TRIP+UNIT_DERATE__hot_flat",
+   "faults": [
+    "U2_TRIP",
+    "UNIT_DERATE"
+   ],
+   "condition": "hot_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": null
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "CONTINUE",
+    "shed": [],
+    "limiting_factor": "none",
+    "minutes_left_p5": 120.0,
+    "minutes_left_true": null
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "U2_TRIP+UNIT_DERATE__cool_climb",
+   "faults": [
+    "U2_TRIP",
+    "UNIT_DERATE"
+   ],
+   "condition": "cool_climb",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": null
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "CONTINUE",
+    "shed": [],
+    "limiting_factor": "none",
+    "minutes_left_p5": 120.0,
+    "minutes_left_true": null
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "U2_TRIP+UNIT_DERATE__hot_climb",
+   "faults": [
+    "U2_TRIP",
+    "UNIT_DERATE"
+   ],
+   "condition": "hot_climb",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": null
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "CONTINUE",
+    "shed": [],
+    "limiting_factor": "none",
+    "minutes_left_p5": 120.0,
+    "minutes_left_true": null
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "U2_TRIP+BLOWER_FAIL__cool_flat",
+   "faults": [
+    "U2_TRIP",
+    "BLOWER_FAIL"
+   ],
+   "condition": "cool_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 38.35
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "CONTINUE",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 23.3,
+    "minutes_left_true": 38.35
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "U2_TRIP+BLOWER_FAIL__hot_flat",
+   "faults": [
+    "U2_TRIP",
+    "BLOWER_FAIL"
+   ],
+   "condition": "hot_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 29.0
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 18.5,
+    "minutes_left_true": 29.0
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "U2_TRIP+BLOWER_FAIL__cool_climb",
+   "faults": [
+    "U2_TRIP",
+    "BLOWER_FAIL"
+   ],
+   "condition": "cool_climb",
+   "baseline": {
+    "outcome": "UNSAFE",
+    "limit_hit": "motor_temp",
+    "t_limit_s": 1024.0,
+    "reached_station": true,
+    "minutes_left_true": 10.6
+   },
+   "advisor": {
+    "outcome": "CONTROLLED_STOP",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": false,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 7.5,
+    "minutes_left_true": 10.6
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "U2_TRIP+BLOWER_FAIL__hot_climb",
+   "faults": [
+    "U2_TRIP",
+    "BLOWER_FAIL"
+   ],
+   "condition": "hot_climb",
+   "baseline": {
+    "outcome": "UNSAFE",
+    "limit_hit": "motor_temp",
+    "t_limit_s": 818.0,
+    "reached_station": true,
+    "minutes_left_true": 8.81
+   },
+   "advisor": {
+    "outcome": "CONTROLLED_STOP",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": false,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 6.3,
+    "minutes_left_true": 8.81
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "U2_TRIP+COMPRESSOR_FAIL__cool_flat",
+   "faults": [
+    "U2_TRIP",
+    "COMPRESSOR_FAIL"
+   ],
+   "condition": "cool_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 19.83
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "air",
+    "minutes_left_p5": 15.4,
+    "minutes_left_true": 19.83
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "U2_TRIP+COMPRESSOR_FAIL__hot_flat",
+   "faults": [
+    "U2_TRIP",
+    "COMPRESSOR_FAIL"
+   ],
+   "condition": "hot_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 19.83
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "air",
+    "minutes_left_p5": 15.4,
+    "minutes_left_true": 19.83
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "U2_TRIP+COMPRESSOR_FAIL__cool_climb",
+   "faults": [
+    "U2_TRIP",
+    "COMPRESSOR_FAIL"
+   ],
+   "condition": "cool_climb",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 19.83
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "air",
+    "minutes_left_p5": 15.4,
+    "minutes_left_true": 19.83
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "U2_TRIP+COMPRESSOR_FAIL__hot_climb",
+   "faults": [
+    "U2_TRIP",
+    "COMPRESSOR_FAIL"
+   ],
+   "condition": "hot_climb",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 19.83
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "air",
+    "minutes_left_p5": 15.4,
+    "minutes_left_true": 19.83
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "U2_TRIP+TEMP_SENSOR_STUCK__cool_flat",
+   "faults": [
+    "U2_TRIP",
+    "TEMP_SENSOR_STUCK"
+   ],
+   "condition": "cool_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": null
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "CONTINUE",
+    "shed": [],
+    "limiting_factor": "none",
+    "minutes_left_p5": 120.0,
+    "minutes_left_true": null
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "U2_TRIP+TEMP_SENSOR_STUCK__hot_flat",
+   "faults": [
+    "U2_TRIP",
+    "TEMP_SENSOR_STUCK"
+   ],
+   "condition": "hot_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": null
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "CONTINUE",
+    "shed": [],
+    "limiting_factor": "none",
+    "minutes_left_p5": 120.0,
+    "minutes_left_true": null
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "U2_TRIP+TEMP_SENSOR_STUCK__cool_climb",
+   "faults": [
+    "U2_TRIP",
+    "TEMP_SENSOR_STUCK"
+   ],
+   "condition": "cool_climb",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": null
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "CONTINUE",
+    "shed": [],
+    "limiting_factor": "none",
+    "minutes_left_p5": 120.0,
+    "minutes_left_true": null
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "U2_TRIP+TEMP_SENSOR_STUCK__hot_climb",
+   "faults": [
+    "U2_TRIP",
+    "TEMP_SENSOR_STUCK"
+   ],
+   "condition": "hot_climb",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": null
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "CONTINUE",
+    "shed": [],
+    "limiting_factor": "none",
+    "minutes_left_p5": 120.0,
+    "minutes_left_true": null
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "STANDBY_STUCK+MCB_TRIP__cool_flat",
+   "faults": [
+    "STANDBY_STUCK",
+    "MCB_TRIP"
+   ],
+   "condition": "cool_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 38.35
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "CONTINUE",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 23.3,
+    "minutes_left_true": 38.35
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "STANDBY_STUCK+MCB_TRIP__hot_flat",
+   "faults": [
+    "STANDBY_STUCK",
+    "MCB_TRIP"
+   ],
+   "condition": "hot_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 29.0
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 18.5,
+    "minutes_left_true": 29.0
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "STANDBY_STUCK+MCB_TRIP__cool_climb",
+   "faults": [
+    "STANDBY_STUCK",
+    "MCB_TRIP"
+   ],
+   "condition": "cool_climb",
+   "baseline": {
+    "outcome": "UNSAFE",
+    "limit_hit": "motor_temp",
+    "t_limit_s": 1024.0,
+    "reached_station": true,
+    "minutes_left_true": 10.6
+   },
+   "advisor": {
+    "outcome": "CONTROLLED_STOP",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": false,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 7.5,
+    "minutes_left_true": 10.6
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "STANDBY_STUCK+MCB_TRIP__hot_climb",
+   "faults": [
+    "STANDBY_STUCK",
+    "MCB_TRIP"
+   ],
+   "condition": "hot_climb",
+   "baseline": {
+    "outcome": "UNSAFE",
+    "limit_hit": "motor_temp",
+    "t_limit_s": 818.0,
+    "reached_station": true,
+    "minutes_left_true": 8.81
+   },
+   "advisor": {
+    "outcome": "CONTROLLED_STOP",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": false,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 6.3,
+    "minutes_left_true": 8.81
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "STANDBY_STUCK+UNIT_DERATE__cool_flat",
+   "faults": [
+    "STANDBY_STUCK",
+    "UNIT_DERATE"
+   ],
+   "condition": "cool_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 38.35
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "CONTINUE",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 23.3,
+    "minutes_left_true": 38.35
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "STANDBY_STUCK+UNIT_DERATE__hot_flat",
+   "faults": [
+    "STANDBY_STUCK",
+    "UNIT_DERATE"
+   ],
+   "condition": "hot_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 29.0
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 18.5,
+    "minutes_left_true": 29.0
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "STANDBY_STUCK+UNIT_DERATE__cool_climb",
+   "faults": [
+    "STANDBY_STUCK",
+    "UNIT_DERATE"
+   ],
+   "condition": "cool_climb",
+   "baseline": {
+    "outcome": "UNSAFE",
+    "limit_hit": "motor_temp",
+    "t_limit_s": 1024.0,
+    "reached_station": true,
+    "minutes_left_true": 10.6
+   },
+   "advisor": {
+    "outcome": "CONTROLLED_STOP",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": false,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 7.5,
+    "minutes_left_true": 10.6
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "STANDBY_STUCK+UNIT_DERATE__hot_climb",
+   "faults": [
+    "STANDBY_STUCK",
+    "UNIT_DERATE"
+   ],
+   "condition": "hot_climb",
+   "baseline": {
+    "outcome": "UNSAFE",
+    "limit_hit": "motor_temp",
+    "t_limit_s": 818.0,
+    "reached_station": true,
+    "minutes_left_true": 8.81
+   },
+   "advisor": {
+    "outcome": "CONTROLLED_STOP",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": false,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 6.3,
+    "minutes_left_true": 8.81
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "STANDBY_STUCK+BLOWER_FAIL__cool_flat",
+   "faults": [
+    "STANDBY_STUCK",
+    "BLOWER_FAIL"
+   ],
+   "condition": "cool_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 38.35
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "CONTINUE",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 23.3,
+    "minutes_left_true": 38.35
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "STANDBY_STUCK+BLOWER_FAIL__hot_flat",
+   "faults": [
+    "STANDBY_STUCK",
+    "BLOWER_FAIL"
+   ],
+   "condition": "hot_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 29.0
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 18.5,
+    "minutes_left_true": 29.0
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "STANDBY_STUCK+BLOWER_FAIL__cool_climb",
+   "faults": [
+    "STANDBY_STUCK",
+    "BLOWER_FAIL"
+   ],
+   "condition": "cool_climb",
+   "baseline": {
+    "outcome": "UNSAFE",
+    "limit_hit": "motor_temp",
+    "t_limit_s": 1024.0,
+    "reached_station": true,
+    "minutes_left_true": 10.6
+   },
+   "advisor": {
+    "outcome": "CONTROLLED_STOP",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": false,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 7.5,
+    "minutes_left_true": 10.6
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "STANDBY_STUCK+BLOWER_FAIL__hot_climb",
+   "faults": [
+    "STANDBY_STUCK",
+    "BLOWER_FAIL"
+   ],
+   "condition": "hot_climb",
+   "baseline": {
+    "outcome": "UNSAFE",
+    "limit_hit": "motor_temp",
+    "t_limit_s": 818.0,
+    "reached_station": true,
+    "minutes_left_true": 8.81
+   },
+   "advisor": {
+    "outcome": "CONTROLLED_STOP",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": false,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 6.3,
+    "minutes_left_true": 8.81
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "STANDBY_STUCK+COMPRESSOR_FAIL__cool_flat",
+   "faults": [
+    "STANDBY_STUCK",
+    "COMPRESSOR_FAIL"
+   ],
+   "condition": "cool_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 19.83
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "air",
+    "minutes_left_p5": 15.4,
+    "minutes_left_true": 19.83
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "STANDBY_STUCK+COMPRESSOR_FAIL__hot_flat",
+   "faults": [
+    "STANDBY_STUCK",
+    "COMPRESSOR_FAIL"
+   ],
+   "condition": "hot_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 19.83
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "air",
+    "minutes_left_p5": 15.4,
+    "minutes_left_true": 19.83
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "STANDBY_STUCK+COMPRESSOR_FAIL__cool_climb",
+   "faults": [
+    "STANDBY_STUCK",
+    "COMPRESSOR_FAIL"
+   ],
+   "condition": "cool_climb",
+   "baseline": {
+    "outcome": "UNSAFE",
+    "limit_hit": "motor_temp",
+    "t_limit_s": 1024.0,
+    "reached_station": true,
+    "minutes_left_true": 10.6
+   },
+   "advisor": {
+    "outcome": "CONTROLLED_STOP",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": false,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 7.5,
+    "minutes_left_true": 10.6
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "STANDBY_STUCK+COMPRESSOR_FAIL__hot_climb",
+   "faults": [
+    "STANDBY_STUCK",
+    "COMPRESSOR_FAIL"
+   ],
+   "condition": "hot_climb",
+   "baseline": {
+    "outcome": "UNSAFE",
+    "limit_hit": "motor_temp",
+    "t_limit_s": 818.0,
+    "reached_station": true,
+    "minutes_left_true": 8.81
+   },
+   "advisor": {
+    "outcome": "CONTROLLED_STOP",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": false,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 6.3,
+    "minutes_left_true": 8.81
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "STANDBY_STUCK+TEMP_SENSOR_STUCK__cool_flat",
+   "faults": [
+    "STANDBY_STUCK",
+    "TEMP_SENSOR_STUCK"
+   ],
+   "condition": "cool_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 38.35
+   },
+   "advisor": {
+    "outcome": "CONTROLLED_STOP",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": false,
+    "decision": "STOP_NOW",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 1.6,
+    "minutes_left_true": 38.35
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "STANDBY_STUCK+TEMP_SENSOR_STUCK__hot_flat",
+   "faults": [
+    "STANDBY_STUCK",
+    "TEMP_SENSOR_STUCK"
+   ],
+   "condition": "hot_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 29.0
+   },
+   "advisor": {
+    "outcome": "CONTROLLED_STOP",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": false,
+    "decision": "STOP_NOW",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 1.4,
+    "minutes_left_true": 29.0
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "STANDBY_STUCK+TEMP_SENSOR_STUCK__cool_climb",
+   "faults": [
+    "STANDBY_STUCK",
+    "TEMP_SENSOR_STUCK"
+   ],
+   "condition": "cool_climb",
+   "baseline": {
+    "outcome": "UNSAFE",
+    "limit_hit": "motor_temp",
+    "t_limit_s": 1024.0,
+    "reached_station": true,
+    "minutes_left_true": 10.6
+   },
+   "advisor": {
+    "outcome": "CONTROLLED_STOP",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": false,
+    "decision": "STOP_NOW",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 0.4,
+    "minutes_left_true": 10.6
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "STANDBY_STUCK+TEMP_SENSOR_STUCK__hot_climb",
+   "faults": [
+    "STANDBY_STUCK",
+    "TEMP_SENSOR_STUCK"
+   ],
+   "condition": "hot_climb",
+   "baseline": {
+    "outcome": "UNSAFE",
+    "limit_hit": "motor_temp",
+    "t_limit_s": 818.0,
+    "reached_station": true,
+    "minutes_left_true": 8.81
+   },
+   "advisor": {
+    "outcome": "CONTROLLED_STOP",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": false,
+    "decision": "STOP_NOW",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 0.4,
+    "minutes_left_true": 8.81
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "MCB_TRIP+UNIT_DERATE__cool_flat",
+   "faults": [
+    "MCB_TRIP",
+    "UNIT_DERATE"
+   ],
+   "condition": "cool_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 38.35
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "CONTINUE",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 23.3,
+    "minutes_left_true": 38.35
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "MCB_TRIP+UNIT_DERATE__hot_flat",
+   "faults": [
+    "MCB_TRIP",
+    "UNIT_DERATE"
+   ],
+   "condition": "hot_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 29.0
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 18.5,
+    "minutes_left_true": 29.0
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "MCB_TRIP+UNIT_DERATE__cool_climb",
+   "faults": [
+    "MCB_TRIP",
+    "UNIT_DERATE"
+   ],
+   "condition": "cool_climb",
+   "baseline": {
+    "outcome": "UNSAFE",
+    "limit_hit": "motor_temp",
+    "t_limit_s": 1024.0,
+    "reached_station": true,
+    "minutes_left_true": 10.6
+   },
+   "advisor": {
+    "outcome": "CONTROLLED_STOP",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": false,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 7.5,
+    "minutes_left_true": 10.6
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "MCB_TRIP+UNIT_DERATE__hot_climb",
+   "faults": [
+    "MCB_TRIP",
+    "UNIT_DERATE"
+   ],
+   "condition": "hot_climb",
+   "baseline": {
+    "outcome": "UNSAFE",
+    "limit_hit": "motor_temp",
+    "t_limit_s": 818.0,
+    "reached_station": true,
+    "minutes_left_true": 8.81
+   },
+   "advisor": {
+    "outcome": "CONTROLLED_STOP",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": false,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 6.3,
+    "minutes_left_true": 8.81
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "MCB_TRIP+BLOWER_FAIL__cool_flat",
+   "faults": [
+    "MCB_TRIP",
+    "BLOWER_FAIL"
+   ],
+   "condition": "cool_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 38.35
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "CONTINUE",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 23.3,
+    "minutes_left_true": 38.35
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "MCB_TRIP+BLOWER_FAIL__hot_flat",
+   "faults": [
+    "MCB_TRIP",
+    "BLOWER_FAIL"
+   ],
+   "condition": "hot_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 29.0
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 18.5,
+    "minutes_left_true": 29.0
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "MCB_TRIP+BLOWER_FAIL__cool_climb",
+   "faults": [
+    "MCB_TRIP",
+    "BLOWER_FAIL"
+   ],
+   "condition": "cool_climb",
+   "baseline": {
+    "outcome": "UNSAFE",
+    "limit_hit": "motor_temp",
+    "t_limit_s": 1024.0,
+    "reached_station": true,
+    "minutes_left_true": 10.6
+   },
+   "advisor": {
+    "outcome": "CONTROLLED_STOP",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": false,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 7.5,
+    "minutes_left_true": 10.6
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "MCB_TRIP+BLOWER_FAIL__hot_climb",
+   "faults": [
+    "MCB_TRIP",
+    "BLOWER_FAIL"
+   ],
+   "condition": "hot_climb",
+   "baseline": {
+    "outcome": "UNSAFE",
+    "limit_hit": "motor_temp",
+    "t_limit_s": 818.0,
+    "reached_station": true,
+    "minutes_left_true": 8.81
+   },
+   "advisor": {
+    "outcome": "CONTROLLED_STOP",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": false,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 6.3,
+    "minutes_left_true": 8.81
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "MCB_TRIP+COMPRESSOR_FAIL__cool_flat",
+   "faults": [
+    "MCB_TRIP",
+    "COMPRESSOR_FAIL"
+   ],
+   "condition": "cool_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 19.83
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "air",
+    "minutes_left_p5": 15.4,
+    "minutes_left_true": 19.83
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "MCB_TRIP+COMPRESSOR_FAIL__hot_flat",
+   "faults": [
+    "MCB_TRIP",
+    "COMPRESSOR_FAIL"
+   ],
+   "condition": "hot_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 19.83
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "air",
+    "minutes_left_p5": 15.4,
+    "minutes_left_true": 19.83
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "MCB_TRIP+COMPRESSOR_FAIL__cool_climb",
+   "faults": [
+    "MCB_TRIP",
+    "COMPRESSOR_FAIL"
+   ],
+   "condition": "cool_climb",
+   "baseline": {
+    "outcome": "UNSAFE",
+    "limit_hit": "motor_temp",
+    "t_limit_s": 1024.0,
+    "reached_station": true,
+    "minutes_left_true": 10.6
+   },
+   "advisor": {
+    "outcome": "CONTROLLED_STOP",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": false,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 7.5,
+    "minutes_left_true": 10.6
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "MCB_TRIP+COMPRESSOR_FAIL__hot_climb",
+   "faults": [
+    "MCB_TRIP",
+    "COMPRESSOR_FAIL"
+   ],
+   "condition": "hot_climb",
+   "baseline": {
+    "outcome": "UNSAFE",
+    "limit_hit": "motor_temp",
+    "t_limit_s": 818.0,
+    "reached_station": true,
+    "minutes_left_true": 8.81
+   },
+   "advisor": {
+    "outcome": "CONTROLLED_STOP",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": false,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 6.3,
+    "minutes_left_true": 8.81
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "MCB_TRIP+TEMP_SENSOR_STUCK__cool_flat",
+   "faults": [
+    "MCB_TRIP",
+    "TEMP_SENSOR_STUCK"
+   ],
+   "condition": "cool_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 38.35
+   },
+   "advisor": {
+    "outcome": "CONTROLLED_STOP",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": false,
+    "decision": "STOP_NOW",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 1.6,
+    "minutes_left_true": 38.35
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "MCB_TRIP+TEMP_SENSOR_STUCK__hot_flat",
+   "faults": [
+    "MCB_TRIP",
+    "TEMP_SENSOR_STUCK"
+   ],
+   "condition": "hot_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 29.0
+   },
+   "advisor": {
+    "outcome": "CONTROLLED_STOP",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": false,
+    "decision": "STOP_NOW",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 1.4,
+    "minutes_left_true": 29.0
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "MCB_TRIP+TEMP_SENSOR_STUCK__cool_climb",
+   "faults": [
+    "MCB_TRIP",
+    "TEMP_SENSOR_STUCK"
+   ],
+   "condition": "cool_climb",
+   "baseline": {
+    "outcome": "UNSAFE",
+    "limit_hit": "motor_temp",
+    "t_limit_s": 1024.0,
+    "reached_station": true,
+    "minutes_left_true": 10.6
+   },
+   "advisor": {
+    "outcome": "CONTROLLED_STOP",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": false,
+    "decision": "STOP_NOW",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 0.4,
+    "minutes_left_true": 10.6
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "MCB_TRIP+TEMP_SENSOR_STUCK__hot_climb",
+   "faults": [
+    "MCB_TRIP",
+    "TEMP_SENSOR_STUCK"
+   ],
+   "condition": "hot_climb",
+   "baseline": {
+    "outcome": "UNSAFE",
+    "limit_hit": "motor_temp",
+    "t_limit_s": 818.0,
+    "reached_station": true,
+    "minutes_left_true": 8.81
+   },
+   "advisor": {
+    "outcome": "CONTROLLED_STOP",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": false,
+    "decision": "STOP_NOW",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 0.4,
+    "minutes_left_true": 8.81
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "UNIT_DERATE+BLOWER_FAIL__cool_flat",
+   "faults": [
+    "UNIT_DERATE",
+    "BLOWER_FAIL"
+   ],
+   "condition": "cool_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 38.35
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "CONTINUE",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 23.3,
+    "minutes_left_true": 38.35
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "UNIT_DERATE+BLOWER_FAIL__hot_flat",
+   "faults": [
+    "UNIT_DERATE",
+    "BLOWER_FAIL"
+   ],
+   "condition": "hot_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 29.0
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 18.5,
+    "minutes_left_true": 29.0
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "UNIT_DERATE+BLOWER_FAIL__cool_climb",
+   "faults": [
+    "UNIT_DERATE",
+    "BLOWER_FAIL"
+   ],
+   "condition": "cool_climb",
+   "baseline": {
+    "outcome": "UNSAFE",
+    "limit_hit": "motor_temp",
+    "t_limit_s": 1024.0,
+    "reached_station": true,
+    "minutes_left_true": 10.6
+   },
+   "advisor": {
+    "outcome": "CONTROLLED_STOP",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": false,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 7.5,
+    "minutes_left_true": 10.6
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "UNIT_DERATE+BLOWER_FAIL__hot_climb",
+   "faults": [
+    "UNIT_DERATE",
+    "BLOWER_FAIL"
+   ],
+   "condition": "hot_climb",
+   "baseline": {
+    "outcome": "UNSAFE",
+    "limit_hit": "motor_temp",
+    "t_limit_s": 818.0,
+    "reached_station": true,
+    "minutes_left_true": 8.81
+   },
+   "advisor": {
+    "outcome": "CONTROLLED_STOP",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": false,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 6.3,
+    "minutes_left_true": 8.81
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "UNIT_DERATE+COMPRESSOR_FAIL__cool_flat",
+   "faults": [
+    "UNIT_DERATE",
+    "COMPRESSOR_FAIL"
+   ],
+   "condition": "cool_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 19.83
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "air",
+    "minutes_left_p5": 15.4,
+    "minutes_left_true": 19.83
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "UNIT_DERATE+COMPRESSOR_FAIL__hot_flat",
+   "faults": [
+    "UNIT_DERATE",
+    "COMPRESSOR_FAIL"
+   ],
+   "condition": "hot_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 19.83
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "air",
+    "minutes_left_p5": 15.4,
+    "minutes_left_true": 19.83
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "UNIT_DERATE+COMPRESSOR_FAIL__cool_climb",
+   "faults": [
+    "UNIT_DERATE",
+    "COMPRESSOR_FAIL"
+   ],
+   "condition": "cool_climb",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 19.83
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "air",
+    "minutes_left_p5": 15.4,
+    "minutes_left_true": 19.83
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "UNIT_DERATE+COMPRESSOR_FAIL__hot_climb",
+   "faults": [
+    "UNIT_DERATE",
+    "COMPRESSOR_FAIL"
+   ],
+   "condition": "hot_climb",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 19.83
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "air",
+    "minutes_left_p5": 15.4,
+    "minutes_left_true": 19.83
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "UNIT_DERATE+TEMP_SENSOR_STUCK__cool_flat",
+   "faults": [
+    "UNIT_DERATE",
+    "TEMP_SENSOR_STUCK"
+   ],
+   "condition": "cool_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": null
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "CONTINUE",
+    "shed": [],
+    "limiting_factor": "none",
+    "minutes_left_p5": 120.0,
+    "minutes_left_true": null
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "UNIT_DERATE+TEMP_SENSOR_STUCK__hot_flat",
+   "faults": [
+    "UNIT_DERATE",
+    "TEMP_SENSOR_STUCK"
+   ],
+   "condition": "hot_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": null
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "CONTINUE",
+    "shed": [],
+    "limiting_factor": "none",
+    "minutes_left_p5": 120.0,
+    "minutes_left_true": null
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "UNIT_DERATE+TEMP_SENSOR_STUCK__cool_climb",
+   "faults": [
+    "UNIT_DERATE",
+    "TEMP_SENSOR_STUCK"
+   ],
+   "condition": "cool_climb",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": null
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "CONTINUE",
+    "shed": [],
+    "limiting_factor": "none",
+    "minutes_left_p5": 120.0,
+    "minutes_left_true": null
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "UNIT_DERATE+TEMP_SENSOR_STUCK__hot_climb",
+   "faults": [
+    "UNIT_DERATE",
+    "TEMP_SENSOR_STUCK"
+   ],
+   "condition": "hot_climb",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": null
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "CONTINUE",
+    "shed": [],
+    "limiting_factor": "none",
+    "minutes_left_p5": 120.0,
+    "minutes_left_true": null
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "BLOWER_FAIL+COMPRESSOR_FAIL__cool_flat",
+   "faults": [
+    "BLOWER_FAIL",
+    "COMPRESSOR_FAIL"
+   ],
+   "condition": "cool_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 19.83
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "air",
+    "minutes_left_p5": 15.4,
+    "minutes_left_true": 19.83
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "BLOWER_FAIL+COMPRESSOR_FAIL__hot_flat",
+   "faults": [
+    "BLOWER_FAIL",
+    "COMPRESSOR_FAIL"
+   ],
+   "condition": "hot_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 19.83
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "air",
+    "minutes_left_p5": 15.4,
+    "minutes_left_true": 19.83
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "BLOWER_FAIL+COMPRESSOR_FAIL__cool_climb",
+   "faults": [
+    "BLOWER_FAIL",
+    "COMPRESSOR_FAIL"
+   ],
+   "condition": "cool_climb",
+   "baseline": {
+    "outcome": "UNSAFE",
+    "limit_hit": "motor_temp",
+    "t_limit_s": 1024.0,
+    "reached_station": true,
+    "minutes_left_true": 10.6
+   },
+   "advisor": {
+    "outcome": "CONTROLLED_STOP",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": false,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 7.5,
+    "minutes_left_true": 10.6
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "BLOWER_FAIL+COMPRESSOR_FAIL__hot_climb",
+   "faults": [
+    "BLOWER_FAIL",
+    "COMPRESSOR_FAIL"
+   ],
+   "condition": "hot_climb",
+   "baseline": {
+    "outcome": "UNSAFE",
+    "limit_hit": "motor_temp",
+    "t_limit_s": 818.0,
+    "reached_station": true,
+    "minutes_left_true": 8.81
+   },
+   "advisor": {
+    "outcome": "CONTROLLED_STOP",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": false,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 6.3,
+    "minutes_left_true": 8.81
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "BLOWER_FAIL+TEMP_SENSOR_STUCK__cool_flat",
+   "faults": [
+    "BLOWER_FAIL",
+    "TEMP_SENSOR_STUCK"
+   ],
+   "condition": "cool_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 38.35
+   },
+   "advisor": {
+    "outcome": "CONTROLLED_STOP",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": false,
+    "decision": "STOP_NOW",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 1.6,
+    "minutes_left_true": 38.35
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "BLOWER_FAIL+TEMP_SENSOR_STUCK__hot_flat",
+   "faults": [
+    "BLOWER_FAIL",
+    "TEMP_SENSOR_STUCK"
+   ],
+   "condition": "hot_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 29.0
+   },
+   "advisor": {
+    "outcome": "CONTROLLED_STOP",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": false,
+    "decision": "STOP_NOW",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 1.4,
+    "minutes_left_true": 29.0
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "BLOWER_FAIL+TEMP_SENSOR_STUCK__cool_climb",
+   "faults": [
+    "BLOWER_FAIL",
+    "TEMP_SENSOR_STUCK"
+   ],
+   "condition": "cool_climb",
+   "baseline": {
+    "outcome": "UNSAFE",
+    "limit_hit": "motor_temp",
+    "t_limit_s": 1024.0,
+    "reached_station": true,
+    "minutes_left_true": 10.6
+   },
+   "advisor": {
+    "outcome": "CONTROLLED_STOP",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": false,
+    "decision": "STOP_NOW",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 0.4,
+    "minutes_left_true": 10.6
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "BLOWER_FAIL+TEMP_SENSOR_STUCK__hot_climb",
+   "faults": [
+    "BLOWER_FAIL",
+    "TEMP_SENSOR_STUCK"
+   ],
+   "condition": "hot_climb",
+   "baseline": {
+    "outcome": "UNSAFE",
+    "limit_hit": "motor_temp",
+    "t_limit_s": 818.0,
+    "reached_station": true,
+    "minutes_left_true": 8.81
+   },
+   "advisor": {
+    "outcome": "CONTROLLED_STOP",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": false,
+    "decision": "STOP_NOW",
+    "shed": [],
+    "limiting_factor": "heat",
+    "minutes_left_p5": 0.4,
+    "minutes_left_true": 8.81
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "COMPRESSOR_FAIL+TEMP_SENSOR_STUCK__cool_flat",
+   "faults": [
+    "COMPRESSOR_FAIL",
+    "TEMP_SENSOR_STUCK"
+   ],
+   "condition": "cool_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 19.83
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "air",
+    "minutes_left_p5": 15.4,
+    "minutes_left_true": 19.83
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "COMPRESSOR_FAIL+TEMP_SENSOR_STUCK__hot_flat",
+   "faults": [
+    "COMPRESSOR_FAIL",
+    "TEMP_SENSOR_STUCK"
+   ],
+   "condition": "hot_flat",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 19.83
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "air",
+    "minutes_left_p5": 15.4,
+    "minutes_left_true": 19.83
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "COMPRESSOR_FAIL+TEMP_SENSOR_STUCK__cool_climb",
+   "faults": [
+    "COMPRESSOR_FAIL",
+    "TEMP_SENSOR_STUCK"
+   ],
+   "condition": "cool_climb",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 19.83
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "air",
+    "minutes_left_p5": 15.4,
+    "minutes_left_true": 19.83
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  },
+  {
+   "case_id": "COMPRESSOR_FAIL+TEMP_SENSOR_STUCK__hot_climb",
+   "faults": [
+    "COMPRESSOR_FAIL",
+    "TEMP_SENSOR_STUCK"
+   ],
+   "condition": "hot_climb",
+   "baseline": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "minutes_left_true": 19.83
+   },
+   "advisor": {
+    "outcome": "SAFE",
+    "limit_hit": null,
+    "t_limit_s": null,
+    "reached_station": true,
+    "decision": "STOP_AT_NEXT",
+    "shed": [],
+    "limiting_factor": "air",
+    "minutes_left_p5": 15.4,
+    "minutes_left_true": 19.83
+   },
+   "properties_ok": true,
+   "properties_failed": []
+  }
+ ],
+ "summary": {
+  "runs_per_policy": 144,
+  "baseline_unsafe": 44,
+  "advisor_unsafe": 0,
+  "baseline_safe": 100,
+  "advisor_safe": 92,
+  "advisor_controlled_stops": 52,
+  "saved_by_advisor": 44,
+  "false_stops": 8,
+  "properties_failed": 0
+ },
+ "elapsed_s": 1.3
+}

@@ -1,9 +1,11 @@
 # Status: Agent A (core)
 
 ## Current milestone
-M0 done. M1 slice working (simulate, advise, demo). Starting M2 (harness) next.
+M0, M1 and M2 done at 14:38. Starting M3 (sensitivity, notes) next.
 
-## What works (14:35)
+## What works (14:38)
+- **Harness (M2):** `python -m failover.core.harness --out outputs` (or `make harness`) runs 36 fault combinations x 4 conditions x 2 policies in about 1.3 s and writes `outputs/coverage.json`, `runs.csv` and `report.html`. A committed copy is in `demo_outputs/`. Result: baseline unsafe 44 of 144, advisor unsafe 0, 8 unneeded stops, 0 failed properties.
+- Four properties checked per run (brake air, essential loads kept, no more load than power, minutes left never optimistic).
 - `failover/core/types.py`, `version.py` (`CORE_VERSION` 0.1, `CONTRACT_VERSION` 0.2), `config.py`, `model.py`.
 - `simulate(scenario, policy, config)` with the real converter, heat, brake-air and battery models. Deterministic given the seed.
 - `advise(observation, config, fault_hypothesis)` with subset search, 5th percentile Monte Carlo, wrong-data flag and the continue or stop decision.
@@ -11,7 +13,6 @@ M0 done. M1 slice working (simulate, advise, demo). Starting M2 (harness) next.
 - `tests/core/test_contract.py`: 16 tests (shapes, determinism, every fault runs, stuck sensor, advice shape, hard case, closed form against stepping).
 
 ## What is stubbed or incomplete
-- Harness, `coverage.json`, `report.html`: not started (M2).
 - Sensitivity output, battery refinements: not started.
 - Fault inference from signals in `infer_faults` is rough. Use the classifier from Agent B.
 

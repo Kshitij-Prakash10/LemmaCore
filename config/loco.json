@@ -33,7 +33,7 @@
     "motor": {
       "capacity_kj_per_k": { "min": 300, "nominal": 400, "max": 500 },
       "h_on_kw_per_k": { "min": 1.2, "nominal": 1.6, "max": 2.0 },
-      "h_off_ratio": { "min": 0.10, "nominal": 0.15, "max": 0.25 },
+      "h_off_ratio": { "min": 0.12, "nominal": 0.15, "max": 0.20 },
       "heat_full_kw": { "min": 70, "nominal": 90, "max": 110 },
       "heat_scale": { "flat_loaded": 0.5, "flat_empty": 0.35, "climb_loaded": 1.0, "climb_empty": 0.7 },
       "initial_rise_above_ambient_c": 40
@@ -44,7 +44,7 @@
   "air": {
     "normal_bar": 9.5,
     "fill_bar_per_min": 1.5,
-    "leak_bar_per_min": { "min": 0.05, "nominal": 0.15, "max": 0.30 },
+    "leak_bar_per_min": { "min": 0.10, "nominal": 0.15, "max": 0.20 },
     "use_fitted": false,
     "status": "assumed",
     "source": "starting guess. Agent B's MetroPT-3 fit (data/processed/air_params_fit.json) is a proxy and is used only if use_fitted is true"
@@ -71,5 +71,5 @@
     { "id": "cool_climb", "ambient_c": 30, "gradient_pct": 2.7, "train_load": "loaded" },
     { "id": "hot_climb", "ambient_c": 45, "gradient_pct": 2.7, "train_load": "loaded" }
   ],
-  "defaults": { "dist_next_station_km": 9, "speed_kmph": 40, "horizon_s": 1800, "dt_s": 1.0, "fault_time_s": 60 }
+  "defaults": { "dist_next_station_km": 12, "speed_kmph": 40, "horizon_s": 1800, "dt_s": 1.0, "fault_time_s": 60 }
 }
