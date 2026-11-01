@@ -205,6 +205,8 @@ def main() -> None:
     ap.add_argument("--max-cases", type=int, default=None)
     a = ap.parse_args()
     cov = run_harness(None, a.out, a.mc, a.workers, a.max_cases)
+    from .sensitivity import run_sensitivity
+    run_sensitivity(None, a.out)
     print(json.dumps(cov["summary"], indent=1))
     print(f"wrote {a.out}/coverage.json, runs.csv, report.html in {cov['elapsed_s']} s")
 
