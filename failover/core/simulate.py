@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import copy
+
 import numpy as np
 
 from .advisor import advise
@@ -30,10 +32,19 @@ def simulate(scenario: Scenario, policy: str, config: dict | None = None,
     n, amb = scenario.units, scenario.ambient_c
     faults = tuple(scenario.faults)
     plant = plant_from_faults(faults, n)
-    lim_t = cfg["limits"]["motor_temp_trip_c"]["value"]
-    margin = cfg["limits"]["protection_derate_margin_c"]["value"]
-    p_min = cfg["limits"]["brake_air_min_bar"]["value"]
-    soc_min = cfg["limits"]["battery_min_soc_pct"]["value"]
+    # The real plant may differ from what the advisor believes (used by the robustness sweep): the limits in
+    # scenario.params override the plant only. The advisor always reads the config it is given.
+    cfg_plant = cfg
+    if "motor_temp_trip_c" in scenario.params or "brake_air_min_bar" in scenario.params:
+        cfg_plant = copy.deepcopy(cfg)
+        if "motor_temp_trip_c" in scenario.params:
+            cfg_plant["limits"]["motor_temp_trip_c"]["value"] = float(scenario.params["motor_temp_trip_c"])
+        if "brake_air_min_bar" in scenario.params:
+            cfg_plant["limits"]["brake_air_min_bar"]["value"] = float(scenario.params["brake_air_min_bar"])
+    lim_t = cfg_plant["limits"]["motor_temp_trip_c"]["value"]
+    margin = cfg_plant["limits"]["protection_derate_margin_c"]["value"]
+    p_min = cfg_plant["limits"]["brake_air_min_bar"]["value"]
+    soc_min = cfg_plant["limits"]["battery_min_soc_pct"]["value"]
     hs = heat_scale(cfg, scenario.gradient_pct, scenario.train_load)
     n_loads = len(cfg["loads"])
     conv = cfg["converters"]
@@ -87,7 +98,7 @@ def simulate(scenario: Scenario, policy: str, config: dict | None = None,
 
         # minutes to the first limit at the moment the plan is set, for the record
         if minutes_true is None and faulted and t >= fault_t + 10:
-            tl = limit_times(cfg, p, plant, powered, t_motor, amb, moving, scenario.gradient_pct,
+            tl = limit_times(cfg_plant, p, plant, powered, t_motor, amb, moving, scenario.gradient_pct,
                              scenario.train_load, p_air, soc)
             m = min(tl.values())
             minutes_true = None if m == float("inf") else round(m, 2)

@@ -1,0 +1,89 @@
+{
+ "data": "MetroPT-3, real compressor data from a metro train in Porto (proxy, not a loco)",
+ "model": "IsolationForest(200 trees, seed 13) on 5min bin features, 6-bin trailing median",
+ "train": [
+  "2020-02-01",
+  "2020-03-01"
+ ],
+ "threshold_set_on": [
+  "2020-03-01",
+  "2020-04-01"
+ ],
+ "test_from": "2020-04-01",
+ "threshold": 0.7102,
+ "false_alarm_budget": "0.999 quantile of the smoothed March score",
+ "events_detected": "0 of 4",
+ "events": [
+  {
+   "nr": 1,
+   "start": "2020-04-18 00:00:00",
+   "end": "2020-04-18 23:59:00",
+   "detected": false,
+   "first_alarm": null,
+   "lead_time_h": null
+  },
+  {
+   "nr": 2,
+   "start": "2020-05-29 23:30:00",
+   "end": "2020-05-30 06:00:00",
+   "detected": false,
+   "first_alarm": null,
+   "lead_time_h": null
+  },
+  {
+   "nr": 3,
+   "start": "2020-06-05 10:00:00",
+   "end": "2020-06-07 14:30:00",
+   "detected": false,
+   "first_alarm": null,
+   "lead_time_h": null
+  },
+  {
+   "nr": 4,
+   "start": "2020-07-15 14:30:00",
+   "end": "2020-07-15 19:00:00",
+   "detected": false,
+   "first_alarm": null,
+   "lead_time_h": null
+  }
+ ],
+ "alarm_bin_precision": null,
+ "failure_bin_recall": 0.0,
+ "false_alarm_episodes": 0,
+ "false_alarm_episodes_per_day": 0.0,
+ "test_days": 153.2,
+ "note": "Precision counts alarm bins inside [failure start - 24 h, failure end]. Lead time is hours from the first such alarm to the failure start (positive = before).",
+ "budget_table": [
+  {
+   "val_quantile": 0.95,
+   "threshold": 0.6818,
+   "events_detected": 3,
+   "false_alarm_episodes_per_day": 0.17,
+   "alarm_bin_precision": 0.593
+  },
+  {
+   "val_quantile": 0.99,
+   "threshold": 0.6967,
+   "events_detected": 1,
+   "false_alarm_episodes_per_day": 0.104,
+   "alarm_bin_precision": 0.038
+  },
+  {
+   "val_quantile": 0.995,
+   "threshold": 0.6979,
+   "events_detected": 1,
+   "false_alarm_episodes_per_day": 0.078,
+   "alarm_bin_precision": 0.054
+  },
+  {
+   "val_quantile": 0.999,
+   "threshold": 0.7102,
+   "events_detected": 0,
+   "false_alarm_episodes_per_day": 0.0,
+   "alarm_bin_precision": null
+  }
+ ],
+ "score_median_inside_failures": 0.6893,
+ "score_median_outside_warning_windows": 0.4899,
+ "score_p99_outside_warning_windows": 0.6905
+}

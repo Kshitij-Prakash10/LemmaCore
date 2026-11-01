@@ -38,3 +38,5 @@ make demo       # harness, train, then app
 ## Honesty notes
 
 All loco parameters are team assumptions until a mentor confirms them. The classifier is trained on simulated data. The real-data component uses a metro train compressor dataset as a proxy. See `docs/model.md` and `docs/ml.md` once they are written.
+
+**Disclosure.** Code was written with Claude Code by two agents working in parallel (Agent A, the core, harness and app interface: Claude Sonnet 5.5; Agent B, the ML and app backend: Claude Opus 5.5) and reviewed by the team. A third Claude helped with the presentation notes and slides. Open-source packages: numpy, scipy, pandas, scikit-learn, joblib, Flask, pytest. Real data: MetroPT-3 (UCI, CC BY 4.0), used as a metro-compressor proxy for the anomaly detector, the leak-rate fit and the optional air-leak flag. That flag (a random forest, leak 4 held out) caught 0 of the held-out leak at p > 0.5, so in the demo it stays silent. It can only shorten the advisor's air clock, never lengthen it.

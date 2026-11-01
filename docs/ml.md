@@ -51,4 +51,34 @@ TEMP_SENSOR_STUCK confusion (all test windows): TP 141, FP 0, FN 0, TN 915.
 
 ## MetroPT-3 (real data, proxy)
 
-Downloaded and logged in `data/README.md`. The leak fit and anomaly detector are not built yet.
+Source and file checks are in `data/README.md`. A metro train compressor in Porto is **not** an Indian loco. These results show that we handle real sensor data. They do not show that the numbers transfer.
+
+### Brake-air decay fit (`failover/ml/fit_air_params.py`)
+
+- 9522 compressor-off segments (motor current under 1 A, at least 3 min), at least a day away from labelled failures.
+- Reservoir pressure decay: median 0.0914 bar/min, 10th to 90th percentile 0.056 to 0.1442. Bootstrap 95 % interval of the median: 0.0908 to 0.0921.
+- Written to `data/processed/air_params_fit.json` with status `fitted_proxy`. The core uses it only if `air.use_fitted` is true in the config (Agent A's choice). It is false now.
+- Limit: off-segment decay includes normal air use (brakes, doors), so it overstates pure leakage. Its median is above the loco dispatch limit in the config (0.067 bar/min), which fits that reading.
+
+### Anomaly detector (`failover/ml/train_anomaly.py`)
+
+- IsolationForest(200 trees, seed 13) on 5min bin features, 6-bin trailing median. Trained on February 2020. Alarm threshold set on March 2020. Tested from 2020-04-01 (153.2 days, all four labelled air leaks).
+- **Headline, threshold fixed in advance (0.999 quantile of the smoothed March score): 0 of 4 leaks caught, 0.0 false alarms per day.** The threshold was too strict.
+- The score does separate the classes: median 0.6893 inside leak windows vs 0.4899 in normal running (99th percentile of normal: 0.6905).
+- The other budgets, all fixed before testing and all reported. None was picked on the test months:
+
+| March quantile | Threshold | Leaks caught | False alarms per day | Alarm precision |
+|---|---|---|---|---|
+| 0.95 | 0.6818 | 3 of 4 | 0.17 | 0.593 |
+| 0.99 | 0.6967 | 1 of 4 | 0.104 | 0.038 |
+| 0.995 | 0.6979 | 1 of 4 | 0.078 | 0.054 |
+| 0.999 | 0.7102 | 0 of 4 | 0.0 | None |
+
+- An early warning counts if the alarm comes up to 24 h before the leak starts. Per-event lead times are in `models/anomaly_metrics.json`.
+- Honest reading: the detector finds the leaks as unusual, but the false-alarm trade-off depends on a threshold we could only set on one month of normal data.
+
+### Optional supervised air-leak flag (`failover/ml/train_leak.py`, `leak_detector.py`)
+
+- RandomForestClassifier(100 trees, max_depth 8, balanced classes, seed 42) on 1 min means with rolling 10 min features. Time-based split: trained on leaks 1 to 3 (before 2020-07-01), tested on leak 4 (from 2020-07-01, 62 days).
+- **Result on held-out leak 4 at p > 0.5: recall 0.0, no alerts and no false alarms.** The highest probability inside leak 4 was 0.17, below the highest just outside it (0.21). The model learned nothing that carries over to this leak. Metrics: `models/leak_metrics.json`. Plot: `models/leak_test_period.svg`.
+- App hook (`failover/app/backend.py`, the only change to the advice path): if p > 0.5, the advisor gets a copy of the config with the air leak rate times `LEAK_MULTIPLIER` = 2.0 (status assumed, shown on the Assumptions tab), and the card shows "Air leak suspected". With no model file or any error, p is None and the advice is identical (tested). The harness does not use the hook. Its 144-run summary is unchanged (44 baseline unsafe, 0 advisor unsafe, 0 property failures).

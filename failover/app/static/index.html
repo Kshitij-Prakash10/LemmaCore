@@ -4,93 +4,183 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Failover Guardian</title>
+<meta name="description" content="A decision aid that tells a loco pilot what to switch off and how many minutes remain when the auxiliary converter fails, with a test of every fault.">
+
 <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-<header>
-  <h1>Failover Guardian</h1>
-  <span id="core-badge" class="badge">loading core...</span>
-  <nav>
-    <button data-tab="advisor" class="active">Advisor</button>
-    <button data-tab="coverage">Coverage map</button>
-    <button data-tab="realdata">Real data</button>
-    <button data-tab="assumptions">Assumptions</button>
-    <button data-tab="report">Report</button>
-  </nav>
+<header class="topbar">
+  <div class="bar-inner">
+    <div class="brand">
+      <h1>Failover Guardian</h1>
+      <p class="tagline">What should the loco pilot do when the backup power fails?</p>
+    </div>
+    <span id="core-badge" class="badge">loading</span>
+    <nav class="tabs" role="tablist" aria-label="Sections">
+      <button role="tab" data-tab="guide">Guide</button>
+      <button role="tab" data-tab="advisor">Advisor</button>
+      <button role="tab" data-tab="coverage">Coverage map</button>
+      <button role="tab" data-tab="realdata">Real data</button>
+      <button role="tab" data-tab="assumptions">Assumptions</button>
+      <button role="tab" data-tab="report">Report</button>
+    </nav>
+  </div>
 </header>
 
-<main>
-<section id="tab-advisor" class="tab active">
-  <div class="controls">
-    <fieldset>
-      <legend>Inject fault (pick up to 2)</legend>
-      <div id="fault-picks"></div>
-    </fieldset>
-    <fieldset>
-      <legend>What-if</legend>
-      <label>Ambient <span id="v-ambient">45</span> C
-        <input type="range" id="ambient" min="20" max="48" step="1" value="45"></label>
-      <label>Gradient <span id="v-gradient">2.7</span> %
-        <input type="range" id="gradient" min="0" max="3" step="0.1" value="2.7"></label>
-      <label>Train load
-        <select id="train_load"><option value="loaded">loaded</option><option value="empty">empty</option></select></label>
-      <label>Converter units
-        <select id="units"><option>2</option><option>3</option></select></label>
-      <label>Next station <span id="v-dist">15</span> km
-        <input type="range" id="dist" min="1" max="30" step="1" value="15"></label>
-    </fieldset>
-    <div class="buttons">
-      <button id="btn-run" class="primary">Run advisor</button>
-      <button id="btn-diagnose">Auto-diagnose</button>
-      <button id="btn-stick">Stick the temperature sensor</button>
-      <button id="btn-hard">Hard case: hot climb, U1 trips, standby stuck</button>
+<main class="container">
+
+<section id="tab-guide" class="tab" role="tabpanel">
+  <div class="page-head">
+    <h2>What this app does, in plain words</h2>
+    <p>On a loco, one unit (the auxiliary converter) powers the cooling blowers, the brake-air compressor, the battery charger and the lights. Many locos have a second one to cover for it. Sheds report that the cover does not always take over. This app shows what the loco pilot should do next, and proves the advice by testing every fault.</p>
+  </div>
+  <div class="two-col">
+    <div class="block">
+      <h3>How to use it</h3>
+      <p>Open the Advisor tab. Press the hard-case button, or pick up to two faults and set the conditions, then press Run advisor. The answer on the right says what to do, how many minutes are left, and what to switch off.</p>
+      <p>Open the Coverage map to see all 144 tests at once. Click any square to open that test in the Advisor.</p>
+    </div>
+    <div class="block">
+      <h3>How to read the answer</h3>
+      <p>The large words are the decision: keep going, stop at the nearest safe place, or stop now. Minutes left is a cautious estimate, so the real time is usually longer. The red line in the chart is what happens without the advisor. The dark line is what happens with it.</p>
+    </div>
+    <div class="block">
+      <h3>What is real and what is assumed</h3>
+      <p>Every loco number in this app is a team assumption until a railway expert confirms it. The Assumptions tab lists each one. The test results come from a simulation of our model, not from a real loco.</p>
+    </div>
+    <div class="block">
+      <h3>Where the problem comes from</h3>
+      <p>The railway’s own technical body (RDSO) recorded serious concern about converter failures in May 2025. In its 2024 to 2025 table, about 27 failures per 100 units a year on conventional electric locos, our arithmetic. Sheds also reported that the standby did not take over.</p>
     </div>
   </div>
-  <div class="advisor-body">
-    <div id="decision-card" class="card">Pick a fault and press Run advisor.</div>
-    <div class="charts">
-      <h3>Motor temperature (C): baseline vs advisor</h3>
-      <canvas id="chart-temp" width="640" height="220"></canvas>
-      <h3>Brake air (bar): baseline vs advisor</h3>
-      <canvas id="chart-air" width="640" height="180"></canvas>
-      <div class="legend"><span class="sw base"></span>baseline (no shedding)
-        <span class="sw adv"></span>with advisor <span class="sw obs"></span>observed sensor
-        <span class="sw lim"></span>limit</div>
+  <div class="block">
+    <h3>Words used in this app</h3>
+    <div class="table-wrap"><table class="data">
+      <thead><tr><th>Word</th><th>Meaning</th></tr></thead>
+      <tbody>
+        <tr><td>Converter (SIV)</td><td>The unit that makes power for the cooling blowers, compressor, charger and lights.</td></tr>
+        <tr><td>Standby, failover</td><td>The second converter taking over when the first one stops.</td></tr>
+        <tr><td>Baseline</td><td>What happens with no load shedding: the loco keeps going until its own protection trips.</td></tr>
+        <tr><td>Advisor</td><td>The decision aid in this app. It picks what to switch off and says whether to continue or stop.</td></tr>
+        <tr><td>Minutes left</td><td>Time until the first limit: motor heat, brake air or battery. Shown as a cautious figure (5th percentile).</td></tr>
+        <tr><td>Fault injection</td><td>A test that applies every fault, one at a time and in pairs, and records what happens.</td></tr>
+        <tr><td>Proxy data</td><td>Real data from a similar machine, here a metro train compressor, used as a stand-in.</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</section>
+
+<section id="tab-advisor" class="tab" role="tabpanel">
+  <div class="page-head">
+    <h2>Try a failure and see what the advisor says</h2>
+    <ol class="steps">
+      <li>Pick up to two faults, or press the hard case.</li>
+      <li>Set the conditions.</li>
+      <li>Press Run advisor and read the answer.</li>
+    </ol>
+  </div>
+  <div class="advisor-layout">
+    <div class="setup">
+      <fieldset>
+        <legend>1. What fails</legend>
+        <div id="fault-picks"></div>
+      </fieldset>
+      <fieldset>
+        <legend>2. Conditions</legend>
+        <div class="slider"><label for="ambient">Outside temperature</label><span class="num"><span id="v-ambient">45</span> C</span>
+          <input type="range" id="ambient" min="20" max="48" step="1" value="45"></div>
+        <div class="slider"><label for="gradient">Track gradient (climb)</label><span class="num"><span id="v-gradient">2.7</span> %</span>
+          <input type="range" id="gradient" min="0" max="3" step="0.1" value="2.7"></div>
+        <div class="slider"><label for="dist">Distance to the next station</label><span class="num"><span id="v-dist">15</span> km</span>
+          <input type="range" id="dist" min="1" max="30" step="1" value="15"></div>
+        <div class="pair">
+          <label>Train load
+            <select id="train_load"><option value="loaded">loaded</option><option value="empty">empty</option></select></label>
+          <label>Converter units
+            <select id="units"><option>2</option><option>3</option></select></label>
+        </div>
+      </fieldset>
+      <div class="buttons">
+        <button id="btn-run" class="primary">Run advisor</button>
+        <button id="btn-hard">Hard case: hot climb, converter 1 trips, standby stuck</button>
+        <button id="btn-diagnose">Auto-diagnose from sensors</button>
+        <button id="btn-stick">Freeze the temperature sensor</button>
+      </div>
+    </div>
+    <div class="answer">
+      <div id="decision-card" class="sheet empty">
+        <h2>No run yet</h2>
+        <p class="why">Press the hard-case button to see the main example, or pick a fault and press Run advisor.</p>
+      </div>
       <div id="run-outcomes"></div>
+      <div class="charts">
+        <figure>
+          <figcaption><b>Motor temperature</b> <span class="note">degrees C over time. The dashed line is the trip limit.</span></figcaption>
+          <canvas id="chart-temp" width="900" height="220" role="img" aria-label="Line chart of motor temperature over time, with and without the advisor, against the trip limit"></canvas>
+        </figure>
+        <figure>
+          <figcaption><b>Brake air pressure</b> <span class="note">bar over time. The dashed line is the safe minimum.</span></figcaption>
+          <canvas id="chart-air" class="short" width="900" height="180" role="img" aria-label="Line chart of brake air pressure over time, with and without the advisor, against the safe minimum"></canvas>
+        </figure>
+        <div class="legend"><span><i class="sw base"></i>without the advisor</span><span><i class="sw adv"></i>with the advisor</span>
+          <span><i class="sw obs"></i>what the sensor shows</span><span><i class="sw lim"></i>limit</span></div>
+      </div>
     </div>
   </div>
 </section>
 
-<section id="tab-coverage" class="tab">
-  <div id="coverage-head"></div>
-  <div class="grids">
-    <div><h3>Baseline (no advisor)</h3><div id="grid-baseline"></div></div>
-    <div><h3>With advisor</h3><div id="grid-advisor"></div></div>
+<section id="tab-coverage" class="tab" role="tabpanel">
+  <div class="page-head">
+    <h2>Every fault, tested</h2>
+    <p>Each square is one test: a fault or a pair of faults (row) in one operating condition (column). The left grid is what happens with no advisor. The right grid is what happens with it. Click a square to open that test in the Advisor.</p>
   </div>
-  <div class="legend"><span class="sw safe"></span>SAFE <span class="sw stop"></span>CONTROLLED_STOP
-    <span class="sw unsafe"></span>UNSAFE. Click a cell to open it in the Advisor tab.</div>
+  <div id="coverage-head"><div class="skeleton"></div><div class="skeleton"></div></div>
+  <div class="grids">
+    <div><h3>Without the advisor</h3><div id="grid-baseline"></div></div>
+    <div><h3>With the advisor</h3><div id="grid-advisor"></div></div>
+  </div>
+  <div class="legend"><span><i class="sw safe"></i>S safe</span><span><i class="sw stop"></i>C stopped in time</span><span><i class="sw unsafe"></i>U unsafe</span></div>
 </section>
 
-<section id="tab-realdata" class="tab">
-  <p class="warn">Proxy data: MetroPT-3 is the air compressor of a metro train in Porto, not an Indian loco.
-    It shows that we handle real sensor data. It does not show that the result transfers to a loco.</p>
-  <div id="realdata-body">Loading...</div>
-  <canvas id="chart-anomaly" width="900" height="220"></canvas>
+<section id="tab-realdata" class="tab" role="tabpanel">
+  <div class="page-head">
+    <h2>A check on real sensor data</h2>
+    <p>We also tried our methods on real data, to show they work outside our own simulation.</p>
+  </div>
+  <p class="warn">Proxy data: MetroPT-3 is the air compressor of a metro train in Porto, not an Indian loco. It shows that we handle real sensor data. It does not show that the result transfers to a loco.</p>
+  <div id="realdata-body"><div class="skeleton"></div><div class="skeleton"></div></div>
+  <figure>
+    <figcaption><b>Anomaly score on the held-out months</b> <span class="note">Shaded areas are labelled air leaks. The dashed line is the alarm threshold.</span></figcaption>
+    <canvas id="chart-anomaly" width="1000" height="220" role="img" aria-label="Line chart of the anomaly score over the held-out months, with the labelled air leaks shaded and the alarm threshold dashed"></canvas>
+  </figure>
 </section>
 
-<section id="tab-assumptions" class="tab">
-  <p>Every loco number is a team assumption until a mentor confirms it.</p>
-  <table id="assumptions-table"><thead><tr><th>Key</th><th>Value</th><th>Status</th><th>Source</th></tr></thead><tbody></tbody></table>
+<section id="tab-assumptions" class="tab" role="tabpanel">
+  <div class="page-head">
+    <h2>Every loco number is an assumption until confirmed</h2>
+    <p id="assumption-count">Loading…</p>
+  </div>
+  <div class="table-wrap"><table id="assumptions-table" class="data">
+    <thead><tr><th>Parameter</th><th>Value</th><th>Status</th><th>Where it comes from</th></tr></thead>
+    <tbody></tbody>
+  </table></div>
 </section>
 
-<section id="tab-report" class="tab">
-  <p>The static test report from the fault-injection harness (no external assets).</p>
-  <p><a id="report-dl" href="/api/report?download=1" class="button primary">Export test report</a>
+<section id="tab-report" class="tab" role="tabpanel">
+  <div class="page-head">
+    <h2>Test report and model accuracy</h2>
+    <p>The report lists all fault tests with the outcome for each. It is a single page with no outside files.</p>
+  </div>
+  <p><a id="report-dl" href="/api/report?download=1" class="button primary">Download test report</a>
      <a href="/api/report" target="_blank" class="button">Open report</a></p>
   <div id="report-status"></div>
-  <h3>Classifier held-out metrics</h3>
-  <pre id="metrics-box">Loading...</pre>
+  <div class="block">
+    <h3>How well the fault classifier works</h3>
+    <div id="metrics-table"><div class="skeleton"></div></div>
+    <details><summary>Raw numbers</summary><pre id="metrics-box">Loading...</pre></details>
+  </div>
 </section>
+
 </main>
 <script src="/static/app.js"></script>
 </body>

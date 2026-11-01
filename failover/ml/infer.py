@@ -34,9 +34,22 @@ def diagnose(observed_window: dict[str, list[float]]) -> dict:
             "core_version": b["core_version"]}
 
 
+ANOMALY_PATH = os.path.join(ROOT, "models", "anomaly.joblib")
+
+
+@lru_cache(maxsize=1)
+def _anomaly() -> dict:
+    if not os.path.exists(ANOMALY_PATH):
+        raise FileNotFoundError(ANOMALY_PATH)
+    return joblib.load(ANOMALY_PATH)
+
+
 def compressor_anomaly(window: dict[str, list[float]]) -> float:
-    """Anomaly score for the MetroPT-3 demo. Not built yet."""
-    raise NotImplementedError("anomaly detector not trained yet")
+    """Anomaly score for the MetroPT-3 demo (about 5 min of raw rows), higher is more abnormal.
+    Compare with the threshold in models/anomaly_metrics.json."""
+    from failover.ml.train_anomaly import window_features as anomaly_features
+
+    return float(-_anomaly()["model"].score_samples(anomaly_features(window))[0])
 
 
 def minutes_left_p5(features: dict) -> float | None:

@@ -59,3 +59,12 @@ def test_diagnose_shape_and_speed():
     for _ in range(10):
         diagnose(win)
     assert (time.perf_counter() - t) / 10 < 0.02
+
+
+@pytest.mark.skipif(not os.path.exists(os.path.join(ROOT, "models", "anomaly.joblib")), reason="run train_anomaly")
+def test_anomaly_runs_on_saved_sample():
+    from failover.ml.infer import compressor_anomaly
+    with open(os.path.join(ROOT, "tests", "ml", "data", "metropt_sample.json"), encoding="utf-8") as f:
+        win = json.load(f)
+    s = compressor_anomaly(win)
+    assert 0.0 < s < 1.0

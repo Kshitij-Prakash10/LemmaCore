@@ -59,11 +59,12 @@ def _check_properties(cfg: dict, sc: Scenario, adv_run, advice_events: list) -> 
 
 
 def _run_case(args: tuple) -> dict:
-    faults, cond, cfg = args
+    faults, cond, cfg, params = args
     d = cfg["defaults"]
     sc = Scenario(id=case_id(faults, cond["id"]), faults=tuple(faults), ambient_c=cond["ambient_c"],
                   gradient_pct=cond["gradient_pct"], train_load=cond["train_load"], units=cfg["converters"]["count"],
-                  dist_next_station_km=d["dist_next_station_km"], speed_kmph=d["speed_kmph"], seed=SEED)
+                  dist_next_station_km=d["dist_next_station_km"], speed_kmph=d["speed_kmph"], seed=SEED,
+                  params=dict(params or {}))
     base = simulate(sc, "baseline", cfg)
     adv = simulate(sc, "advisor", cfg)
     events = [e for e in adv.events if e["type"] == "advice"]
@@ -150,14 +151,16 @@ not needed; that count is shown above. This is a simulation of our model, not of
 
 
 def run_harness(config: dict | None = None, out_dir: str = "outputs", n_mc: int | None = None,
-                workers: int | None = None, max_cases: int | None = None) -> dict:
+                workers: int | None = None, max_cases: int | None = None,
+                scenario_params: dict | None = None, write: bool = True) -> dict:
+    """scenario_params change the real plant only (the advisor keeps the config's beliefs). Used by robustness."""
     cfg = json.loads(json.dumps(config or load_config()))
     if n_mc is not None:
         cfg["advisor"]["mc_runs"] = int(n_mc)
     cases_in = enumerate_cases(cfg)
     if max_cases:
         cases_in = cases_in[:max_cases]
-    args = [(f, c, cfg) for f, c in cases_in]
+    args = [(f, c, cfg, scenario_params) for f, c in cases_in]
     t0 = time.time()
     workers = workers if workers is not None else (os.cpu_count() or 1)
     if workers > 1 and len(args) > 4:
@@ -178,6 +181,8 @@ def run_harness(config: dict | None = None, out_dir: str = "outputs", n_mc: int 
         "summary": _summary(cases),
         "elapsed_s": round(time.time() - t0, 1),
     }
+    if not write:
+        return cov
     out = out_dir if os.path.isabs(out_dir) else os.path.join(ROOT, out_dir)
     os.makedirs(out, exist_ok=True)
     with open(os.path.join(out, "coverage.json"), "w", encoding="utf-8") as f:

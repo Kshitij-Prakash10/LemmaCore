@@ -55,14 +55,26 @@ def create_app() -> Flask:
         fit = backend.read_json("data/processed/air_params_fit.json")
         return jsonify({"available": demo is not None, "demo": demo, "metrics": metrics, "air_fit": fit})
 
+    @app.get("/api/leak-replay")
+    def leak_replay():
+        from failover.ml.leak_detector import predict_proba
+        r = backend.read_json("data/processed/leak_replay.json")
+        if r is None:
+            return jsonify({"available": False})
+        r["p"] = [predict_proba(x) for x in r["features"]]
+        r["metrics"] = backend.read_json("models/leak_metrics.json")
+        r["available"] = True
+        return jsonify(r)
+
     @app.get("/api/metrics")
     def metrics():
         return jsonify({"available": True, "metrics": backend.read_json("models/metrics.json")})
 
     @app.get("/api/report")
     def report():
-        p = os.path.join(backend.ROOT, "outputs", "report.html")
-        if not os.path.exists(p):
+        p = next((c for c in (os.path.join(backend.ROOT, d, "report.html") for d in ("outputs", "demo_outputs"))
+                  if os.path.exists(c)), "")
+        if not p:
             return jsonify({"available": False, "reason": "run make harness to produce outputs/report.html"}), 404
         return send_file(p, as_attachment=request.args.get("download") == "1",
                          download_name="failover_guardian_report.html")
