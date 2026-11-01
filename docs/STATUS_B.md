@@ -3,7 +3,7 @@
 Update after every milestone. Keep it short and honest.
 
 ## Current milestone
-M2 done (14:53 IST). The app runs on the real core. The coverage map reads demo_outputs/coverage.json. The fault classifier is trained on core data and wired to Auto-diagnose. MetroPT-3 leak fit and anomaly detector done (14:56). Next: M3 checks (every tab offline, report export).
+M2 done (14:53 IST). The app runs on the real core. The coverage map reads demo_outputs/coverage.json. The fault classifier is trained on core data and wired to Auto-diagnose. MetroPT-3 leak fit and anomaly detector done (14:56). M3 checked (14:56): live server returns 200 on every endpoint; report export falls back to demo_outputs/report.html; stuck-sensor hard case gives temp_sensors_disagree and STOP_NOW. Remaining: what-if speed slider not added (ambient, gradient, load, units, distance are there); surrogate (stretch) not built; Hindi labels not built.
 
 ## Environment check
 Python 3.15.0 (not 3.14 as the brief says). In `.venv`: numpy 2.5.4, pandas 3.1.0, scikit-learn 1.9.1, Flask 3.1.3, scipy, joblib, pytest. All import. `ucimlrepo` installed but not used (curl download worked).
