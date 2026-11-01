@@ -76,3 +76,9 @@ Source and file checks are in `data/README.md`. A metro train compressor in Port
 
 - An early warning counts if the alarm comes up to 24 h before the leak starts. Per-event lead times are in `models/anomaly_metrics.json`.
 - Honest reading: the detector finds the leaks as unusual, but the false-alarm trade-off depends on a threshold we could only set on one month of normal data.
+
+### Optional supervised air-leak flag (`failover/ml/train_leak.py`, `leak_detector.py`)
+
+- RandomForestClassifier(100 trees, max_depth 8, balanced classes, seed 42) on 1 min means with rolling 10 min features. Time-based split: trained on leaks 1 to 3 (before 2020-07-01), tested on leak 4 (from 2020-07-01, 62 days).
+- **Result on held-out leak 4 at p > 0.5: recall 0.0, no alerts and no false alarms.** The highest probability inside leak 4 was 0.17, below the highest just outside it (0.21). The model learned nothing that carries over to this leak. Metrics: `models/leak_metrics.json`. Plot: `models/leak_test_period.svg`.
+- App hook (`failover/app/backend.py`, the only change to the advice path): if p > 0.5, the advisor gets a copy of the config with the air leak rate times `LEAK_MULTIPLIER` = 2.0 (status assumed, shown on the Assumptions tab), and the card shows "Air leak suspected". With no model file or any error, p is None and the advice is identical (tested). The harness does not use the hook. Its 144-run summary is unchanged (44 baseline unsafe, 0 advisor unsafe, 0 property failures).

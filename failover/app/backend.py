@@ -1,6 +1,7 @@
 """Glue between the app and the core. Uses failover.core when it is importable, else the stub."""
 from __future__ import annotations
 
+import copy
 import dataclasses
 import json
 import os
@@ -9,6 +10,8 @@ from typing import Any
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 CONFIG_PATH = os.path.join(ROOT, "config", "loco.json")
 WINDOW_S = 60
+LEAK_MULTIPLIER = 2.0  # status: assumed. Air leak rate factor when the optional ML leak flag fires.
+LEAK_P = 0.5
 OBS_END_S = 120  # observation window ends this many seconds into the run
 
 try:
@@ -60,6 +63,9 @@ def flatten_assumptions(cfg: dict) -> list[dict]:
                 walk(v, f"{path}.{name}")
 
     walk(cfg, "")
+    rows.append({"key": "app.LEAK_MULTIPLIER", "value": LEAK_MULTIPLIER, "status": "assumed",
+                 "source": "team guess: leak rate factor used by the advisor when the optional MetroPT-3 leak flag "
+                           f"has p > {LEAK_P} (failover/app/backend.py)"})
     return rows
 
 
@@ -115,7 +121,20 @@ def run_case(req: dict) -> dict:
         hypothesis = list(diagnosis["predicted"]) if ok else None
         if diagnosis.get("available"):
             diagnosis["used_by_advisor"] = bool(ok)
-    advice = _advise({"observed": window, "context": _context(sc)}, cfg, hypothesis)
+    # optional ML leak hook: a missing model or any error gives None and the advice is unchanged
+    from failover.ml.leak_detector import predict_proba as leak_proba
+    leak_p = leak_proba(req.get("leak_features"))
+    adv_cfg = cfg
+    if leak_p is not None and leak_p > LEAK_P:
+        adv_cfg = copy.deepcopy(cfg)
+        spec = adv_cfg["air"]["leak_bar_per_min"]
+        for k in ("min", "nominal", "max"):
+            if k in spec:
+                spec[k] = spec[k] * LEAK_MULTIPLIER
+        adv_cfg["air"]["use_fitted"] = False
+    advice = _advise({"observed": window, "context": _context(sc)}, adv_cfg, hypothesis)
+    leak_line = (f"Air leak suspected (model p={leak_p:.2f}) - air limit shortened"
+                 if leak_p is not None and leak_p > LEAK_P else None)
 
     step = max(1, len(base.t_s) // 360)
     limits = cfg.get("limits", {})
@@ -124,6 +143,7 @@ def run_case(req: dict) -> dict:
         "scenario": dataclasses.asdict(sc),
         "advice": dataclasses.asdict(advice),
         "diagnosis": diagnosis,
+        "leak": {"p": leak_p, "line": leak_line},
         "runs": {
             p: {"outcome": r.outcome, "limit_hit": r.limit_hit, "t_limit_s": r.t_limit_s,
                 "reached_station": r.reached_station, "minutes_left_true": r.minutes_left_true,

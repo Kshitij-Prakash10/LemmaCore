@@ -1,0 +1,15 @@
+{
+ "data": "MetroPT-3 (metro compressor, Porto): proxy, not a loco. Labels: the four air-leak windows.",
+ "model": "RandomForestClassifier(n_estimators=100, max_depth=8, class_weight=balanced, random_state=42)",
+ "features": "1 min means; rolling 10 min mean and std of 7 signals; rolling 10 min COMP duty",
+ "split": "time-based: train before 2020-07-01 (leaks 1-3), test from 2020-07-01 (leak 4 held out)",
+ "n_train_minutes": 177259,
+ "n_test_minutes": 72599,
+ "leak4_recall": 0.0,
+ "precision": null,
+ "false_alarm_minutes_outside_leak": 0,
+ "false_alarm_episodes_per_day": 0.0,
+ "minutes_to_first_alert_in_leak4": null,
+ "threshold": 0.5,
+ "test_days": 62.2
+}
