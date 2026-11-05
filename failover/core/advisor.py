@@ -68,7 +68,6 @@ def advise(observation: dict, config: dict | None = None, fault_hypothesis: list
     t0 = t_obs
     series = obs.get("motor_temp_c", [])
     if len(series) >= 30 and moving:
-        slope = (series[-1] - series[-30]) / 29.0
         base = allocate(cfg, amb, plant["states"], plant["failover_ok"])
         on = "motor_blower" in base["powered"] and not plant["blower_fail"]
         h = p["h_on"] * (1.0 if on else p["h_off_ratio"])

@@ -60,7 +60,9 @@ async function api(path, body) {
     method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body)
   };
   const r = await fetch(path, opt);
-  return r.json();
+  const data = await r.json();
+  if (!r.ok) throw new Error(data.error || `server answered ${r.status}`);
+  return data;
 }
 function esc(s) {
   return String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
@@ -141,7 +143,7 @@ async function runAdvisor(diagnose = false) {
       { y: res.chart.air_advisor, c: "--chart-adv" },
     ], res.chart.air_min_bar, "bar");
   } catch (err) {
-    showError($("decision-card"), "The advisor did not answer.");
+    showError($("decision-card"), `The advisor did not answer (${err.message}).`);
   } finally {
     busy.removeAttribute("aria-busy");
   }
