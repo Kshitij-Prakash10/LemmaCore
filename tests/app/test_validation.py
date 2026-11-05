@@ -61,3 +61,18 @@ def test_api_404_and_405_are_json(client):
 def test_wsgi_entry_point():
     from failover.app import server
     assert server.app.name and callable(server.app.wsgi_app)
+
+
+def test_vercel_entry_point_serves_pages():
+    import importlib.util
+    import json
+    import os
+
+    root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    spec = importlib.util.spec_from_file_location("vercel_index", os.path.join(root, "api", "index.py"))
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    c = mod.app.test_client()
+    assert c.get("/").status_code == 200 and c.get("/api/status").status_code == 200
+    with open(os.path.join(root, "vercel.json"), encoding="utf-8") as f:
+        assert json.load(f)["rewrites"][0]["destination"] == "/api/index"
