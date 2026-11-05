@@ -1,4 +1,4 @@
-# Owner: Agent A. Add packages the core needs. Keep it small and offline-friendly.
-numpy
-scipy
-pytest
+# Owner: Agent A. Packages the core needs. Pinned to the versions the test suite passes with.
+numpy==2.5.4
+scipy==1.18.1
+pytest==9.2.0

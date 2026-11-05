@@ -8,8 +8,7 @@ import numpy as np
 
 from .advisor import advise
 from .config import load_config
-from .model import (allocate, derate_factor, heat_scale, limit_times, plant_from_faults, resolve_params,
-                    unit_capacity_kw)
+from .model import allocate, heat_scale, limit_times, plant_from_faults, resolve_params
 from .types import POLICIES, SIGNAL_NAMES, SimResult, Scenario
 from .version import CORE_VERSION
 
@@ -46,7 +45,6 @@ def simulate(scenario: Scenario, policy: str, config: dict | None = None,
     p_min = cfg_plant["limits"]["brake_air_min_bar"]["value"]
     soc_min = cfg_plant["limits"]["battery_min_soc_pct"]["value"]
     hs = heat_scale(cfg, scenario.gradient_pct, scenario.train_load)
-    n_loads = len(cfg["loads"])
     conv = cfg["converters"]
 
     t_motor = amb + p["rise0"]

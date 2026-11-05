@@ -1,5 +1,6 @@
-# Owner: Agent B. Add packages for data, ML and the app. Keep it small and offline-friendly.
-pandas
-scikit-learn
-joblib
-flask
+# Owner: Agent B. Packages for data, ML and the app. Pinned: the committed models/*.joblib files are
+# scikit-learn pickles, so keep scikit-learn and joblib at these versions unless you retrain (make train).
+pandas==3.1.1
+scikit-learn==1.9.1
+joblib==1.6.0
+flask==3.1.3

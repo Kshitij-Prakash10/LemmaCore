@@ -1,12 +1,14 @@
 """Flask server for the Failover Guardian app. Offline: static files only, no CDN.
 
-Run: python -m failover.app.server  (http://127.0.0.1:5000)
+Run (development): python -m failover.app.server  (http://127.0.0.1:5000; HOST and PORT override)
+Run (production):  gunicorn -w 2 -b 0.0.0.0:8000 failover.app.server:app
 """
 from __future__ import annotations
 
 import os
 
 from flask import Flask, jsonify, request, send_file, send_from_directory
+from werkzeug.exceptions import HTTPException
 
 from failover.app import backend
 
@@ -16,6 +18,31 @@ STATIC = os.path.join(os.path.dirname(__file__), "static")
 def create_app() -> Flask:
     """Build the Flask app."""
     app = Flask(__name__, static_folder=None)
+    app.config["MAX_CONTENT_LENGTH"] = 2 * 1024 * 1024  # bytes; a request body is a few kB
+
+    def _body() -> dict:
+        body = request.get_json(force=True, silent=True)
+        if body is None and request.get_data():
+            raise backend.BadRequest("request body is not valid JSON")
+        body = {} if body is None else body
+        if not isinstance(body, dict):
+            raise backend.BadRequest("request body must be a JSON object")
+        return body
+
+    @app.errorhandler(backend.BadRequest)
+    def bad_request(err: backend.BadRequest):
+        return jsonify({"error": str(err)}), 400
+
+    @app.errorhandler(HTTPException)
+    def http_error(err: HTTPException):
+        if request.path.startswith("/api/"):
+            return jsonify({"error": err.description}), err.code
+        return err
+
+    @app.errorhandler(Exception)
+    def server_error(err: Exception):
+        app.logger.exception("unhandled error on %s", request.path)
+        return jsonify({"error": "internal error, see the server log"}), 500
 
     @app.get("/")
     def index():
@@ -37,12 +64,17 @@ def create_app() -> Flask:
 
     @app.post("/api/advise")
     def advise():
-        return jsonify(backend.run_case(request.get_json(force=True) or {}))
+        return jsonify(backend.run_case(_body()))
 
     @app.post("/api/diagnose")
     def diagnose():
-        body = request.get_json(force=True) or {}
-        return jsonify(backend.diagnose(body.get("observed", body)))
+        body = _body()
+        observed = body.get("observed", body)
+        if not isinstance(observed, dict) or not all(
+                isinstance(v, list) and all(isinstance(x, (int, float)) and not isinstance(x, bool) for x in v)
+                for v in observed.values()):
+            raise backend.BadRequest("observed must be an object of signal name to list of numbers")
+        return jsonify(backend.diagnose(observed))
 
     @app.get("/api/coverage")
     def coverage():
@@ -99,5 +131,7 @@ def create_app() -> Flask:
     return app
 
 
+app = create_app()  # WSGI entry point: failover.app.server:app
+
 if __name__ == "__main__":
-    create_app().run(host="127.0.0.1", port=int(os.environ.get("PORT", "5000")), debug=False)
+    app.run(host=os.environ.get("HOST", "127.0.0.1"), port=int(os.environ.get("PORT", "5000")), debug=False)

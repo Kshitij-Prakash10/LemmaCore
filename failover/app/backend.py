@@ -30,6 +30,13 @@ except Exception:  # core not landed yet
     USING_STUB = True
 
 try:
+    from failover.core.types import FAULT_IDS
+except Exception:  # core not landed yet
+    FAULT_IDS = ["U1_TRIP", "U2_TRIP", "STANDBY_STUCK", "MCB_TRIP", "UNIT_DERATE", "BLOWER_FAIL",
+                 "COMPRESSOR_FAIL", "TEMP_SENSOR_STUCK"]
+TRAIN_LOADS = ("loaded", "empty")
+
+try:
     from failover.ml import infer as _infer
 except Exception:
     _infer = None
@@ -69,23 +76,65 @@ def flatten_assumptions(cfg: dict) -> list[dict]:
     return rows
 
 
+class BadRequest(ValueError):
+    """A request field is missing, has the wrong type or is out of range. The server answers 400."""
+
+
+def _num(req: dict, key: str, default: float, lo: float, hi: float) -> float:
+    """req[key] as a finite float in [lo, hi], else BadRequest."""
+    raw = req.get(key, default)
+    if isinstance(raw, bool):
+        raise BadRequest(f"{key} must be a number")
+    try:
+        x = float(raw)
+    except (TypeError, ValueError):
+        raise BadRequest(f"{key} must be a number") from None
+    if not (lo <= x <= hi):  # also rejects NaN
+        raise BadRequest(f"{key} must be between {lo:g} and {hi:g}")
+    return x
+
+
 def make_scenario(req: dict) -> Any:
-    """Build a Scenario from a request dict. Units: C, percent, km, km/h."""
-    faults = list(req.get("faults", []))
+    """Build a Scenario from a request dict. Units: C, percent, km, km/h. Raises BadRequest on bad input."""
+    if not isinstance(req, dict):
+        raise BadRequest("request body must be a JSON object")
+    faults = req.get("faults", [])
+    if isinstance(faults, str):
+        faults = [faults]
+    if not isinstance(faults, (list, tuple)) or not all(isinstance(f, str) for f in faults):
+        raise BadRequest("faults must be a list of fault ids")
+    faults = list(dict.fromkeys(faults))
+    unknown = [f for f in faults if f not in FAULT_IDS]
+    if unknown:
+        raise BadRequest(f"unknown fault ids {unknown}; valid ids are {FAULT_IDS}")
     if req.get("stick_temp") and "TEMP_SENSOR_STUCK" not in faults:
         faults.append("TEMP_SENSOR_STUCK")
+    train_load = req.get("train_load", "loaded")
+    if train_load not in TRAIN_LOADS:
+        raise BadRequest(f"train_load must be one of {list(TRAIN_LOADS)}")
+    units = _num(req, "units", 2, 1, 3)
+    if units != int(units):
+        raise BadRequest("units must be a whole number")
+    seed = _num(req, "seed", 1, 0, 2**32 - 1)
+    if seed != int(seed):
+        raise BadRequest("seed must be a whole number")
+    params = req.get("params", {})
+    if not isinstance(params, dict):
+        raise BadRequest("params must be a JSON object")
+    params = {str(k): _num(params, k, 0, -1e6, 1e6) for k in params}
+    sid = req.get("id") or ("__".join(faults) or "healthy")
     return Scenario(
-        id=req.get("id") or ("__".join(faults) or "healthy"),
+        id=str(sid),
         faults=tuple(faults),
-        ambient_c=float(req.get("ambient_c", 45)),
-        gradient_pct=float(req.get("gradient_pct", 2.7)),
-        train_load=req.get("train_load", "loaded"),
-        units=int(req.get("units", 2)),
-        dist_next_station_km=float(req.get("dist_next_station_km", 15)),
-        speed_kmph=float(req.get("speed_kmph", 40)),
-        noise=float(req.get("noise", 0.02)),
-        seed=int(req.get("seed", 1)),
-        params=dict(req.get("params", {})),
+        ambient_c=_num(req, "ambient_c", 45, -50, 70),
+        gradient_pct=_num(req, "gradient_pct", 2.7, -10, 10),
+        train_load=train_load,
+        units=int(units),
+        dist_next_station_km=_num(req, "dist_next_station_km", 15, 0, 500),
+        speed_kmph=_num(req, "speed_kmph", 40, 1, 200),
+        noise=_num(req, "noise", 0.02, 0, 1),
+        seed=int(seed),
+        params=dict(params),
     )
 
 
@@ -199,6 +248,8 @@ def diagnose(window: dict[str, list[float]]) -> dict:
     """Classifier output, or {"available": False} if the model is not trained yet."""
     if _infer is None or not hasattr(_infer, "diagnose"):
         return {"available": False, "reason": "classifier not built yet"}
+    if not any(len(v) for v in window.values()):
+        return {"available": False, "reason": "no observed signal data in the window"}
     try:
         out = dict(_infer.diagnose(window))
     except FileNotFoundError:

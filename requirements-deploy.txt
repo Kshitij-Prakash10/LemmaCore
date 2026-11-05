@@ -1,0 +1,3 @@
+# Production WSGI server for the app (Linux/macOS). Not needed for development or tests.
+-r requirements.txt
+gunicorn==26.2.0
