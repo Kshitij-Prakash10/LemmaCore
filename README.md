@@ -42,6 +42,8 @@ docker build -t failover-guardian .
 docker run --rm -p 8000:8000 failover-guardian
 ```
 
+Or on Vercel: import the repository with the framework preset **Other** and no build or output settings. `api/index.py` is the entry point and `vercel.json` routes every path to it. The function bundle is large (numpy, scipy, pandas, scikit-learn, about 340 MB installed); if Vercel rejects it for size, use the Docker image on a container host instead.
+
 `make serve` runs gunicorn locally (`HOST` and `PORT` override the bind address). `/api/status` is a cheap health check. Bad API input answers HTTP 400 with `{"error": "..."}`.
 
 Package versions are pinned in the requirements files. The committed `models/*.joblib` files are scikit-learn pickles: keep scikit-learn and joblib at the pinned versions, or run `make train` after upgrading. Retraining the fault classifier with other library versions can move its metrics in the third decimal place.
@@ -59,6 +61,7 @@ Package versions are pinned in the requirements files. The committed `models/*.j
 | `OWNERSHIP.md` | who owns which files, git rules |
 | `docs/` | status files, model notes, requests, AI disclosure |
 | `Dockerfile`, `requirements-deploy.txt` | production image and WSGI server |
+| `api/index.py`, `vercel.json` | Vercel entry point and routing |
 
 ## Honesty notes
 

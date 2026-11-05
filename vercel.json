@@ -1,0 +1,11 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "rewrites": [{ "source": "/(.*)", "destination": "/api/index" }],
+  "functions": {
+    "api/index.py": {
+      "includeFiles": "{failover,config,models,data/processed,demo_outputs}/**",
+      "excludeFiles": "{tests,docs,outputs,handoff,data/raw}/**",
+      "maxDuration": 60
+    }
+  }
+}
